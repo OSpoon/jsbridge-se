@@ -1,0 +1,11 @@
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'spoon2014'
+    repoName = 'maven'
+    groupId = 'com.ospoon'
+    artifactId = 'jsbridge-n22'
+    publishVersion = '1.0.0'
+    desc = 'jsbridge-n22 for android'
+    website = 'https://github.com/ospoon/jsbridge-n22'
+}

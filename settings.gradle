@@ -1,0 +1,2 @@
+include ':app', ':jsbridge-n22'
+rootProject.name='jsbridge-n22'
