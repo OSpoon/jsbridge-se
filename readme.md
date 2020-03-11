@@ -1,6 +1,6 @@
 ## jsbridge-n22 ##
 
-使用方案为(JSBridge-Android)[https://github.com/smallbuer/JSBridge-Android]
+使用方案为[JSBridge-Android](https://github.com/smallbuer/JSBridge-Android)
 
 #### 1. 新建插件Java类(如:ToastBridgeHandler),并继承自BaseBridgeHandler ####
 
