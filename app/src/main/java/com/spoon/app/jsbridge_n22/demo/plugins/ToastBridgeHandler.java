@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
+import com.spoon.app.jsbridge_n22.core.BridgePlugin;
 
+@BridgePlugin(name = "toast")
 public class ToastBridgeHandler extends BaseBridgeHandler {
 
     /**

@@ -1,5 +1,10 @@
 package com.spoon.app.jsbridge_n22.core;
 
+import android.text.TextUtils;
+import android.util.Log;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,6 +64,56 @@ public enum Bridge {
         }
     }
 
+    /**
+     * register handler,so that javascript can call it
+     * 注册处理程序,以便javascript调用它
+     *
+     * @param pluginClass
+     * @return
+     */
+    public void registerHandler(Class<?>... pluginClass) {
+        Map<String, BridgeHandler> map = new HashMap<>();
+        for (Class<?> handlerClass : pluginClass) {
+            for (Constructor<?> constructor : handlerClass.getConstructors()) {
+                try {
+                    Object plugin = constructor.newInstance();
+                    if (plugin instanceof BridgeHandler) {
+                        BridgeHandler bridgeHandler = (BridgeHandler) plugin;
+                        String pluginName = getPluginName(bridgeHandler);
+                        if (!TextUtils.isEmpty(pluginName)) {
+                            map.put(pluginName, bridgeHandler);
+                        }
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (map.size() > 0) {
+            registerHandler(map);
+        } else {
+            Log.e("Bridge", "无插件注册");
+        }
+    }
+
+    /**
+     * 获取插件名称
+     *
+     * @param bridgeHandler
+     * @return
+     */
+    private static String getPluginName(BridgeHandler bridgeHandler) {
+        Class<? extends BridgeHandler> clazz = bridgeHandler.getClass();
+        BridgePlugin annotation = clazz.getAnnotation(BridgePlugin.class);
+        if (annotation != null) {
+            return annotation.name();
+        }
+        return null;
+    }
 
     /**
      * unregister handler

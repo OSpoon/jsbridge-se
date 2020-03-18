@@ -3,6 +3,7 @@ package com.spoon.app.jsbridge_n22.demo.plugins;
 import android.content.Intent;
 
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
+import com.spoon.app.jsbridge_n22.core.BridgePlugin;
 import com.spoon.app.jsbridge_n22.demo.OtherActivity;
 import com.spoon.app.jsbridge_n22.utils.ResultUtil;
 import com.yanzhenjie.permission.runtime.Permission;
@@ -12,6 +13,7 @@ import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
+@BridgePlugin(name = "openOther")
 public class OpenOtherBridgeHandler extends BaseBridgeHandler {
 
     private static final int REQUEST_CODE_OPEN_OTHER = 200;

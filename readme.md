@@ -184,3 +184,6 @@ implementation 'com.ospoon:jsbridge-n22:1.0.1'
     申请权限已经在BaseBridgeHandler操作,只需要将申请的权限通过authorization()返回即可,注意权限使用了
     `com.yanzhenjie.permission:support:2.0.0`,所以权限常量请在`com.yanzhenjie.permission.runtime.Permission`
     中查看
+##### 7-5. 新增注册插件方式 #####
+    在插件类上使用注解@BridgePlugin(name="xxx"),name为插件名称,也就是js调用时的名称
+    扩展`Bridge.INSTANCE.registerHandler`,支持直接使用类进行注册
