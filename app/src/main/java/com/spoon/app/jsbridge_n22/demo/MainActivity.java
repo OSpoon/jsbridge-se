@@ -1,7 +1,5 @@
 package com.spoon.app.jsbridge_n22.demo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.spoon.app.jsbridge_n22.activity.BridgeWebViewActivity;
