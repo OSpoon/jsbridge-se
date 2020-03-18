@@ -1,42 +1,46 @@
-## jsbridge-n22 ##
+### jsbridge-n22使用指南 ###
 
-使用方案为[JSBridge-Android](https://github.com/smallbuer/JSBridge-Android)
-
-发布地址[bintray](https://bintray.com/spoon2014)
-
+#### 1. 在模块级别的`build.gradle`添加jsbridge-n22依赖
 ```
 implementation 'com.ospoon:jsbridge-n22:1.0.4'
 ```
+#### 2. 创建插件 #####
 
-#### 1. 新建插件Java类(如:ToastBridgeHandler),并继承自BaseBridgeHandler ####
-
+1. 新建插件Java类(如:ToastBridgeHandler),并继承自BaseBridgeHandler
+2. 在新建的插件Java类上使用注解`@BridgePlugin(name="xxx")`标注插件名称
+3. 插件各部分简介
+    ```java
+    /*插件名称,js调用时会使用到*/
+    @BridgePlugin(name="toast")
     public class ToastBridgeHandler extends BaseBridgeHandler {
     
         /**
-         * 权限数组,不申请权限设置为null
+         * 需申请权限列表
+         * 权限常量请在`com.yanzhenjie.permission.runtime.Permission`
+         * 中查看
          * @return
          */
         @Override
         public String[] authorization() {
-            return null;
+            return new String[0];
         }
     
         /**
-         * 是否支持通过onActivityResult回调数据
+         * 是否开启`onActivityResult`回调数据
          * @return
          */
         @Override
         public Boolean registerMaInterface() {
-            return null;
+            return false;
         }
     
         /**
-         * 业务流程
+         * 执行业务处理
          * @param data
          */
         @Override
         public void process(String data) {
-           Toast.makeText(mContext,"js data:" + data, Toast.LENGTH_SHORT).show();
+    
         }
     
         /**
@@ -50,48 +54,67 @@ implementation 'com.ospoon:jsbridge-n22:1.0.4'
     
         }
     }
-    
-#### 2. 新建AppContext类并继承Application ####
-
-#### 3. 在AppContext中注册插件 ####
-
-    public class AppContext extends Application {
-    
-        public final static String HANDLER_NAME_TOAST = "toast";
-    
-        @Override
-        public void onCreate() {
-            super.onCreate();
-            Map<String, BridgeHandler> handlerMap = new HashMap<>();
-            handlerMap.put(HANDLER_NAME_TOAST,new ToastBridgeHandler());
-            Bridge.INSTANCE.registerHandler(handlerMap);
-        }
+    ```
+4. 在`Application`的子类`onCreate`方法中注册插件
+    ```java
+    /*
+        参数支持同时传入多个
+    */
+    Bridge.INSTANCE.registerHandler(ToastBridgeHandler.class);
+    ```
+ #### 3. 一键启动
+ 1. BridgeWebViewActivity
+     ```java
+     BridgeWebViewActivity.start(this,"http://192.168.199.163:9999");
+     ```
+ 2. X5WebViewActivity
+    ```java
+    X5WebViewActivity.start(this,"http://192.168.199.163:9999");
+    ```
+ 
+#### 4. JS调用Java ####
+```java
+window.WebViewJavascriptBridge.callHandler(
+    'toast'                     //桥注册的名称ID
+    , {'msg': '中文测试'}        //传递给原生的参数
+    , function(responseData) {  //异步回调接口
+        console.log('native return->'+responseData);
     }
-    
-#### 4. 一键启动Webview ####
+);
+```
 
-    public class MainActivity extends AppCompatActivity {
-    
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-            BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
-        }
-    }
-    
-#### 5. js调用java插件 ####
+#### 5. 其他 ####
+1. 回调数据到Js
+> 在定义的插件中可以取到callBack对象,用于将数据回调到H5
+使用方式:
+1. 成功情况:
+    ```java
+    callBack.onCallBack(ResultUtil.success(JSONObject));
+    ```
+2. 失败情况:
+    ```java
+    callBack.onCallBack(ResultUtil.error("1","取消识别"));
+    callBack.onCallBack(ResultUtil.error("1",e.getMessage()));
+    ```
+2. 使用上下文
+    ```
+    在定义的插件中可以取到getActivity(), new Intent(getActivity(), CaptureActivity.class);
+    ```
+3. 启动一个带回调的Activity
+    ```
+    在定义的插件中可以取到getActivity(),尝试使用getActivity()做后续操作
+    ```
+4. 申请权限
+    ```
+    申请权限已经在BaseBridgeHandler操作,只需要将申请的权限通过authorization()返回即可,注意权限使用了
+    `com.yanzhenjie.permission:support:2.0.0`,所以权限常量请在`com.yanzhenjie.permission.runtime.Permission`
+    中查看
+    ```
 
-    window.WebViewJavascriptBridge.callHandler(
-        'toast'                     //桥注册的名称ID
-        , {'msg': '中文测试'}        //传递给原生的参数
-        , function(responseData) {  //异步回调接口
-            console.log('native return->'+responseData);
-        }
-    );
-
-#### 扩展一 ####
-##### 6-1. H5中做基础配置(导入bridge.js) #####
+#### 6. 扩展js部分 ####
+1. 新建`bridge.js`
+    ```js
+    // 判断机型
     const u = navigator.userAgent
     
     function setupWebViewJavascriptBridge(callback) {
@@ -137,11 +160,60 @@ implementation 'com.ospoon:jsbridge-n22:1.0.4'
         })
       }
     }
-##### 6-2. H5中做基础配置(导入native.js) #####
+    
+    ```
+2. 新建`native.js`
+    ```js
     import bridge from './bridge'
+    
     const native = {
-      toast(success, fail) {
-        bridge.callhandler('toast', { 'msg': '中文测试' }, (result) => {
+      toast(message, success, fail) {
+        bridge.callhandler('toast', { 'message': message }, (result) => {
+          if (!result.error) {
+            success(result.content)
+          } else {
+            fail(result.content)
+          }
+        })
+      },
+      openOther(message, success, fail) {
+        bridge.callhandler('openOther', { 'message': message }, (result) => {
+          if (!result.error) {
+            success(result.content)
+          } else {
+            fail(result.content)
+          }
+        })
+      },
+      qrCodeScan(message, success, fail) {
+        bridge.callhandler('qrscan', { 'message': message }, (result) => {
+          if (!result.error) {
+            success(result.content)
+          } else {
+            fail(result.content)
+          }
+        })
+      },
+      getLocationInfo(message, success, fail) {
+        bridge.callhandler('location', { 'message': message }, (result) => {
+          if (!result.error) {
+            success(result.content)
+          } else {
+            fail(result.content)
+          }
+        })
+      },
+      getDevice(message, success, fail) {
+        bridge.callhandler('device', { 'message': message }, (result) => {
+          if (!result.error) {
+            success(result.content)
+          } else {
+            fail(result.content)
+          }
+        })
+      },
+      closePage(message, success, fail) {
+        bridge.callhandler('close', { 'message': message }, (result) => {
           if (!result.error) {
             success(result.content)
           } else {
@@ -153,37 +225,13 @@ implementation 'com.ospoon:jsbridge-n22:1.0.4'
     
     export default native
     
-##### 6-3. 调用插件 ##### 
+    ```
 
-    native.toast((content) => {
-        alert(JSON.stringify(content))
-      }, (error) => {
-        alert(error)
-      })
-      
-#### 扩展二 ####
-##### 7-1. 使用固定方式将数据返回到H5 #####
-    在定义的插件中可以取到callBack对象,用于将数据回调到H5
-    使用方式:
-    1. 成功情况:
-        ```java
-        callBack.onCallBack(ResultUtil.success(JSONObject));
-        ```
-    2. 失败情况:
-        ```java
-        callBack.onCallBack(ResultUtil.error("1","取消识别"));
-        callBack.onCallBack(ResultUtil.error("1",e.getMessage()));
-        ```
-##### 7-2. 使用上下文 #####
-    在定义的插件中可以取到getActivity(), new Intent(getActivity(), CaptureActivity.class);
-    
-##### 7-3. 启动一个带回调的Activity #####
-    在定义的插件中可以取到getActivity(),尝试使用getActivity()做后续操作
-    
-##### 7-4. 申请权限 #####
-    申请权限已经在BaseBridgeHandler操作,只需要将申请的权限通过authorization()返回即可,注意权限使用了
-    `com.yanzhenjie.permission:support:2.0.0`,所以权限常量请在`com.yanzhenjie.permission.runtime.Permission`
-    中查看
-##### 7-5. 新增注册插件方式 #####
-    在插件类上使用注解@BridgePlugin(name="xxx"),name为插件名称,也就是js调用时的名称
-    扩展`Bridge.INSTANCE.registerHandler`,支持直接使用类进行注册
+ 注意事项:
+ 1. 页面提示ERR_CACHE_MISS:请设置网络权限`<uses-permission android:name="android.permission.INTERNET"/>`
+ 2. 页面提示ERR_CLEARTEXT_NOT_PERMITTED:请在`AndroidManifest.xml`的`application`节点增加`android:usesCleartextTraffic="true"`
+ 
+
+使用方案为[JSBridge-Android](https://github.com/smallbuer/JSBridge-Android)
+
+发布地址[bintray](https://bintray.com/spoon2014)
