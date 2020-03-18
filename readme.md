@@ -111,7 +111,7 @@ window.WebViewJavascriptBridge.callHandler(
     中查看
     ```
 
-#### 6. 扩展js部分 ####
+#### 6. 扩展js部分(`npm i js-native-n22`安装后即可使用) ####
 1. 新建`bridge.js`
     ```js
     // 判断机型

@@ -19,7 +19,10 @@
 
 <script>
 
-import native from '@/utils/native'
+// import native from '@/utils/native'
+import native from 'js-native-n22'
+
+console.log(native)
 
 export default {
   name: 'Home',
