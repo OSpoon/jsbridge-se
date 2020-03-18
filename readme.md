@@ -62,7 +62,7 @@
         }
     }
     
-#### 4. 一键启动Webview(注意:MainActivity需继承自com.spoon.app.jsbridge_n22.base.BaseActivity) ####
+#### 4. 一键启动Webview ####
 
     public class MainActivity extends AppCompatActivity {
     
