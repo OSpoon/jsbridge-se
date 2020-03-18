@@ -31,10 +31,22 @@ export default {
     return {}
   },
   created() {},
-  mounted() {},
+  mounted() {
+    native.bridge.registerhandler('functionInJs', (data, responseCallback) => {
+      alert(JSON.stringify(data))
+      responseCallback('JS OK')
+    })
+  },
   methods: {
     toast() {
-      native.toast(new Date(), (content) => {
+      native.toast({ text: '你好啊赛利亚', duration: 0 }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    getDevice() {
+      native.device((content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
@@ -61,13 +73,7 @@ export default {
         alert(error)
       })
     },
-    getDevice() {
-      native.getDevice(new Date(), (content) => {
-        alert(JSON.stringify(content))
-      }, (error) => {
-        alert(error)
-      })
-    },
+
     closePage() {
       native.closePage(new Date(), (content) => {
         alert(JSON.stringify(content))

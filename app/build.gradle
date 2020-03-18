@@ -20,6 +20,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.blankj:utilcode:1.26.0'
     implementation project(path: ':jsbridge-n22')
 //    implementation 'com.ospoon:jsbridge-n22:1.0.3'
 }

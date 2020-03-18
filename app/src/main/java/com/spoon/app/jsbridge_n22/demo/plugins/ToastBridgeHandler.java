@@ -3,8 +3,10 @@ package com.spoon.app.jsbridge_n22.demo.plugins;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
+import com.spoon.app.jsbridge_n22.demo.plugins.bean.ToastJsRequest;
 
 @BridgePlugin(name = "toast")
 public class ToastBridgeHandler extends BaseBridgeHandler {
@@ -33,7 +35,8 @@ public class ToastBridgeHandler extends BaseBridgeHandler {
      */
     @Override
     public void process(String data) {
-        Toast.makeText(getActivity(),"js data:" + data, Toast.LENGTH_SHORT).show();
+        ToastJsRequest request = new Gson().fromJson(data, ToastJsRequest.class);
+        Toast.makeText(getActivity(),request.getText(), request.getDuration()).show();
     }
 
     /**

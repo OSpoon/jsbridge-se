@@ -1,8 +1,9 @@
 import bridge from './bridge'
 
 const native = {
-  toast(message, success, fail) {
-    bridge.callhandler('toast', { 'message': message }, (result) => {
+  bridge,
+  toast(data, success, fail) {
+    bridge.callhandler('toast', data, (result) => {
       if (!result.error) {
         success(result.content)
       } else {
@@ -10,8 +11,8 @@ const native = {
       }
     })
   },
-  openOther(message, success, fail) {
-    bridge.callhandler('openOther', { 'message': message }, (result) => {
+  device(success, fail) {
+    bridge.callhandler('device', '', (result) => {
       if (!result.error) {
         success(result.content)
       } else {
@@ -19,8 +20,8 @@ const native = {
       }
     })
   },
-  qrCodeScan(message, success, fail) {
-    bridge.callhandler('qrscan', { 'message': message }, (result) => {
+  openOther(data, success, fail) {
+    bridge.callhandler('openOther', data, (result) => {
       if (!result.error) {
         success(result.content)
       } else {
@@ -28,8 +29,8 @@ const native = {
       }
     })
   },
-  getLocationInfo(message, success, fail) {
-    bridge.callhandler('location', { 'message': message }, (result) => {
+  qrCodeScan(data, success, fail) {
+    bridge.callhandler('qrscan', data, (result) => {
       if (!result.error) {
         success(result.content)
       } else {
@@ -37,8 +38,8 @@ const native = {
       }
     })
   },
-  getDevice(message, success, fail) {
-    bridge.callhandler('device', { 'message': message }, (result) => {
+  getLocationInfo(data, success, fail) {
+    bridge.callhandler('location', data, (result) => {
       if (!result.error) {
         success(result.content)
       } else {

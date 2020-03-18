@@ -5,6 +5,7 @@ import android.app.Application;
 import com.spoon.app.jsbridge_n22.core.Bridge;
 import com.spoon.app.jsbridge_n22.demo.plugins.OpenOtherBridgeHandler;
 import com.spoon.app.jsbridge_n22.demo.plugins.ToastBridgeHandler;
+import com.spoon.app.jsbridge_n22.demo.plugins.DeviceBridgeHandler;
 
 import java.util.Date;
 
@@ -15,6 +16,7 @@ public class AppContext extends Application {
     public void onCreate() {
         super.onCreate();
         Bridge.INSTANCE.registerHandler(ToastBridgeHandler.class,
+                DeviceBridgeHandler.class,
                 OpenOtherBridgeHandler.class);
     }
 }
