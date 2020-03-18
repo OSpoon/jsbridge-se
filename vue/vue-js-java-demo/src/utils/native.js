@@ -6,7 +6,7 @@ const native = {
       if (!result.error) {
         success(result.content)
       } else {
-        fail(result.error)
+        fail(result.content)
       }
     })
   },
@@ -15,7 +15,16 @@ const native = {
       if (!result.error) {
         success(result.content)
       } else {
-        fail(result.error)
+        fail(result.content)
+      }
+    })
+  },
+  qrCodeScan(message, success, fail) {
+    bridge.callhandler('qrscan', { 'message': message }, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
       }
     })
   }

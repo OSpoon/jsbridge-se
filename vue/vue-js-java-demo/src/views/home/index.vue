@@ -6,6 +6,8 @@
     <van-button type="primary" block @click="toast()">Toast</van-button>
     <p />
     <van-button type="primary" block @click="openOther()">打开另一个原生页面</van-button>
+    <p />
+    <van-button type="primary" block @click="qrCodeScan()">识别二维码</van-button>
   </div>
 </template>
 
@@ -31,6 +33,13 @@ export default {
     },
     openOther() {
       native.openOther(new Date(), (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    qrCodeScan() {
+      native.qrCodeScan(new Date(), (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
