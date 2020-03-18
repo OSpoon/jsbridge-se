@@ -72,11 +72,11 @@ implementation 'com.ospoon:jsbridge-n22:1.0.4'
     X5WebViewActivity.start(this,"http://192.168.199.163:9999");
     ```
  
-#### 4. JS调用Java ####
+#### 4. JS调用Java(js-native-n22对调用进行了封装) ####
 ```java
 window.WebViewJavascriptBridge.callHandler(
     'toast'                     //桥注册的名称ID
-    , {'msg': '中文测试'}        //传递给原生的参数
+    , { text: '你好啊赛利亚', duration: 0 }        //传递给原生的参数
     , function(responseData) {  //异步回调接口
         console.log('native return->'+responseData);
     }
@@ -102,7 +102,7 @@ window.WebViewJavascriptBridge.callHandler(
     ```
 3. 启动一个带回调的Activity
     ```
-    在定义的插件中可以取到getActivity(),尝试使用getActivity()做后续操作
+    在定义的插件中可以取到getActivity(),尝试使用getActivity().startActivityForResult()操作
     ```
 4. 申请权限
     ```
@@ -111,127 +111,80 @@ window.WebViewJavascriptBridge.callHandler(
     中查看
     ```
 
-#### 6. 扩展js部分(`npm i js-native-n22`安装后即可使用) ####
-1. 新建`bridge.js`
-    ```js
-    // 判断机型
-    const u = navigator.userAgent
-    
-    function setupWebViewJavascriptBridge(callback) {
-      if (!/(iPhone|iPad|iPod|iOS)/i.test(u)) {
-        if (window.WebViewJavascriptBridge) {
-          console.info('WebViewJavascriptBridgeReady is finish')
-          callback(window.WebViewJavascriptBridge)
-        } else {
-          console.info('listener WebViewJavascriptBridgeReady')
-          document.addEventListener(
-            'WebViewJavascriptBridgeReady',
-            function() {
-              console.info('listener WebViewJavascriptBridgeReady is finish')
-              // 默认注册一个供Java验证连接成功函数
-              window.WebViewJavascriptBridge.init(function(message, responseCallback) {
-                console.info(message)
-                responseCallback('JS PONG')
-              })
-              callback(window.WebViewJavascriptBridge)
-            },
-            false
-          )
-        }
-      }
-    }
-    
-    export default {
-      callhandler(name, data, callback) {
-        console.log('bridge callhandler >>> ', name, data)
-        setupWebViewJavascriptBridge(function(bridge) {
-          bridge.callHandler(name, data, function(data) {
-            data = JSON.parse(data)
-            callback(data)
-          })
-        })
-      },
-      registerhandler(name, callback) {
-        console.log('bridge registerhandler >>> ', name)
-        setupWebViewJavascriptBridge(function(bridge) {
-          bridge.registerHandler(name, function(data, responseCallback) {
-            callback(data, responseCallback)
-          })
-        })
-      }
-    }
-    
-    ```
-2. 新建`native.js`
-    ```js
-    import bridge from './bridge'
-    
-    const native = {
-      toast(message, success, fail) {
-        bridge.callhandler('toast', { 'message': message }, (result) => {
-          if (!result.error) {
-            success(result.content)
-          } else {
-            fail(result.content)
-          }
-        })
-      },
-      openOther(message, success, fail) {
-        bridge.callhandler('openOther', { 'message': message }, (result) => {
-          if (!result.error) {
-            success(result.content)
-          } else {
-            fail(result.content)
-          }
-        })
-      },
-      qrCodeScan(message, success, fail) {
-        bridge.callhandler('qrscan', { 'message': message }, (result) => {
-          if (!result.error) {
-            success(result.content)
-          } else {
-            fail(result.content)
-          }
-        })
-      },
-      getLocationInfo(message, success, fail) {
-        bridge.callhandler('location', { 'message': message }, (result) => {
-          if (!result.error) {
-            success(result.content)
-          } else {
-            fail(result.content)
-          }
-        })
-      },
-      getDevice(message, success, fail) {
-        bridge.callhandler('device', { 'message': message }, (result) => {
-          if (!result.error) {
-            success(result.content)
-          } else {
-            fail(result.content)
-          }
-        })
-      },
-      closePage(message, success, fail) {
-        bridge.callhandler('close', { 'message': message }, (result) => {
-          if (!result.error) {
-            success(result.content)
-          } else {
-            fail(result.content)
-          }
-        })
-      }
-    }
-    
-    export default native
-    
-    ```
-
  注意事项:
  1. 页面提示ERR_CACHE_MISS:请设置网络权限`<uses-permission android:name="android.permission.INTERNET"/>`
  2. 页面提示ERR_CLEARTEXT_NOT_PERMITTED:请在`AndroidManifest.xml`的`application`节点增加`android:usesCleartextTraffic="true"`
  
 
+### js-native-n22使用指南 ###
+#### 1. 安装 #### 
+```
+npm i js-native-n22
+```
+
+#### 2. 导入 ####
+```
+import native from 'js-native-n22'
+``` 
+
+#### 3. 使用 ####
+```
+native.api(data, (content) => {
+    ...
+}, (error) => {
+    ...
+})
+```
+
+#### API ####
+
+##### 1. toast
+请求参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+text | String | 无 | 提示信息
+duration | int | 1:长,0:短 | 显示时长
+
+响应参数: 无
+    
+API`toast`示例:
+    
+```js
+    native.toast({ text: '你好啊赛利亚', duration: 0 }, (content) => {
+    }, (error) => {
+    })
+```
+##### 2. device
+请求参数: 无
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+isDeviceRooted | boolean | 无 | 判断设备是否 rooted
+isAdbEnabled | boolean | 无 | 判断设备 ADB 是否可用
+sDKVersionName | String | 无 | 获取设备系统版本号
+sDKVersionCode | int | 无 | 获取设备系统版本码
+androidID | String | 无 | 获取设备 AndroidID
+macAddress | String | 无 | 获取设备 MAC 地址
+manufacturer | String | 无 | 获取设备厂商
+model | String | 无 | 获取设备型号
+aBIs | String[] | 无 | 获取设备 ABIs
+isTablet | boolean | 无 | 判断是否是平板
+isEmulator | boolean | 无 | 判断是否是模拟器
+uniqueDeviceId | String | 无 | 获取唯一设备 ID
+isSameDevice | boolean | 无 | 判断是否同一设备
+
+API`device`示例:
+```js
+native.device((content) => {
+    alert(JSON.stringify(content))
+}, (error) => {
+    alert(error)
+})
+```
+ 
+
 使用方案为[JSBridge-Android](https://github.com/smallbuer/JSBridge-Android)
 
 发布地址[bintray](https://bintray.com/spoon2014)
+
