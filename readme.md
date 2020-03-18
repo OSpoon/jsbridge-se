@@ -2,6 +2,12 @@
 
 使用方案为[JSBridge-Android](https://github.com/smallbuer/JSBridge-Android)
 
+发布地址[bintray](https://bintray.com/spoon2014)
+
+```
+implementation 'com.ospoon:jsbridge-n22:1.0.1'
+```
+
 #### 1. 新建插件Java类(如:ToastBridgeHandler),并继承自BaseBridgeHandler ####
 
     public class ToastBridgeHandler extends BaseBridgeHandler {
