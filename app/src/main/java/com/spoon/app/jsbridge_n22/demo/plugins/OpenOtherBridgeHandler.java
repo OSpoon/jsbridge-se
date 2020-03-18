@@ -2,7 +2,6 @@ package com.spoon.app.jsbridge_n22.demo.plugins;
 
 import android.content.Intent;
 
-import com.spoon.app.jsbridge_n22.base.BaseActivity;
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.demo.OtherActivity;
 import com.spoon.app.jsbridge_n22.utils.ResultUtil;
@@ -44,8 +43,8 @@ public class OpenOtherBridgeHandler extends BaseBridgeHandler {
      */
     @Override
     public void process(String data) {
-        Intent intent = new Intent(mContext, OtherActivity.class);
-        ((BaseActivity) mContext).startActivityForResult(intent, REQUEST_CODE_OPEN_OTHER);
+        Intent intent = new Intent(getActivity(), OtherActivity.class);
+        getActivity().startActivityForResult(intent, REQUEST_CODE_OPEN_OTHER);
     }
 
     /**
@@ -62,7 +61,7 @@ public class OpenOtherBridgeHandler extends BaseBridgeHandler {
                 String content = data.getStringExtra("msg");
                 Map<String, String> map = new HashMap<>();
                 map.put("msg", content);
-                mCallBackFunction.onCallBack(ResultUtil.success(map));
+                callBack.onCallBack(ResultUtil.success(map));
             }
         }
     }

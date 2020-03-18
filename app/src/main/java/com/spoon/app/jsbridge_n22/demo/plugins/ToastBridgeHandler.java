@@ -31,7 +31,7 @@ public class ToastBridgeHandler extends BaseBridgeHandler {
      */
     @Override
     public void process(String data) {
-        Toast.makeText(mContext,"js data:" + data, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),"js data:" + data, Toast.LENGTH_SHORT).show();
     }
 
     /**

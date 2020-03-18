@@ -17,16 +17,18 @@ import java.util.List;
 
 public abstract class BaseBridgeHandler extends BridgeHandler implements MAInterface {
 
-    public Context mContext;
-    public CallBackFunction mCallBackFunction;
+    public CallBackFunction callBack;
+    private BaseActivity activity;
 
     @SuppressLint("WrongConstant")
     @Override
     public void handler(Context context, final String jsData, CallBackFunction function) {
-        this.mContext = context;
-        this.mCallBackFunction = function;
+        if(context instanceof BaseActivity){
+            this.activity = (BaseActivity)context;
+        }
+        this.callBack = function;
         if (registerMaInterface()) {
-            ((BaseActivity) context).setMaInterface(this);
+            this.activity.setMaInterface(this);
         }
         //检测是否授权
         String[] permissions = authorization();
@@ -41,11 +43,11 @@ public abstract class BaseBridgeHandler extends BridgeHandler implements MAInter
                     }).onDenied(new Action<List<String>>() {
                         @Override
                         public void onAction(List<String> data) {
-                            Uri packageURI = Uri.parse("package:" + mContext.getPackageName());
+                            Uri packageURI = Uri.parse("package:" + activity.getPackageName());
                             Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            mContext.startActivity(intent);
-                            Toast.makeText(mContext, "请您正确授权后使用功能。", Toast.LENGTH_LONG).show();
+                            activity.startActivity(intent);
+                            Toast.makeText(activity, "请您正确授权后使用功能。", Toast.LENGTH_LONG).show();
                         }
                     }).start();
         } else {
@@ -70,4 +72,12 @@ public abstract class BaseBridgeHandler extends BridgeHandler implements MAInter
      * 处理业务
      */
     public abstract void process(String data);
+
+    /**
+     * 获取WebView所在Activity实例
+     * @return
+     */
+    public BaseActivity getActivity() {
+        return this.activity;
+    }
 }

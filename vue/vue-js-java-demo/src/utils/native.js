@@ -27,6 +27,33 @@ const native = {
         fail(result.content)
       }
     })
+  },
+  getLocationInfo(message, success, fail) {
+    bridge.callhandler('location', { 'message': message }, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
+  getDevice(message, success, fail) {
+    bridge.callhandler('device', { 'message': message }, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
+  closePage(message, success, fail) {
+    bridge.callhandler('close', { 'message': message }, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
   }
 }
 

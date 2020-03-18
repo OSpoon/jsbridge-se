@@ -163,22 +163,22 @@ implementation 'com.ospoon:jsbridge-n22:1.0.1'
       
 #### 扩展二 ####
 ##### 7-1. 使用固定方式将数据返回到H5 #####
-    在定义的插件中可以取到mCallBackFunction对象,用于将数据回调到H5
+    在定义的插件中可以取到callBack对象,用于将数据回调到H5
     使用方式:
     1. 成功情况:
         ```java
-        mCallBackFunction.onCallBack(ResultUtil.success(JSONObject));
+        callBack.onCallBack(ResultUtil.success(JSONObject));
         ```
     2. 失败情况:
         ```java
-        mCallBackFunction.onCallBack(ResultUtil.error("1","取消识别"));
-        mCallBackFunction.onCallBack(ResultUtil.error("1",e.getMessage()));
+        callBack.onCallBack(ResultUtil.error("1","取消识别"));
+        callBack.onCallBack(ResultUtil.error("1",e.getMessage()));
         ```
 ##### 7-2. 使用上下文 #####
-    在定义的插件中可以取到mContext, new Intent(mContext, CaptureActivity.class);
+    在定义的插件中可以取到getActivity(), new Intent(getActivity(), CaptureActivity.class);
     
 ##### 7-3. 启动一个带回调的Activity #####
-    在定义的插件中可以取到mContext,尝试强转为(com.spoon.app.jsbridge_n22.base.BaseActivity)
+    在定义的插件中可以取到getActivity(),尝试使用getActivity()做后续操作
     
 ##### 7-4. 申请权限 #####
     申请权限已经在BaseBridgeHandler操作,只需要将申请的权限通过authorization()返回即可,注意权限使用了
