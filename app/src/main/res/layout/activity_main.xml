@@ -13,4 +13,10 @@
         android:layout_height="wrap_content"
         android:text="打开一个WebView" />
 
+    <Button
+        android:id="@+id/buttonx5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开一个X5WebView" />
+
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.spoon.app.jsbridge_n22.activity.BridgeWebViewActivity;
+import com.spoon.app.jsbridge_n22.activity.X5WebViewActivity;
 
 public class MainActivity extends Activity {
 
@@ -16,6 +17,12 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
+            }
+        });
+        findViewById(R.id.buttonx5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                X5WebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
             }
         });
     }
