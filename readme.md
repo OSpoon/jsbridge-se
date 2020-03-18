@@ -89,8 +89,8 @@ implementation 'com.ospoon:jsbridge-n22:1.0.1'
             console.log('native return->'+responseData);
         }
     );
-    
-#### 扩展 ####
+
+#### 扩展一 ####
 ##### 6-1. H5中做基础配置(导入bridge.js) #####
     const u = navigator.userAgent
     
@@ -145,7 +145,7 @@ implementation 'com.ospoon:jsbridge-n22:1.0.1'
           if (!result.error) {
             success(result.content)
           } else {
-            fail(result.error)
+            fail(result.content)
           }
         })
       }
@@ -160,3 +160,27 @@ implementation 'com.ospoon:jsbridge-n22:1.0.1'
       }, (error) => {
         alert(error)
       })
+      
+#### 扩展二 ####
+##### 7-1. 使用固定方式将数据返回到H5 #####
+    在定义的插件中可以取到mCallBackFunction对象,用于将数据回调到H5
+    使用方式:
+    1. 成功情况:
+        ```java
+        mCallBackFunction.onCallBack(ResultUtil.success(JSONObject));
+        ```
+    2. 失败情况:
+        ```java
+        mCallBackFunction.onCallBack(ResultUtil.error("1","取消识别"));
+        mCallBackFunction.onCallBack(ResultUtil.error("1",e.getMessage()));
+        ```
+##### 7-2. 使用上下文 #####
+    在定义的插件中可以取到mContext, new Intent(mContext, CaptureActivity.class);
+    
+##### 7-3. 启动一个带回调的Activity #####
+    在定义的插件中可以取到mContext,尝试强转为(com.spoon.app.jsbridge_n22.base.BaseActivity)
+    
+##### 7-4. 申请权限 #####
+    申请权限已经在BaseBridgeHandler操作,只需要将申请的权限通过authorization()返回即可,注意权限使用了
+    `com.yanzhenjie.permission:support:2.0.0`,所以权限常量请在`com.yanzhenjie.permission.runtime.Permission`
+    中查看
