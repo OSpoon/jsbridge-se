@@ -1,5 +1,7 @@
 ### jsbridge-n22使用指南 ###
 
+[演示APK下载地址](http://android.n22.online/bdph)
+
 #### 1. 在模块级别的`build.gradle`添加jsbridge-n22依赖
 ```
 implementation 'com.ospoon:jsbridge-n22:1.0.4'
