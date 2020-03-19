@@ -34,6 +34,7 @@ ext {
             "utilcode"                  : "com.blankj:utilcode:1.26.0",
             "jsbridge-n22"              : "com.ospoon:jsbridge-n22:1.0.4",
             "permission"                : "com.yanzhenjie.permission:support:2.0.0",
-            "tbssdk"                    : "com.tencent.tbs.tbssdk:sdk:43697"
+            "tbssdk"                    : "com.tencent.tbs.tbssdk:sdk:43697",
+            "zxing"                     : "com.github.yuzhiqiang1993:zxing:2.2.5"
     ]
 }

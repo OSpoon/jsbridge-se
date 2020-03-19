@@ -59,15 +59,15 @@ export default {
         alert(error)
       })
     },
-    openOther() {
-      native.openOther(new Date(), (content) => {
+    qrCodeScan() {
+      native.scanQRCode((content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
       })
     },
-    qrCodeScan() {
-      native.qrCodeScan(new Date(), (content) => {
+    openOther() {
+      native.openOther(new Date(), (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
