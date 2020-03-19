@@ -15,7 +15,7 @@ android {
             buildConfigField('String', 'ROOT_URL', '"http://192.168.199.163:9999"')
         }
         release {
-            buildConfigField('String', 'ROOT_URL', '"http://10a.tech/jsbridge-n22/vue-js-java/dist-prod/#/"')
+            buildConfigField('String', 'ROOT_URL', '"http://xrkj.gitee.io/jsbridge-n22/#/"')
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
