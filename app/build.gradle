@@ -16,6 +16,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        debug {
+            storeFile file('./jsbridge.keystore')
+            storePassword 'ftp123'
+            keyAlias = 'n22'
+            keyPassword 'ftp123'
+        }
+        release {
+            storeFile file('./jsbridge.keystore')
+            storePassword 'ftp123'
+            keyAlias = 'n22'
+            keyPassword 'ftp123'
+        }
+    }
 }
 
 dependencies {
