@@ -8,4 +8,12 @@ ext {
             versionCode      : 1,
             versionName      : "1.0.4"
     ]
+
+    dependencies = [
+            "gson"              : "com.google.code.gson:gson:2.8.5",
+            "utilcode"          : "com.blankj:utilcode:1.26.0",
+            "jsbridge-n22"      : "com.ospoon:jsbridge-n22:1.0.4",
+            "permission"        : "com.yanzhenjie.permission:support:2.0.0",
+            "tbssdk"            : "com.tencent.tbs.tbssdk:sdk:43697"
+    ]
 }
