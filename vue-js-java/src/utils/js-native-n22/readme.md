@@ -1,4 +1,7 @@
 ### js-native-n22使用指南 ###
+
+[NPM](https://www.npmjs.com/package/js-native-n22)
+
 #### 1. 安装 #### 
 ```
 npm i js-native-n22
