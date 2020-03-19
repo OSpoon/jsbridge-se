@@ -1,10 +1,9 @@
-package com.spoon.app.jsbridge_n22.demo.plugins;
+package com.spoon.app.jsbridge_n22.demo;
 
 import android.content.Intent;
 
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
-import com.spoon.app.jsbridge_n22.demo.OtherActivity;
 import com.spoon.app.jsbridge_n22.utils.ResultUtil;
 import com.yanzhenjie.permission.runtime.Permission;
 

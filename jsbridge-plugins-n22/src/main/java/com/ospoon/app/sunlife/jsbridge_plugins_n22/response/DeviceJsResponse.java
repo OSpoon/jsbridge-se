@@ -1,4 +1,4 @@
-package com.spoon.app.jsbridge_n22.demo.plugins.bean;
+package com.ospoon.app.sunlife.jsbridge_plugins_n22.response;
 
 import java.io.Serializable;
 

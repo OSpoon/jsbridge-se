@@ -1,15 +1,12 @@
-package com.spoon.app.jsbridge_n22.demo.plugins;
+package com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins;
 
 import android.content.Intent;
 
 import com.blankj.utilcode.util.DeviceUtils;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.response.DeviceJsResponse;
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
-import com.spoon.app.jsbridge_n22.demo.plugins.bean.DeviceJsResponse;
 import com.spoon.app.jsbridge_n22.utils.ResultUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * author : zhangxin

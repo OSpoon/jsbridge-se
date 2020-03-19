@@ -1,6 +1,4 @@
-package com.spoon.app.jsbridge_n22.demo.plugins.bean;
-
-import android.widget.Toast;
+package com.ospoon.app.sunlife.jsbridge_plugins_n22.request;
 
 import java.io.Serializable;
 

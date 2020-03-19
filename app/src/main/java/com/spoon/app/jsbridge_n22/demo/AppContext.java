@@ -2,10 +2,9 @@ package com.spoon.app.jsbridge_n22.demo;
 
 import android.app.Application;
 
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DeviceBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ToastBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.Bridge;
-import com.spoon.app.jsbridge_n22.demo.plugins.OpenOtherBridgeHandler;
-import com.spoon.app.jsbridge_n22.demo.plugins.ToastBridgeHandler;
-import com.spoon.app.jsbridge_n22.demo.plugins.DeviceBridgeHandler;
 
 import java.util.Date;
 
