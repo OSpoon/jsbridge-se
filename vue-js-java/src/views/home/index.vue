@@ -19,8 +19,8 @@
 
 <script>
 
-// import native from '@/utils/native'
-import native from 'js-native-n22'
+import native from '@/utils/js-native-n22/src/native'
+// import native from 'js-native-n22'
 
 console.log(native)
 
