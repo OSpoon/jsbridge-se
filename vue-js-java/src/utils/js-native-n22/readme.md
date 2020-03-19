@@ -79,3 +79,19 @@ native.close((content) => {
 }, (error) => {
 })
 ```
+##### 4. scanQRCode
+请求参数: 无
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+qrcode | String | 无 | 识别到的二维码信息
+
+API`scanQRCode`示例:
+```js
+native.scanQRCode((content) => {
+    alert(JSON.stringify(content))
+}, (error) => {
+    alert(error)
+})
+```

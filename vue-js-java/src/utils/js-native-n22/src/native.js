@@ -29,8 +29,8 @@ const native = {
       }
     })
   },
-  openOther(data, success, fail) {
-    bridge.callhandler('openOther', data, (result) => {
+  scanQRCode(success, fail) {
+    bridge.callhandler('scanQRCode', '', (result) => {
       if (!result.error) {
         success(result.content)
       } else {
@@ -38,8 +38,8 @@ const native = {
       }
     })
   },
-  qrCodeScan(data, success, fail) {
-    bridge.callhandler('qrscan', data, (result) => {
+  openOther(data, success, fail) {
+    bridge.callhandler('openOther', data, (result) => {
       if (!result.error) {
         success(result.content)
       } else {
