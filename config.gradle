@@ -35,6 +35,9 @@ ext {
             "jsbridge-n22"              : "com.ospoon:jsbridge-n22:1.0.4",
             "permission"                : "com.yanzhenjie.permission:support:2.0.0",
             "tbssdk"                    : "com.tencent.tbs.tbssdk:sdk:43697",
-            "zxing"                     : "com.github.yuzhiqiang1993:zxing:2.2.5"
+            "zxing"                     : "com.github.yuzhiqiang1993:zxing:2.2.5",
+            "crashreport"               : "com.tencent.bugly:crashreport:latest.release",
+            "crashreport_upgrade"       : "com.tencent.bugly:crashreport_upgrade:latest.release",
+            "nativecrashreport"         : "com.tencent.bugly:nativecrashreport:latest.release"
     ]
 }

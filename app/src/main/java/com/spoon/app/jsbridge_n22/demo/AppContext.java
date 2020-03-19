@@ -7,6 +7,8 @@ import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DeviceBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.QRCodeBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ToastBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.Bridge;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.Date;
 
@@ -16,6 +18,9 @@ public class AppContext extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //初始化bugly
+        Bugly.init(getApplicationContext(), "b05b3b76f4", true);
+        //注册JsBridge-n22插件
         Bridge.INSTANCE.registerHandler(ToastBridgeHandler.class,
                 DeviceBridgeHandler.class,
                 ClosePageBridgeHandler.class,
