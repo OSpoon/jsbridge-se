@@ -9,11 +9,11 @@
     <p />
     <van-button type="primary" block @click="qrCodeScan()">识别二维码</van-button>
     <p />
-    <van-button type="primary" block @click="getLocationInfo()">获取当前位置</van-button>
-    <p />
     <van-button type="primary" block @click="getDevice()">获取设备信息</van-button>
     <p />
     <van-button type="primary" block @click="closePage()">关闭当前页面</van-button>
+    <p />
+    <van-button type="primary" block @click="getLocationInfo()">获取当前位置</van-button>
   </div>
 </template>
 
