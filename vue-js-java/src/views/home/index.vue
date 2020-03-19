@@ -52,6 +52,13 @@ export default {
         alert(error)
       })
     },
+    closePage() {
+      native.close((content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
     openOther() {
       native.openOther(new Date(), (content) => {
         alert(JSON.stringify(content))
@@ -68,14 +75,6 @@ export default {
     },
     getLocationInfo() {
       native.getLocationInfo(new Date(), (content) => {
-        alert(JSON.stringify(content))
-      }, (error) => {
-        alert(error)
-      })
-    },
-
-    closePage() {
-      native.closePage(new Date(), (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)

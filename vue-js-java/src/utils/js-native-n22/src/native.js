@@ -20,6 +20,15 @@ const native = {
       }
     })
   },
+  close(success, fail) {
+    bridge.callhandler('close', '', (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
   openOther(data, success, fail) {
     bridge.callhandler('openOther', data, (result) => {
       if (!result.error) {
@@ -40,15 +49,6 @@ const native = {
   },
   getLocationInfo(data, success, fail) {
     bridge.callhandler('location', data, (result) => {
-      if (!result.error) {
-        success(result.content)
-      } else {
-        fail(result.content)
-      }
-    })
-  },
-  closePage(message, success, fail) {
-    bridge.callhandler('close', { 'message': message }, (result) => {
       if (!result.error) {
         success(result.content)
       } else {

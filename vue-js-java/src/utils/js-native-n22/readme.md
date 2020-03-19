@@ -67,3 +67,15 @@ native.device((content) => {
     alert(error)
 })
 ```
+##### 3. close
+请求参数: 无
+
+响应参数: 无
+    
+API`close`示例:
+    
+```js
+native.close((content) => {
+}, (error) => {
+})
+```
