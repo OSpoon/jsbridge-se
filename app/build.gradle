@@ -20,8 +20,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-//    implementation rootProject.ext.dependencies["gson"]
-//    implementation rootProject.ext.dependencies["utilcode"]
+    implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation project(path: ':jsbridge-plugins-n22')
-//    implementation 'com.ospoon:jsbridge-n22:1.0.3'
 }

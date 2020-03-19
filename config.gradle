@@ -9,11 +9,31 @@ ext {
             versionName      : "1.0.4"
     ]
 
+    version = [
+            androidSupportSdkVersion: "28.0.0",
+            retrofitSdkVersion      : "2.6.0",
+            dagger2SdkVersion       : "2.23.2",
+            glideSdkVersion         : "4.9.0",
+            butterknifeSdkVersion   : "9.0.0",
+            rxlifecycleSdkVersion   : "1.0",
+            rxlifecycle2SdkVersion  : "2.2.2",
+            espressoSdkVersion      : "3.0.1",
+            canarySdkVersion        : "1.6.3"
+    ]
+
     dependencies = [
-            "gson"              : "com.google.code.gson:gson:2.8.5",
-            "utilcode"          : "com.blankj:utilcode:1.26.0",
-            "jsbridge-n22"      : "com.ospoon:jsbridge-n22:1.0.4",
-            "permission"        : "com.yanzhenjie.permission:support:2.0.0",
-            "tbssdk"            : "com.tencent.tbs.tbssdk:sdk:43697"
+            //support
+            "appcompat-v7"             : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
+            "design"                   : "com.android.support:design:${version["androidSupportSdkVersion"]}",
+            "support-v4"               : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
+            "cardview-v7"              : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
+            "annotations"              : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
+            "recyclerview-v7"          : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
+
+            "gson"                      : "com.google.code.gson:gson:2.8.5",
+            "utilcode"                  : "com.blankj:utilcode:1.26.0",
+            "jsbridge-n22"              : "com.ospoon:jsbridge-n22:1.0.4",
+            "permission"                : "com.yanzhenjie.permission:support:2.0.0",
+            "tbssdk"                    : "com.tencent.tbs.tbssdk:sdk:43697"
     ]
 }

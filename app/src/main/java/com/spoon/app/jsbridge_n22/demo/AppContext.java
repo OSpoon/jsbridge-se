@@ -9,7 +9,7 @@ import com.spoon.app.jsbridge_n22.core.Bridge;
 import java.util.Date;
 
 public class AppContext extends Application {
-    public final static String ROOT_URL = "http://192.168.199.163:9999?time=" + new Date().getTime();
+    public final static String ROOT_URL = "http://10a.tech/jsbridge-n22/vue-js-java/dist-prod/#/?time=" + new Date().getTime();
 
     @Override
     public void onCreate() {
