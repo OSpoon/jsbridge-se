@@ -35,9 +35,9 @@ duration | int | 1:长,0:短 | 显示时长
 API`toast`示例:
     
 ```js
-    native.toast({ text: '你好啊赛利亚', duration: 0 }, (content) => {
-    }, (error) => {
-    })
+native.toast({ text: '你好啊赛利亚', duration: 0 }, (content) => {
+}, (error) => {
+})
 ```
 ##### 2. device
 请求参数: 无
