@@ -4,11 +4,11 @@ import android.app.Application;
 
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ClosePageBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DeviceBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.LocationBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.QRCodeBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ToastBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.Bridge;
 import com.tencent.bugly.Bugly;
-import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.Date;
 
@@ -25,6 +25,7 @@ public class AppContext extends Application {
                 DeviceBridgeHandler.class,
                 ClosePageBridgeHandler.class,
                 QRCodeBridgeHandler.class,
+                LocationBridgeHandler.class,
                 OpenOtherBridgeHandler.class);
     }
 }

@@ -27,5 +27,6 @@ dependencies {
     implementation rootProject.ext.dependencies['gson']
     implementation rootProject.ext.dependencies["utilcode"]
     implementation rootProject.ext.dependencies["zxing"]
+    implementation rootProject.ext.dependencies["location"]
     api project(path: ':jsbridge-n22')
 }

@@ -35,6 +35,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"/>
         </provider>
+
+        <!--高德定位开发者申请的key-->
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="cbf49c999a8d9bdc06ed5fec534e2f0f">
+        </meta-data>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
