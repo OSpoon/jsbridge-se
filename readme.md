@@ -1,124 +1,108 @@
-### jsbridge-n22使用指南 ###
+### js-native-n22使用指南 ###
 
-[演示APK下载地址](http://android.n22.online/bdph)
+[NPM](https://www.npmjs.com/package/js-native-n22)
 
-#### 1. 在模块级别的`build.gradle`添加jsbridge-n22依赖
+#### 1. 安装 #### 
 ```
-implementation 'com.ospoon:jsbridge-n22:1.0.4'
-```
-#### 2. 创建插件 #####
-
-1. 新建插件Java类(如:ToastBridgeHandler),并继承自BaseBridgeHandler
-2. 在新建的插件Java类上使用注解`@BridgePlugin(name="xxx")`标注插件名称
-3. 插件各部分简介
-    ```java
-    /*插件名称,js调用时会使用到*/
-    @BridgePlugin(name="toast")
-    public class ToastBridgeHandler extends BaseBridgeHandler {
-    
-        /**
-         * 需申请权限列表
-         * 权限常量请在`com.yanzhenjie.permission.runtime.Permission`
-         * 中查看
-         * @return
-         */
-        @Override
-        public String[] authorization() {
-            return new String[0];
-        }
-    
-        /**
-         * 是否开启`onActivityResult`回调数据
-         * @return
-         */
-        @Override
-        public Boolean registerMaInterface() {
-            return false;
-        }
-    
-        /**
-         * 执行业务处理
-         * @param data
-         */
-        @Override
-        public void process(String data) {
-    
-        }
-    
-        /**
-         * 接收回调数据
-         * @param requestCode
-         * @param resultCode
-         * @param intent
-         */
-        @Override
-        public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-    
-        }
-    }
-    ```
-4. 在`Application`的子类`onCreate`方法中注册插件
-    ```java
-    /*
-        参数支持同时传入多个
-    */
-    Bridge.INSTANCE.registerHandler(ToastBridgeHandler.class);
-    ```
- #### 3. 一键启动
- 1. BridgeWebViewActivity
-     ```java
-     BridgeWebViewActivity.start(this,"http://192.168.199.163:9999");
-     ```
- 2. X5WebViewActivity
-    ```java
-    X5WebViewActivity.start(this,"http://192.168.199.163:9999");
-    ```
- 
-#### 4. JS调用Java([js-native-n22](./vue-js-java/src/utils/js-native-n22/readme.md)对调用进行了封装) ####
-```java
-window.WebViewJavascriptBridge.callHandler(
-    'toast'                     //桥注册的名称ID
-    , { text: '你好啊赛利亚', duration: 0 }        //传递给原生的参数
-    , function(responseData) {  //异步回调接口
-        console.log('native return->'+responseData);
-    }
-);
+npm i js-native-n22
 ```
 
-#### 5. 其他 ####
-1. 回调数据到Js
-> 在定义的插件中可以取到callBack对象,用于将数据回调到H5
-使用方式:
-1. 成功情况:
-    ```java
-    callBack.onCallBack(ResultUtil.success(JSONObject));
-    ```
-2. 失败情况:
-    ```java
-    callBack.onCallBack(ResultUtil.error("1","取消识别"));
-    callBack.onCallBack(ResultUtil.error("1",e.getMessage()));
-    ```
-2. 使用上下文
-    ```
-    在定义的插件中可以取到getActivity(), new Intent(getActivity(), CaptureActivity.class);
-    ```
-3. 启动一个带回调的Activity
-    ```
-    在定义的插件中可以取到getActivity(),尝试使用getActivity().startActivityForResult()操作
-    ```
-4. 申请权限
-    ```
-    申请权限已经在BaseBridgeHandler操作,只需要将申请的权限通过authorization()返回即可,注意权限使用了
-    `com.yanzhenjie.permission:support:2.0.0`,所以权限常量请在`com.yanzhenjie.permission.runtime.Permission`
-    中查看
-    ```
+#### 2. 导入 ####
+```
+import native from 'js-native-n22'
+``` 
 
- 注意事项:
- 1. 页面提示ERR_CACHE_MISS:请设置网络权限`<uses-permission android:name="android.permission.INTERNET"/>`
- 2. 页面提示ERR_CLEARTEXT_NOT_PERMITTED:请在`AndroidManifest.xml`的`application`节点增加`android:usesCleartextTraffic="true"`
- 
+#### 3. 使用 ####
+```
+native.api(data, (content) => {
+    ...
+}, (error) => {
+    ...
+})
+```
 
-使用方案为[JSBridge-Android](https://github.com/smallbuer/JSBridge-Android)
+#### API集合 ####
 
-发布地址[bintray](https://bintray.com/spoon2014)
+##### 1. toast
+> 可以通过此API做信息提示
 
+请求参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+text | String | 无 | 提示信息
+duration | int | 1:长,0:短 | 显示时长
+
+响应参数: 无
+    
+API`toast`示例:
+
+```js
+native.toast({ text: '你好啊赛利亚', duration: 0 }, (content) => {
+}, (error) => {
+})
+```
+
+##### 2. device
+> 可以通过此API获取设备的信息
+
+请求参数: 无
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+isDeviceRooted | boolean | 无 | 判断设备是否 rooted
+isAdbEnabled | boolean | 无 | 判断设备 ADB 是否可用
+sDKVersionName | String | 无 | 获取设备系统版本号
+sDKVersionCode | int | 无 | 获取设备系统版本码
+androidID | String | 无 | 获取设备 AndroidID
+macAddress | String | 无 | 获取设备 MAC 地址
+manufacturer | String | 无 | 获取设备厂商
+model | String | 无 | 获取设备型号
+aBIs | String[] | 无 | 获取设备 ABIs
+isTablet | boolean | 无 | 判断是否是平板
+isEmulator | boolean | 无 | 判断是否是模拟器
+uniqueDeviceId | String | 无 | 获取唯一设备 ID
+isSameDevice | boolean | 无 | 判断是否同一设备
+
+API`device`示例:
+```js
+native.device((content) => {
+    alert(JSON.stringify(content))
+}, (error) => {
+    alert(error)
+})
+```
+
+##### 3. close
+> 可以通过此API关闭当前浏览器(相当于PC浏览器的右上角的关闭)
+
+请求参数: 无
+
+响应参数: 无
+    
+API`close`示例:
+    
+```js
+native.close((content) => {
+}, (error) => {
+})
+```
+
+##### 4. scanQRCode
+> 可以通过此API进行扫描二维码
+
+请求参数: 无
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+qrcode | String | 无 | 识别到的二维码信息
+
+API`scanQRCode`示例:
+```js
+native.scanQRCode((content) => {
+    alert(JSON.stringify(content))
+}, (error) => {
+    alert(error)
+})
+```
