@@ -38,8 +38,8 @@ const native = {
       }
     })
   },
-  openOther(data, success, fail) {
-    bridge.callhandler('openOther', data, (result) => {
+  location(data, success, fail) {
+    bridge.callhandler('location', data, (result) => {
       if (!result.error) {
         success(result.content)
       } else {
@@ -47,8 +47,8 @@ const native = {
       }
     })
   },
-  getLocationInfo(data, success, fail) {
-    bridge.callhandler('location', data, (result) => {
+  openOther(data, success, fail) {
+    bridge.callhandler('openOther', data, (result) => {
       if (!result.error) {
         success(result.content)
       } else {

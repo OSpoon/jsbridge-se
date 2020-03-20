@@ -66,15 +66,22 @@ export default {
         alert(error)
       })
     },
-    openOther() {
-      native.openOther(new Date(), (content) => {
+    getLocationInfo() {
+      native.location({
+        needAddress: true,
+        mockEnable: false,
+        httpTimeOut: 20000 // 建议超时时间不要低于8000毫秒
+      }, (content) => {
+        alert('纬度 : ' + content.latitude)
+        alert('经度 : ' + content.longitude)
+        alert('地址 : ' + content.address)
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
       })
     },
-    getLocationInfo() {
-      native.getLocationInfo(new Date(), (content) => {
+    openOther() {
+      native.openOther(new Date(), (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
