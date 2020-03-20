@@ -1,5 +1,7 @@
 ### js-native-n22使用指南 ###
 
+[TOC]
+
 [NPM](https://www.npmjs.com/package/js-native-n22)
 
 #### 1. 安装 #### 
@@ -23,7 +25,7 @@ native.api(data, (content) => {
 
 #### API集合 ####
 
-##### 1. toast
+##### 1. toast:信息提示
 > 可以通过此API做信息提示
 
 请求参数:
@@ -42,7 +44,7 @@ native.toast({ text: '你好啊赛利亚', duration: 0 }, (content) => {
 })
 ```
 
-##### 2. device
+##### 2. device:获取设备信息
 > 可以通过此API获取设备的信息
 
 请求参数: 无
@@ -73,7 +75,7 @@ native.device((content) => {
 })
 ```
 
-##### 3. close
+##### 3. close:关闭当前浏览器
 > 可以通过此API关闭当前浏览器(相当于PC浏览器的右上角的关闭)
 
 请求参数: 无
@@ -88,7 +90,7 @@ native.close((content) => {
 })
 ```
 
-##### 4. scanQRCode
+##### 4. scanQRCode:扫描二维码
 > 可以通过此API进行扫描二维码
 
 请求参数: 无
