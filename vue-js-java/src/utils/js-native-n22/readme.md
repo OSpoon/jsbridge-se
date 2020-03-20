@@ -108,3 +108,51 @@ native.scanQRCode((content) => {
     alert(error)
 })
 ```
+
+##### 5. location:获取当前位置
+> 可以通过此API定位到当前的位置信息
+
+请求参数: 
+
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+needAddress | boolean | true,false | 是否返回地址信息
+mockEnable | boolean | true,false | 是否允许模拟位置
+httpTimeOut | String | 单位毫秒不低于8000 | 定位超时时间
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+latitude | double | 无 | 获取纬度
+longitude | double | 无 | 获取经度
+accuracy | float | 无 | 获取精度信息
+address | String | 无 | 地址
+country | String | 无 | 国家信息
+province | String | 无 | 省信息
+city | String | 无 | 城市信息
+district | String | 无 | 城区信息
+street | String | 无 | 街道信息
+streetNum | String | 无 | 街道门牌号信息
+cityCode | String | 无 | 城市编码
+adCode | String | 无 | 地区编码
+aoiName | String | 无 | 获取当前定位点的AOI信息
+buildingId | int | 无 | 获取当前室内定位的建筑物Id
+floor | String | 无 | 获取当前室内定位的楼层
+gpsAccuracyStatus | int | 无 | 获取GPS的当前状态
+time | String | 无 | 获取定位时间
+
+API`location`示例:
+```js
+native.location({
+    needAddress: true,
+    mockEnable: false,
+    httpTimeOut: 20000
+}, (content) => {
+    alert('纬度 : ' + content.latitude)
+    alert('经度 : ' + content.longitude)
+    alert('地址 : ' + content.address)
+    alert(JSON.stringify(content))
+}, (error) => {
+    alert(error)
+})
+```
