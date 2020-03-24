@@ -24,6 +24,8 @@
     <van-button type="primary" block @click="remoKey()">删除指定key的数据</van-button>
     <p />
     <van-button type="primary" block @click="cleanAll()">清空所有数据</van-button>
+    <p />
+    <van-button type="primary" block @click="openBrowser()">打开新的浏览器</van-button>
   </div>
 </template>
 
@@ -134,6 +136,16 @@ export default {
     cleanAll() {
       native.storage({
         mode: 5
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    openBrowser() {
+      native.openBrowser({
+        mode: 1,
+        url: 'http://xrkj.gitee.io/jsbridge-n22/#/'
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {

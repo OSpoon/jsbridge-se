@@ -5,6 +5,7 @@ import android.app.Application;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ClosePageBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DeviceBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.LocationBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenBrowserBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.QRCodeBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SharedPreferencesBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ToastBridgeHandler;
@@ -28,6 +29,7 @@ public class AppContext extends Application {
                 QRCodeBridgeHandler.class,
                 LocationBridgeHandler.class,
                 SharedPreferencesBridgeHandler.class,
+                OpenBrowserBridgeHandler.class,
                 OpenOtherBridgeHandler.class);
     }
 }
