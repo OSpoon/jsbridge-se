@@ -156,3 +156,105 @@ native.location({
     alert(error)
 })
 ```
+
+##### 6. storage:将key-value形式的数据存储到手机本地
+> 可以通过此API保存和获取存储到手机本地的key-value数据
+
+请求参数: 
+
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+mode | int | 详见下方补充mode枚举 | 操作模式
+key | String | 模式5不传,其他模式必传 | 待存储数据的key
+value | String | 模式1必传,其他模式不传 | 待存储的数据
+
+补充mode枚举:
+```
+1:添加数据
+2:获取数据
+3:是否存在该 key
+4:移除该 key
+5:清除所有数据
+```
+
+响应参数(mode2):
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+value | String |  | 获取存储到手机的key对应的value内容
+
+响应参数(mode3):
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+contains | boolean | true:存在,false不存在 | 传入的key在手机中是否有数据存储
+
+API`storage`示例:
+```js
+native.storage({
+    mode: 1,
+    key: 'name',
+    value: 'zhangxin'
+}, (content) => {
+        alert(JSON.stringify(content))
+}, (error) => {
+        alert(error)
+})
+```
+
+##### 7. openBrowser:打开一个原生浏览器页面
+> 可以通过此API在js中再次打开一个原生浏览器页面
+
+请求参数: 
+
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+mode | int | 1:自身内核,2:X5内核 | 内核选择
+url | String | 无 | 待打开的页面
+
+响应参数: 无
+    
+API`openBrowser`示例:
+
+```js
+native.openBrowser({
+    mode: 1,
+    url: 'http://xrkj.gitee.io/jsbridge-n22/#/'
+}, (content) => {
+    alert(JSON.stringify(content))
+}, (error) => {
+    alert(error)
+})
+```
+
+##### 8. security:调用原生3DES加解密和MD5编码
+> 可以通过此API调用原生3DES加解密和MD5编码
+
+请求参数: 
+
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+mode | int | 1:获取MD5T验签,2:3des加密,3:3des解密 | 内核选择
+key | String | 指定长度24位 | 加/解密时的秘钥
+content | String | 无 | 待加/解密的内容
+
+响应参数:
+
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+encoder | String | 无 | 加密成功后返回
+decoder | String | 无 | 解密成功后返回
+sign | String | 无 | 成功获取验签返回
+
+    
+API`security`示例:
+
+```js
+native.security({
+    mode: 1,
+    key: 'xxx',
+    content: '1234567890'
+}, (content) => {
+    alert(JSON.stringify(content))
+}, (error) => {
+    alert(error)
+})
+```
