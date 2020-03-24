@@ -6,6 +6,7 @@ import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ClosePageBridgeHandle
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DeviceBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.LocationBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.QRCodeBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SharedPreferencesBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ToastBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.Bridge;
 import com.tencent.bugly.Bugly;
@@ -26,6 +27,7 @@ public class AppContext extends Application {
                 ClosePageBridgeHandler.class,
                 QRCodeBridgeHandler.class,
                 LocationBridgeHandler.class,
+                SharedPreferencesBridgeHandler.class,
                 OpenOtherBridgeHandler.class);
     }
 }

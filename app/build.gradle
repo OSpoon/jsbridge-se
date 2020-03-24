@@ -46,5 +46,5 @@ dependencies {
     implementation rootProject.ext.dependencies["crashreport_upgrade"]
     implementation rootProject.ext.dependencies["nativecrashreport"]
     implementation project(path: ':jsbridge-plugins-n22')
-
+//    implementation 'com.ospoon:jsbridge-plugins-n22:1.0.4'
 }

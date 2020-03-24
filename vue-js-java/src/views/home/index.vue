@@ -14,6 +14,16 @@
     <van-button type="primary" block @click="closePage()">关闭当前页面</van-button>
     <p />
     <van-button type="primary" block @click="getLocationInfo()">获取当前位置</van-button>
+    <p />
+    <van-button type="primary" block @click="putData()">添加数据</van-button>
+    <p />
+    <van-button type="primary" block @click="getData()">获取数据</van-button>
+    <p />
+    <van-button type="primary" block @click="containsKey()">查看key是否存在</van-button>
+    <p />
+    <van-button type="primary" block @click="remoKey()">删除指定key的数据</van-button>
+    <p />
+    <van-button type="primary" block @click="cleanAll()">清空所有数据</van-button>
   </div>
 </template>
 
@@ -75,6 +85,56 @@ export default {
         alert('纬度 : ' + content.latitude)
         alert('经度 : ' + content.longitude)
         alert('地址 : ' + content.address)
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    putData() {
+      native.storage({
+        mode: 1,
+        key: 'name',
+        value: 'zhangxin'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    getData() {
+      native.storage({
+        mode: 2,
+        key: 'name'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    containsKey() {
+      native.storage({
+        mode: 3,
+        key: 'name'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    remoKey() {
+      native.storage({
+        mode: 4,
+        key: 'name'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    cleanAll() {
+      native.storage({
+        mode: 5
+      }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
