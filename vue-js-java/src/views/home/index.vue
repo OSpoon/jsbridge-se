@@ -26,6 +26,12 @@
     <van-button type="primary" block @click="cleanAll()">清空所有数据</van-button>
     <p />
     <van-button type="primary" block @click="openBrowser()">打开新的浏览器</van-button>
+    <p />
+    <van-button type="primary" block @click="encode()">加密</van-button>
+    <p />
+    <van-button type="primary" block @click="decode()">解密</van-button>
+    <p />
+    <van-button type="primary" block @click="sign()">获取验证签名</van-button>
   </div>
 </template>
 
@@ -146,6 +152,39 @@ export default {
       native.openBrowser({
         mode: 1,
         url: 'http://xrkj.gitee.io/jsbridge-n22/#/'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    sign() {
+      native.security({
+        mode: 1,
+        key: 'MOAPPINTERFACE2017#@!%88',
+        content: '1234567890'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    encode() {
+      native.security({
+        mode: 2,
+        key: 'MOAPPINTERFACE2017#@!%88',
+        content: '1234567890'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    decode() {
+      native.security({
+        mode: 3,
+        key: 'MOAPPINTERFACE2017#@!%88',
+        content: 'zWI1jkgPpYUys5c06MYEQQ=='
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {

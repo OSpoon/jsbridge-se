@@ -7,6 +7,7 @@ import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DeviceBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.LocationBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenBrowserBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.QRCodeBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SecurityBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SharedPreferencesBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ToastBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.Bridge;
@@ -30,6 +31,7 @@ public class AppContext extends Application {
                 LocationBridgeHandler.class,
                 SharedPreferencesBridgeHandler.class,
                 OpenBrowserBridgeHandler.class,
+                SecurityBridgeHandler.class,
                 OpenOtherBridgeHandler.class);
     }
 }
