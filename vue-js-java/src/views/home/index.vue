@@ -42,6 +42,8 @@
     <van-button type="primary" block @click="openWeChat()">打开微信</van-button>
     <p />
     <van-button type="primary" block @click="switchScreen()">切换横竖屏</van-button>
+    <p />
+    <van-button type="primary" block @click="imageSelect()">选择图片</van-button>
   </div>
 </template>
 
@@ -237,6 +239,15 @@ export default {
     },
     switchScreen() {
       native.switchScreen((content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    imageSelect() {
+      native.imageSelect({
+        'limit': 2
+      }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)

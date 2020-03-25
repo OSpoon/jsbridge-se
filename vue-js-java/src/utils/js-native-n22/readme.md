@@ -359,3 +359,28 @@ API`switchScreen`示例:
          alert(error)
        })
 ```
+
+##### 14. imageSelect:获取手机中的图片
+> 可以通过此API获取手机中的图片
+
+请求参数: 
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+limit | int | 必传建议1~9 | 一次最短选择图片限制
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+paths | String[] | 无 | 返回选中图片在手机中存储的路径
+
+API`imageSelect`示例:
+
+```js
+native.imageSelect({
+    'limit': 2
+  }, (content) => {
+    alert(JSON.stringify(content))
+  }, (error) => {
+    alert(error)
+  })
+```
