@@ -33,5 +33,9 @@
 
     <application>
         <service android:name="com.amap.api.location.APSService"></service>
+        <!--//选择图片-->
+        <activity android:name="com.zzti.fengyongge.imagepicker.PhotoSelectorActivity" />
+        <!--//预览图片-->
+        <activity android:name="com.zzti.fengyongge.imagepicker.PhotoPreviewActivity" />
     </application>
 </manifest>
