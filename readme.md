@@ -117,6 +117,41 @@ window.WebViewJavascriptBridge.callHandler(
     中查看
     ```
 
+#### 6. 特殊配置 ####
+1. 如需使用高德定位插件需配置高德定位apikey到app的AndroidManifest.xml
+    ```
+    <meta-data android:name="com.amap.api.v2.apikey" android:value="xxx">
+    </meta-data>
+    ```
+2. 部分插件需使用到文件存储,需配置一下信息
+    `app/src/main/res/xml/provider_paths.xml`
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <paths xmlns:android="http://schemas.android.com/apk/res/android">
+        <!-- /storage/emulated/0/Download/com.bugly.upgrade.demo/.beta/apk-->
+        <external-path name="beta_external_path" path="Download/"/>
+        <!--/storage/emulated/0/Android/data/com.bugly.upgrade.demo/files/apk/-->
+        <external-path name="beta_external_files_path" path="Android/data/"/>
+        <!--对应外部内存卡根目录：Environment.getExternalStorageDirectory()-->
+        <external-path name="external-path" path="." />
+    </paths>
+    ```
+    
+    `app的AndroidManifest.xml`
+    ```
+    <provider
+        android:name="android.support.v4.content.FileProvider"
+        android:authorities="${applicationId}.fileProvider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/provider_paths"/>
+    </provider>
+    ```
+
+
+
  注意事项:
  1. 页面提示ERR_CACHE_MISS:请设置网络权限`<uses-permission android:name="android.permission.INTERNET"/>`
  2. 页面提示ERR_CLEARTEXT_NOT_PERMITTED:请在`AndroidManifest.xml`的`application`节点增加`android:usesCleartextTraffic="true"`
