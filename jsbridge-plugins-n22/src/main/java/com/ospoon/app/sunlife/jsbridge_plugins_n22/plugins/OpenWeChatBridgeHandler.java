@@ -5,8 +5,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.google.gson.Gson;
-import com.ospoon.app.sunlife.jsbridge_plugins_n22.request.OpenWechatJsRequest;
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
 
@@ -45,11 +43,9 @@ public class OpenWeChatBridgeHandler extends BaseBridgeHandler {
      */
     @Override
     public void process(String data) {
-        OpenWechatJsRequest request = new Gson().fromJson(data, OpenWechatJsRequest.class);
         try {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             ComponentName cmp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.LauncherUI");
-//            intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
             intent.addCategory(Intent.CATEGORY_LAUNCHER);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setComponent(cmp);

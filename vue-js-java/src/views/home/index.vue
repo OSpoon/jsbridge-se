@@ -222,28 +222,21 @@ export default {
       })
     },
     openContacts() {
-      native.openContacts({
-        mode: 1
-      }, (content) => {
+      native.openContacts((content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
       })
     },
     openWeChat() {
-      native.openWeChat({
-        mode: 1,
-        info: 'WeChat'
-      }, (content) => {
+      native.openWeChat((content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
       })
     },
     switchScreen() {
-      native.switchScreen({
-        switchFlag: 'true'
-      }, (content) => {
+      native.switchScreen((content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)

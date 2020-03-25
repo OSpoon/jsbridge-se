@@ -6,8 +6,10 @@ import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.response.OpenContactsResponse;
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
+import com.spoon.app.jsbridge_n22.utils.ResultUtil;
 import com.yanzhenjie.permission.runtime.Permission;
 
 import java.util.ArrayList;
@@ -48,27 +50,29 @@ public class OpenContactsBridgeHandler extends BaseBridgeHandler {
      */
     @Override
     public void process(String data) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, ContactsContract.Contacts.CONTENT_URI);
-        getActivity().startActivity(intent);
-//        getContacts();
+        getContacts();
     }
 
     /**
      * 获取联系人列表
      */
     private void getContacts() {
-        List<String> list = new ArrayList<>();
+        List<OpenContactsResponse> list = new ArrayList<>();
+        OpenContactsResponse openContactsResponse;
         Cursor cursor = null;
         try {
             cursor = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                     null, null, null, null);
             if (cursor != null) {
                 while (cursor.moveToNext()) {
+                    openContactsResponse = new OpenContactsResponse();
                     String displayName = cursor.getString(cursor.getColumnIndex(
                             ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                     String number = cursor.getString(cursor.getColumnIndex(
                             ContactsContract.CommonDataKinds.Phone.NUMBER));
-                    list.add(displayName + "\n" + number);
+                    openContactsResponse.setDisplayName(displayName);
+                    openContactsResponse.setNumber(number);
+                    list.add(openContactsResponse);
                 }
             }
         } catch (Exception e) {
@@ -80,6 +84,12 @@ public class OpenContactsBridgeHandler extends BaseBridgeHandler {
         }
         ToastUtils.showShort(list.toString());
         Log.e("tag", "getContacts: " + list.toString());
+        if (list.size() > 0) {
+            callBack.onCallBack(ResultUtil.success(list));
+        } else {
+            callBack.onCallBack(ResultUtil.error("1", "The format of the request parameter is wrong, please check~"));
+        }
+
     }
 
     /**

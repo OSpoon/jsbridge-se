@@ -258,3 +258,104 @@ native.security({
     alert(error)
 })
 ```
+##### 9. callPhone:调用原生打电话功能
+> 可以通过此API调用原生打电话功能
+
+请求参数:
+
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+phoneNumber | String | 无 | 电话号码
+extensionNumber | String | 无 | 可以进行拨打分机号,示例为",1"
+
+响应参数:无
+
+API`callPhone`示例:
+
+```js
+ native.callPhone({
+         phoneNumber: '15617883302',
+         extensionNumber: ',1'
+       }, (content) => {
+         alert(JSON.stringify(content))
+       }, (error) => {
+         alert(error)
+       })
+```
+
+##### 10. sendMsg:调用原生发短信功能
+> 可以通过此API调用原生发短信
+
+请求参数:
+
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+phoneNumber | String | 无 | 电话号码
+msgInfo | String | 无 | 要发送的信息内容
+
+响应参数: 无
+
+API`sendMsg`示例:
+
+```js
+ native.sendMsg({
+         phoneNumber: '13333333333',
+         msgInfo: '我是测试信息'
+       }, (content) => {
+         alert(JSON.stringify(content))
+       }, (error) => {
+         alert(error)
+       })
+```
+##### 11. openContacts:调用原生获取联系人
+> 可以通过此API调用原生获取联系人
+
+请求参数: 无
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+displayName | String | 无 | 联系人的名字
+number | String | 无 | 联系人的电话
+
+API`openContacts`示例:
+
+```js
+ native.openContacts((content) => {
+         alert(JSON.stringify(content))
+       }, (error) => {
+         alert(error)
+       })
+```
+##### 12. openWeChat:调用原生打开微信
+> 可以通过此API调用原生打开微信
+
+请求参数: 无
+
+响应参数: 无
+
+API`openWeChat`示例:
+
+```js
+ native.openWeChat((content) => {
+         alert(JSON.stringify(content))
+       }, (error) => {
+         alert(error)
+       })
+```
+##### 13. switchScreen:调用原生切换横竖屏
+> 可以通过此API调用原生切换横竖屏
+
+请求参数: 无
+
+响应参数: 无
+
+API`switchScreen`示例:
+
+```js
+ native.switchScreen((content) => {
+         alert(JSON.stringify(content))
+       }, (error) => {
+         alert(error)
+       })
+```
