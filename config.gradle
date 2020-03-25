@@ -39,6 +39,8 @@ ext {
             "crashreport"               : "com.tencent.bugly:crashreport:latest.release",
             "crashreport_upgrade"       : "com.tencent.bugly:crashreport_upgrade:latest.release",
             "nativecrashreport"         : "com.tencent.bugly:nativecrashreport:latest.release",
-            "location"                  : "com.amap.api:location:latest.integration"
+            "location"                  : "com.amap.api:location:latest.integration",
+            "universal-image-loader"    : "com.nostra13.universalimageloader:universal-image-loader:1.9.5",
+            "easypermissions"           : "pub.devrel:easypermissions:2.0.1"
     ]
 }
