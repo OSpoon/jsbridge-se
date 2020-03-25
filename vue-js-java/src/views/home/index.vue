@@ -32,6 +32,16 @@
     <van-button type="primary" block @click="decode()">解密</van-button>
     <p />
     <van-button type="primary" block @click="sign()">获取验证签名</van-button>
+    <p />
+    <van-button type="primary" block @click="callPhone()">打电话</van-button>
+    <p />
+    <van-button type="primary" block @click="sendMsg()">发送短信</van-button>
+    <p />
+    <van-button type="primary" block @click="openContacts()">获取联系人信息</van-button>
+    <p />
+    <van-button type="primary" block @click="openWeChat()">打开微信</van-button>
+    <p />
+    <van-button type="primary" block @click="switchScreen()">切换横竖屏</van-button>
   </div>
 </template>
 
@@ -185,6 +195,54 @@ export default {
         mode: 3,
         key: 'MOAPPINTERFACE2017#@!%88',
         content: 'zWI1jkgPpYUys5c06MYEQQ=='
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    callPhone() {
+      native.callPhone({
+        phoneNumber: '15617883302',
+        extensionNumber: ',1'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    sendMsg() {
+      native.sendMsg({
+        phoneNumber: '15617883302',
+        msgInfo: '我是测试信息'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    openContacts() {
+      native.openContacts({
+        mode: 1
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    openWeChat() {
+      native.openWeChat({
+        mode: 1,
+        info: 'WeChat'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    switchScreen() {
+      native.switchScreen({
+        switchFlag: 'true'
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {

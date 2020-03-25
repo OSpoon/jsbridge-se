@@ -74,6 +74,51 @@ const native = {
       }
     })
   },
+  callPhone(data, success, fail) {
+    bridge.callhandler('callPhone', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
+  sendMsg(data, success, fail) {
+    bridge.callhandler('sendMsg', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
+  openContacts(data, success, fail) {
+    bridge.callhandler('openContacts', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
+  openWeChat(data, success, fail) {
+    bridge.callhandler('openWeChat', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
+  switchScreen(data, success, fail) {
+    bridge.callhandler('switchScreen', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
   openOther(data, success, fail) {
     bridge.callhandler('openOther', data, (result) => {
       if (!result.error) {
@@ -83,6 +128,6 @@ const native = {
       }
     })
   }
-}
+};
 
 export default native
