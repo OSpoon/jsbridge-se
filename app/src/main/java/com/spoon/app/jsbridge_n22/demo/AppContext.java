@@ -2,13 +2,18 @@ package com.spoon.app.jsbridge_n22.demo;
 
 import android.app.Application;
 
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.CallPhoneBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ClosePageBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DeviceBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.LocationBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenBrowserBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenContactsBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenWeChatBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.QRCodeBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SendMsgBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SecurityBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SharedPreferencesBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SwitchScreenBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ToastBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.Bridge;
 import com.tencent.bugly.Bugly;
@@ -32,6 +37,11 @@ public class AppContext extends Application {
                 SharedPreferencesBridgeHandler.class,
                 OpenBrowserBridgeHandler.class,
                 SecurityBridgeHandler.class,
-                OpenOtherBridgeHandler.class);
+                OpenOtherBridgeHandler.class,
+                CallPhoneBridgeHandler.class,
+                SendMsgBridgeHandler.class,
+                OpenContactsBridgeHandler.class,
+                OpenWeChatBridgeHandler.class,
+                SwitchScreenBridgeHandler.class);
     }
 }
