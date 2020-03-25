@@ -92,8 +92,8 @@ const native = {
       }
     })
   },
-  openContacts(data, success, fail) {
-    bridge.callhandler('openContacts', data, (result) => {
+  openContacts(success, fail) {
+    bridge.callhandler('openContacts', '', (result) => {
       if (!result.error) {
         success(result.content)
       } else {
@@ -101,8 +101,8 @@ const native = {
       }
     })
   },
-  openWeChat(data, success, fail) {
-    bridge.callhandler('openWeChat', data, (result) => {
+  openWeChat(success, fail) {
+    bridge.callhandler('openWeChat', '', (result) => {
       if (!result.error) {
         success(result.content)
       } else {
@@ -110,8 +110,8 @@ const native = {
       }
     })
   },
-  switchScreen(data, success, fail) {
-    bridge.callhandler('switchScreen', data, (result) => {
+  switchScreen(success, fail) {
+    bridge.callhandler('switchScreen', '', (result) => {
       if (!result.error) {
         success(result.content)
       } else {
