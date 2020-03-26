@@ -32,13 +32,20 @@ export default {
    * @param {接收Java回传的参数} callback
    */
   callhandler(name, data, callback) {
-    console.log('bridge callhandler >>> ', name, data)
-    setupWebViewJavascriptBridge((bridge) => {
-      bridge.callHandler(name, data, (data) => {
-        data = JSON.parse(data)
-        callback(data)
+    if (!/(iPhone|iPad|iPod|iOS)/i.test(u)) {
+      console.log('bridge callhandler android >>> ', name, data)
+      setupWebViewJavascriptBridge((bridge) => {
+        bridge.callHandler(name, data, (data) => {
+          data = JSON.parse(data)
+          callback(data)
+        })
       })
-    })
+    } else {
+      console.log('bridge callhandler ios >>> ', name, data)
+      window.GBIJSBridge.call({ method: name, data: data, callback: (result) => {
+        callback(result)
+      } })
+    }
   },
   /**
    * 注册一个Js函数供Java端调用
