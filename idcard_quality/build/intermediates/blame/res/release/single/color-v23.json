@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v23/abc_tint_default.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v23/abc_color_highlight_material.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v23/abc_tint_switch_thumb.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v23/abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v23/abc_tint_spinner.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v23/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v23/abc_tint_switch_track.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v23/abc_tint_edittext.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v23/abc_tint_btn_checkable.xml"
+    }
+]

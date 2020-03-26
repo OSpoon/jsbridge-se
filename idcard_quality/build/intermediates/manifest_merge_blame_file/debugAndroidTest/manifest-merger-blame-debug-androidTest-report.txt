@@ -1,0 +1,75 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.megvii.idcard.quality.test" >
+4
+5    <uses-sdk
+5-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:5:5-74
+6        android:minSdkVersion="21"
+6-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:5:15-41
+7        android:targetSdkVersion="29" />
+7-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:5:42-71
+8
+9    <instrumentation
+9-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:11:5-15:80
+10        android:name="android.test.InstrumentationTestRunner"
+10-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:11:22-75
+11        android:functionalTest="false"
+11-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:14:22-52
+12        android:handleProfiling="false"
+12-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:13:22-53
+13        android:label="Tests for com.megvii.idcard.quality.test"
+13-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:15:22-78
+14        android:targetPackage="com.megvii.idcard.quality.test" />
+14-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:12:22-76
+15
+16    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+16-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-76
+16-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:22-73
+17    <uses-permission android:name="android.permission.CAMERA" />
+17-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:5-65
+17-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:22-62
+18    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+18-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:5-79
+18-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:22-76
+19    <uses-permission android:name="android.permission.INTERNET" />
+19-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:5-67
+19-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:22-64
+20    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+20-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:5-75
+20-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:22-72
+21
+22    <application
+22-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:7:5-9:19
+23        android:allowBackup="true"
+23-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:9-35
+24        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+24-->[com.android.support:support-compat:28.0.0] /Users/zhangxin/.gradle/caches/transforms-2/files-2.1/f541eb76fb40b1194214533252ec9ec1/support-compat-28.0.0/AndroidManifest.xml:22:18-91
+25        android:debuggable="true"
+25-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:7:18-43
+26        android:icon="@mipmap/ic_launcher"
+26-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:9-43
+27        android:label="@string/app_name"
+27-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:9-41
+28        android:roundIcon="@mipmap/ic_launcher_round"
+28-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:9-54
+29        android:supportsRtl="true"
+29-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:9-35
+30        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+30-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:9-65
+31        <uses-library android:name="android.test.runner" />
+31-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:8:9-60
+31-->/Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/tmp/manifest/androidTest/debug/manifestMerger5936318792642848688.xml:8:23-57
+32
+33        <activity
+33-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:24:9-28:52
+34            android:name="com.megvii.demo.activity.IDCardDetectActivity"
+34-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:13-73
+35            android:configChanges="keyboardHidden|orientation|screenSize"
+35-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-74
+36            android:launchMode="singleTask"
+36-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:13-44
+37            android:screenOrientation="portrait" />
+37-->[__tested_artifact__::idcard_quality] /Users/zhangxin/Documents/work/jsbridgen22/idcard_quality/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-49
+38    </application>
+39
+40</manifest>

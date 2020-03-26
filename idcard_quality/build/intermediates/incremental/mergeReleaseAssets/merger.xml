@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/src/main/assets"/><source path="/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/src/release/assets"/></dataSet></merger>

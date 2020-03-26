@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/layout-v11/notification_template_big_media_custom.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/layout-v11/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/layout-v11/notification_media_cancel_action.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/layout-v11/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/layout-v11/notification_media_action.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/layout-v11/notification_media_action.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/layout-v11/notification_template_big_media_narrow_custom.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/layout-v11/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/layout-v11/notification_template_big_media_narrow.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/layout-v11/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/layout-v11/notification_template_big_media.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/layout-v11/notification_template_big_media.xml"
+    }
+]

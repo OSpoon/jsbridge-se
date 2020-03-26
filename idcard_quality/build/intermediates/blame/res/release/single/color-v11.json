@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/private/tmp/jenkins/workspace/FaceID_SA_IDCardQuality_1.4.0/Android/idcard_quality/build/intermediates/res/merged/release/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/megvii/opt/usr/android-sdk-macosx/.android/build-cache/dd77b6f13f0bc17ff51c69ed4a1e771fede4f50f/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    }
+]
