@@ -384,3 +384,31 @@ native.imageSelect({
     alert(error)
   })
 ```
+
+##### 15. idCardScan:通过旷世提供的SDK获取身份证正面反图像
+> 可以通过此API通过旷世提供的SDK获取身份证正面反图像
+
+请求参数: 
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+isVertical | bool | 必传 | 是否竖屏识别
+cardType | int | 1:人像面，2:国徽面 | 证件朝向
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+portraitimg_base64 | String | base64 | 证件肖像图像
+idcardimg_base64 | String | base64 | 证件图像
+
+API`idCardScan`示例:
+
+```js
+native.idCardScan({
+    'isVertical': true, // 是否竖屏识别
+    'cardType': 1 // 1:人像面，2:国徽面
+  }, (content) => {
+    alert(JSON.stringify(content))
+  }, (error) => {
+    alert(error)
+  })
+```

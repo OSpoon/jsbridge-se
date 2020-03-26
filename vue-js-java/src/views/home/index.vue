@@ -44,6 +44,8 @@
     <van-button type="primary" block @click="switchScreen()">切换横竖屏</van-button>
     <p />
     <van-button type="primary" block @click="imageSelect()">选择图片</van-button>
+    <p />
+    <van-button type="primary" block @click="idCardScan()">身份证识别</van-button>
   </div>
 </template>
 
@@ -247,6 +249,16 @@ export default {
     imageSelect() {
       native.imageSelect({
         'limit': 2
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    idCardScan() {
+      native.idCardScan({
+        'isVertical': true, // 是否竖屏识别
+        'cardType': 1 // 1:人像面，2:国徽面
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {

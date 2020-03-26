@@ -128,6 +128,15 @@ const native = {
       }
     })
   },
+  idCardScan(data, success, fail) {
+    bridge.callhandler('IDCardScan', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
   openOther(data, success, fail) {
     bridge.callhandler('openOther', data, (result) => {
       if (!result.error) {
