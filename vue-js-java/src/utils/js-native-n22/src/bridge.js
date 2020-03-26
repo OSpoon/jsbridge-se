@@ -42,7 +42,7 @@ export default {
       })
     } else {
       console.log('bridge callhandler ios >>> ', name, data)
-      window.GBIJSBridge.call({ method: name, data: data, callback: (result) => {
+      window.GDIJSBridge.call({ method: name, data: data, callback: (result) => {
         callback(result)
       } })
     }
