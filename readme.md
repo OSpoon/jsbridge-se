@@ -7,10 +7,10 @@
 
 ```
 //仅包含WebView中Js与Java交互,插件需按指定格式编写
-implementation 'com.ospoon:jsbridge-n22:1.0.7'
+implementation 'com.ospoon:jsbridge-n22:1.0.8'
 
 //包含WebView中Js与Java交互和基础插件,节省开发
-implementation 'com.ospoon:jsbridge-plugins-n22:1.0.7'
+implementation 'com.ospoon:jsbridge-plugins-n22:1.0.8'
 ```
 
 #### 2. 创建插件 #####
@@ -141,7 +141,7 @@ window.WebViewJavascriptBridge.callHandler(
     ```
     
     `app的AndroidManifest.xml`
-    ```
+    ```xml
     <provider
         android:name="android.support.v4.content.FileProvider"
         android:authorities="${applicationId}.fileProvider"
@@ -153,12 +153,12 @@ window.WebViewJavascriptBridge.callHandler(
     </provider>
     ```
 3. 如需使用语音听写插件,需在Application中进行初始化Appid操作
-    ```
+    ```java
     //注册科大讯飞语音听写
     SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID +"=xxxxx");
     ```
     如需进行移动统计需在app模块的`AndroidManifest.xml`中进行添加
-    ```
+    ```xml
     <!-- 科大讯飞移动统计分析 -->
     <meta-data
         android:name="IFLYTEK_APPKEY"
