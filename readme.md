@@ -149,6 +149,21 @@ window.WebViewJavascriptBridge.callHandler(
             android:resource="@xml/provider_paths"/>
     </provider>
     ```
+3. 如需使用语音听写插件,需在Application中进行初始化Appid操作
+    ```
+    //注册科大讯飞语音听写
+    SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID +"=xxxxx");
+    ```
+    如需进行移动统计需在app模块的`AndroidManifest.xml`中进行添加
+    ```
+    <!-- 科大讯飞移动统计分析 -->
+    <meta-data
+        android:name="IFLYTEK_APPKEY"
+        android:value="'xxxxx'" />
+    <meta-data
+        android:name="IFLYTEK_CHANNEL"
+        android:value="xxxxx" />
+    ```
 
 
 
