@@ -52,6 +52,8 @@
     <van-button type="primary" block @click="faceScan()">人脸识别</van-button>
     <p />
     <van-button type="primary" block @click="openCamera()">打开相机</van-button>
+    <p />
+    <van-button type="primary" block @click="dictation()">语音听写</van-button>
   </div>
 </template>
 
@@ -292,6 +294,13 @@ export default {
     },
     openCamera() {
       native.openCamera((content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    dictation() {
+      native.dictation((content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
