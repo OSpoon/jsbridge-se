@@ -165,6 +165,47 @@ window.WebViewJavascriptBridge.callHandler(
         android:value="xxxxx" />
     ```
 
+4. 如需使用`pushData`插件接收H5端的数据,插件中使用的广播形式,集成模块后定义广播接收器并动态注册接收数据
+    ```java
+    /**
+     * author : zhangxin
+     * date : 2020-03-27 14:30
+     * description : 用于接收js通过插件push到原生中的数据
+     */
+    public class MyBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String event = intent.getStringExtra("event");
+            String agentName = intent.getStringExtra("agentName");
+            String agentCode = intent.getStringExtra("agentCode");
+            String orgCode = intent.getStringExtra("orgCode");
+            Log.i("BroadcastReceiver", "event::: " + event + "  agentName::: " + agentName + " agentCode::: " + agentCode + " orgCode::: " + orgCode);
+        }
+    }
+    ```
+    
+    ```java
+    public class MainActivity extends Activity {
+    
+        MyBroadcastReceiver mMyBroadcastReceiver;
+    
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            //注册广播用于接收Js通过插件Push到原生的数据
+            mMyBroadcastReceiver = new MyBroadcastReceiver();
+            registerReceiver(mMyBroadcastReceiver, new IntentFilter(Constants.JSBRIDGEN22_JS_PUSH_DATA_ACTION));
+        }
+    
+        @Override
+        protected void onDestroy() {
+            unregisterReceiver(mMyBroadcastReceiver);
+            super.onDestroy();
+        }
+    }
+    ```
+
 
 
  注意事项:
