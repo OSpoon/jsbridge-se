@@ -32,6 +32,7 @@
             android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.fileProvider"
@@ -46,6 +47,14 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="cbf49c999a8d9bdc06ed5fec534e2f0f"></meta-data>
+
+        <!-- 科大讯飞移动统计分析 -->
+        <meta-data
+            android:name="IFLYTEK_APPKEY"
+            android:value="'5aa5fa15'" />
+        <meta-data
+            android:name="IFLYTEK_CHANNEL"
+            android:value="Android_GSB" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>

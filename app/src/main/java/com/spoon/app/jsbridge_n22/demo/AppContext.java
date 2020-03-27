@@ -2,9 +2,12 @@ package com.spoon.app.jsbridge_n22.demo;
 
 import android.app.Application;
 
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.CallPhoneBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ClosePageBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DeviceBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DictationBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.FaceScanBridgerHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.IDCardScanBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ImageSelectBridgeHandler;
@@ -33,6 +36,8 @@ public class AppContext extends Application {
         super.onCreate();
         //初始化bugly
         Bugly.init(getApplicationContext(), "b05b3b76f4", true);
+        //注册科大讯飞语音听写
+        SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID +"=5aa5fa15");
         //注册JsBridge-n22插件
         Bridge.INSTANCE.registerHandler(ToastBridgeHandler.class,
                 DeviceBridgeHandler.class,
@@ -53,6 +58,7 @@ public class AppContext extends Application {
                 ShareWechatBridgeHandler.class,
                 IDCardScanBridgeHandler.class,
                 FaceScanBridgerHandler.class,
-                OpenCameraBridgeHandler.class);
+                OpenCameraBridgeHandler.class,
+                DictationBridgeHandler.class);
     }
 }
