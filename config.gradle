@@ -30,6 +30,14 @@ ext {
             "annotations"              : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
             "recyclerview-v7"          : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
 
+            //插件相关的自定义模块
+            "jsbridge-n22"             : "com.ospoon:jsbridge-n22:1.0.7",
+            "jsbridge-plugins-n22"     : "com.ospoon:jsbridge-plugins-n22:1.0.7",
+            "speech"                   : "com.ospoon:speech:1.0.7",
+            "idcard_quality"           : "com.ospoon:idcard_quality:1.0.7",
+            "livenesslib"              : "com.ospoon:livenesslib:1.0.7",
+            "imagepicker"              : "com.ospoon:imagepicker:1.0.7",
+
             "gson"                      : "com.google.code.gson:gson:2.8.5",
             "utilcode"                  : "com.blankj:utilcode:1.26.0",
             "jsbridge-n22"              : "com.ospoon:jsbridge-n22:1.0.4",
