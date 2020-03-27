@@ -5,6 +5,7 @@ import android.app.Application;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.CallPhoneBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ClosePageBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DeviceBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.FaceScanBridgerHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.IDCardScanBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ImageSelectBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.LocationBridgeHandler;
@@ -46,6 +47,7 @@ public class AppContext extends Application {
                 OpenWeChatBridgeHandler.class,
                 SwitchScreenBridgeHandler.class,
                 ImageSelectBridgeHandler.class,
-                IDCardScanBridgeHandler.class);
+                IDCardScanBridgeHandler.class,
+                FaceScanBridgerHandler.class);
     }
 }
