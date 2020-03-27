@@ -43,6 +43,6 @@ ext {
             "universal-image-loader"    : "com.nostra13.universalimageloader:universal-image-loader:1.9.5",
             "easypermissions"           : "pub.devrel:easypermissions:2.0.1",
             "wxapi"                     : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+",
-            "glide"                     : "com.github.bumptech.glide:glide:4.9.0"
+            "openCamera"                : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.8"
     ]
 }

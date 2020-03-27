@@ -465,7 +465,7 @@ native.faceScan((content) => {
 
 > 使用场景:如第三方监控平台SDK需要获取H5登陆成功后的用户信息,H5端可以使用此插件进行数据推送,原生端注册广播并将接收到的数据发送给监控平台,注意广播仅支持动态注册(涉及原生部分)
 
-请求参数: 
+请求参数:
 参数 | 类型 | 枚举 | 含义
 ---|---|---|---
 event | String |  | 推送数据的事件名称
@@ -488,4 +488,30 @@ native.pushData({
   }, (error) => {
     alert(error)
   })
+```
+##### 19. openCamera:打开相机拍照和打开相册选择照片
+> 可以通过此API打开相机拍照和打开相册选择照片
+
+请求参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+openFlag | String | 传1.打开相机,2.是打开相册 | 打开相机或者打开相册的标志
+isCompress | int | 传1.压缩,2.不压缩 | 压缩照片的标志
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+paths | String[] | 无 | 返回选中照片在手机中存储的路径
+
+API`imageSelect`示例:
+
+```js
+native.openCamera({
+        openFlag: '2', // 打开相机,1.打开相机,2.是打开相册
+        isCompress: 1 // 1.压缩,2.不压缩
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
 ```

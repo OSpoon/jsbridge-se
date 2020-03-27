@@ -293,7 +293,10 @@ export default {
       })
     },
     openCamera() {
-      native.openCamera((content) => {
+      native.openCamera({
+        openFlag: '2', // 打开相机,1.打开相机,2.是打开相册
+        isCompress: 1 // 1.压缩,2.不压缩
+      }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
