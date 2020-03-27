@@ -48,6 +48,8 @@
     <van-button type="primary" block @click="idCardScan()">身份证识别</van-button>
     <p />
     <van-button type="primary" block @click="shareWeChat()">分享到微信</van-button>
+    <p />
+    <van-button type="primary" block @click="faceScan()">人脸识别</van-button>
   </div>
 </template>
 
@@ -274,6 +276,13 @@ export default {
         'isVertical': true, // 是否竖屏识别
         'cardType': 1 // 1:人像面，2:国徽面
       }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    faceScan() {
+      native.faceScan((content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
