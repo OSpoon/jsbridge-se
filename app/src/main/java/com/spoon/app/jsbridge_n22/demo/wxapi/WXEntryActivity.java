@@ -1,11 +1,11 @@
-package com.ospoon.app.sunlife.jsbridge_plugins_n22.wxapi;
+package com.spoon.app.jsbridge_n22.demo.wxapi;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -15,12 +15,15 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 
 /**
- * Created by Administrator on 2016/11/23.
+ * 微信分享集成页面
+ *
+ * @author gdk
+ * @date 2020/03/26
  */
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     private IWXAPI wxapi;
-    public static final String wx_appid = "";
+    public static final String wx_appid = "wxba50597b5a9c762d";
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -59,7 +62,8 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     // ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX是微信分享，api自带
                     case ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX:
                         // 只是做了简单的finish操作
-                        ToastUtils.showShort("分享成功");
+//                        ToastUtils.showShort("分享成功");
+                        Log.e("tag", "onResp: " + "分享成功");
                         finish();
                         break;
                     default:
@@ -72,7 +76,8 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     // 微信分享
                     case ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX:
 //                        Log.i("WXEntryActivity" , ">>>errCode = " + baseResp.errCode);
-                        ToastUtils.showShort("分享失败!");
+//                        ToastUtils.showShort("分享失败!");
+                        Log.e("tag", "onResp: " + "分享失败");
                         finish();
                         break;
                     default:

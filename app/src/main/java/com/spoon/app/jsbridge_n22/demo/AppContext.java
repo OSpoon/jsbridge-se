@@ -10,11 +10,13 @@ import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.IDCardScanBridgeHandl
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ImageSelectBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.LocationBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenBrowserBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenCameraBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenContactsBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenWeChatBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.QRCodeBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SendMsgBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SecurityBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ShareWechatBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SharedPreferencesBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SwitchScreenBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ToastBridgeHandler;
@@ -48,6 +50,9 @@ public class AppContext extends Application {
                 SwitchScreenBridgeHandler.class,
                 ImageSelectBridgeHandler.class,
                 IDCardScanBridgeHandler.class,
-                FaceScanBridgerHandler.class);
+                ShareWechatBridgeHandler.class,
+                IDCardScanBridgeHandler.class,
+                FaceScanBridgerHandler.class,
+                OpenCameraBridgeHandler.class);
     }
 }

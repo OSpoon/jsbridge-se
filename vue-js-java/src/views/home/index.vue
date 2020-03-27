@@ -50,6 +50,8 @@
     <van-button type="primary" block @click="shareWeChat()">分享到微信</van-button>
     <p />
     <van-button type="primary" block @click="faceScan()">人脸识别</van-button>
+    <p />
+    <van-button type="primary" block @click="openCamera()">打开相机</van-button>
   </div>
 </template>
 
@@ -283,6 +285,13 @@ export default {
     },
     faceScan() {
       native.faceScan((content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    openCamera() {
+      native.openCamera((content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)

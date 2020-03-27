@@ -37,10 +37,5 @@
         <activity android:name="com.zzti.fengyongge.imagepicker.PhotoSelectorActivity" />
         <!--//预览图片-->
         <activity android:name="com.zzti.fengyongge.imagepicker.PhotoPreviewActivity" />
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:exported="true"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
     </application>
 </manifest>
