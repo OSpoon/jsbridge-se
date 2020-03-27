@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply from: './bintrayReleaseUpload.gradle'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]

@@ -4,8 +4,8 @@ publish {
     userOrg = 'spoon2014'
     repoName = 'maven'
     groupId = 'com.ospoon'
-    artifactId = 'jsbridge-plugins-n22'
+    artifactId = 'speech'
     publishVersion = '1.0.7'
-    desc = 'jsbridge-plugins-n22 for android'
-    website = 'https://github.com/OSpoon/jsbridge-n22.git'
+    desc = 'speech for android'
+    website = 'https://github.com/ospoon/jsbridge-n22'
 }
