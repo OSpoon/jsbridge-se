@@ -32,7 +32,8 @@ dependencies {
     implementation rootProject.ext.dependencies["glide"]
     implementation rootProject.ext.dependencies['wxapi']
     implementation rootProject.ext.dependencies["location"]
-    api project(path: ':jsbridge-n22')
-    api project(path: ':imagepicker')
-    api project(path: ':idcard_quality')
+    api project(path: ':jsbridge-n22') //webview交互基础模块
+    api project(path: ':imagepicker') // 图片选择模块
+    api project(path: ':idcard_quality') // 证件识别模块
+    api project(path: ':livenesslib') // 人脸识别模块
 }
