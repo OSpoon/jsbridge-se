@@ -36,4 +36,5 @@ dependencies {
     api project(path: ':imagepicker') // 图片选择模块
     api project(path: ':idcard_quality') // 证件识别模块
     api project(path: ':livenesslib') // 人脸识别模块
+    api project(path: ':speech') // 语音听写模块
 }
