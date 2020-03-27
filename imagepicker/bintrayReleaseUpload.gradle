@@ -5,7 +5,11 @@ publish {
     repoName = 'maven'
     groupId = 'com.ospoon'
     artifactId = 'imagepicker'
-    publishVersion = '1.0.7'
     desc = 'imagepicker for android'
     website = 'https://github.com/OSpoon/jsbridge-n22.git'
+
+    publishVersion = rootProject.ext.security["version"]
+    bintrayUser = rootProject.ext.security["bintrayUser"]
+    bintrayKey = rootProject.ext.security["bintrayKey"]
+    dryRun = rootProject.ext.security["dryRun"]
 }
