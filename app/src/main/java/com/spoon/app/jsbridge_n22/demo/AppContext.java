@@ -11,6 +11,7 @@ import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DictationBridgeHandle
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.FaceScanBridgerHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.IDCardScanBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ImageSelectBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.JsPushDataBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.LocationBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenBrowserBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenCameraBridgeHandler;
@@ -59,6 +60,7 @@ public class AppContext extends Application {
                 IDCardScanBridgeHandler.class,
                 FaceScanBridgerHandler.class,
                 OpenCameraBridgeHandler.class,
-                DictationBridgeHandler.class);
+                DictationBridgeHandler.class,
+                JsPushDataBridgeHandler.class);
     }
 }

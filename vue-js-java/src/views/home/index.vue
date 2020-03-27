@@ -53,7 +53,7 @@
     <p />
     <van-button type="primary" block @click="openCamera()">打开相机</van-button>
     <p />
-    <van-button type="primary" block @click="dictation()">语音听写</van-button>
+    <van-button type="primary" block @click="pushData()">推送数据</van-button>
   </div>
 </template>
 
@@ -301,6 +301,20 @@ export default {
     },
     dictation() {
       native.dictation((content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    pushData() {
+      native.pushData({
+        event: 'push_agent_data',
+        data: {
+          agentName: 'zhangxin',
+          agentCode: '1100011010',
+          orgCode: '0001'
+        }
+      }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)

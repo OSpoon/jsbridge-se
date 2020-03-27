@@ -30,7 +30,7 @@ dependencies {
     implementation rootProject.ext.dependencies["utilcode"]
     implementation rootProject.ext.dependencies["zxing"]
     implementation rootProject.ext.dependencies["glide"]
-    implementation rootProject.ext.dependencies['wxapi']
+    api rootProject.ext.dependencies['wxapi']
     implementation rootProject.ext.dependencies["location"]
     api project(path: ':jsbridge-n22') //webview交互基础模块
     api project(path: ':imagepicker') // 图片选择模块
