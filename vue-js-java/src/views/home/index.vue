@@ -54,6 +54,8 @@
     <van-button type="primary" block @click="openCamera()">打开相机</van-button>
     <p />
     <van-button type="primary" block @click="pushData()">推送数据</van-button>
+    <p />
+    <van-button type="primary" block @click="dictation()">语音听写</van-button>
   </div>
 </template>
 
