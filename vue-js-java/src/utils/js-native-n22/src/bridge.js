@@ -43,6 +43,7 @@ export default {
     } else {
       console.log('bridge callhandler ios >>> ', name, data)
       window.GDIJSBridge.call({ method: name, data: data, callback: (result) => {
+        result = JSON.parse(result)
         callback(result)
       } })
     }
