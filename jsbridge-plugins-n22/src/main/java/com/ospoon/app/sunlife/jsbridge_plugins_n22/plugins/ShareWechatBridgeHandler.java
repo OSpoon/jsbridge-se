@@ -3,16 +3,13 @@ package com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.gson.Gson;
-import com.ospoon.app.sunlife.jsbridge_plugins_n22.request.SendMsgJsRequest;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.request.ShareWeChatJsRequest;
-import com.ospoon.app.sunlife.jsbridge_plugins_n22.request.ToastJsRequest;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.share.ShareUtils;
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
