@@ -16,7 +16,7 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField('String', 'ROOT_URL', '"http://192.168.1.109:9999"')
+            buildConfigField('String', 'ROOT_URL', '"http://192.168.199.163:9999"')
         }
         release {
             buildConfigField('String', 'ROOT_URL', '"http://xrkj.gitee.io/jsbridge-n22/#/"')
@@ -45,8 +45,8 @@ dependencies {
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["crashreport_upgrade"]
     implementation rootProject.ext.dependencies["nativecrashreport"]
+    //本地模块依赖
     implementation project(path: ':jsbridge-plugins-n22')
-    implementation rootProject.ext.dependencies['wxapi']
-    implementation rootProject.ext.dependencies['gson']
-//    implementation 'com.ospoon:jsbridge-plugins-n22:1.0.4'
+    //在线依赖
+//    implementation rootProject.ext.dependencies["jsbridge-plugins-n22"]
 }

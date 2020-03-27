@@ -3,13 +3,16 @@
 [演示APK下载地址](http://android.n22.online/bdph)
 
 #### 1. 在模块级别的`build.gradle`添加jsbridge-n22依赖
+> 如无法更新全依赖包,请配置maven地址:https://dl.bintray.com/spoon2014/maven
+
 ```
 //仅包含WebView中Js与Java交互,插件需按指定格式编写
-implementation 'com.ospoon:jsbridge-n22:1.0.5'
+implementation 'com.ospoon:jsbridge-n22:1.0.7'
 
 //包含WebView中Js与Java交互和基础插件,节省开发
-implementation 'com.ospoon:jsbridge-plugins-n22:1.0.5'
+implementation 'com.ospoon:jsbridge-plugins-n22:1.0.7'
 ```
+
 #### 2. 创建插件 #####
 
 1. 新建插件Java类(如:ToastBridgeHandler),并继承自BaseBridgeHandler
