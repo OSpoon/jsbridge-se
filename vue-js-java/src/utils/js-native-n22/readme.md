@@ -459,3 +459,33 @@ native.faceScan((content) => {
     alert(error)
   })
 ```
+
+##### 18. pushData:可以将H5中的数据推送到原生层
+> 可以通过此API可以将H5中的数据推送到原生层
+
+> 使用场景:如第三方监控平台SDK需要获取H5登陆成功后的用户信息,H5端可以使用此插件进行数据推送,原生端注册广播并将接收到的数据发送给监控平台,注意广播仅支持动态注册(涉及原生部分)
+
+请求参数: 
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+event | String |  | 推送数据的事件名称
+data | Map<String,String> | key-value | 推送的具体数据
+
+响应参数: 无
+
+API`pushData`示例:
+
+```js
+native.pushData({
+    event: 'push_agent_data',
+    data: {
+      agentName: 'zhangxin',
+      agentCode: '1100011010',
+      orgCode: '0001'
+    }
+  }, (content) => {
+    alert(JSON.stringify(content))
+  }, (error) => {
+    alert(error)
+  })
+```
