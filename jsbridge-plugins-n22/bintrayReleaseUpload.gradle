@@ -5,7 +5,7 @@ publish {
     repoName = 'maven'
     groupId = 'com.ospoon'
     artifactId = 'jsbridge-plugins-n22'
-    publishVersion = '1.0.4'
+    publishVersion = '1.0.5'
     desc = 'jsbridge-plugins-n22 for android'
     website = 'https://github.com/OSpoon/jsbridge-n22.git'
 }
