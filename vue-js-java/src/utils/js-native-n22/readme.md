@@ -439,3 +439,23 @@ native.idCardScan({
     alert(error)
   })
 ```
+
+##### 17. faceScan:通过旷世提供的SDK获取人脸图像
+> 可以通过此API通过旷世提供的SDK获取人脸图像
+
+请求参数: 无
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+faceimg_base64 | String | base64 | 最佳人脸图像
+
+API`faceScan`示例:
+
+```js
+native.faceScan((content) => {
+    alert(JSON.stringify(content))
+  }, (error) => {
+    alert(error)
+  })
+```
