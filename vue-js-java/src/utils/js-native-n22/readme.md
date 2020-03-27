@@ -503,7 +503,7 @@ isCompress | int | 传1.压缩,2.不压缩 | 压缩照片的标志
 ---|---|---|---
 paths | String[] | 无 | 返回选中照片在手机中存储的路径
 
-API`imageSelect`示例:
+API`openCamera`示例:
 
 ```js
 native.openCamera({
