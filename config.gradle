@@ -41,6 +41,8 @@ ext {
             "nativecrashreport"         : "com.tencent.bugly:nativecrashreport:latest.release",
             "location"                  : "com.amap.api:location:latest.integration",
             "universal-image-loader"    : "com.nostra13.universalimageloader:universal-image-loader:1.9.5",
-            "easypermissions"           : "pub.devrel:easypermissions:2.0.1"
+            "easypermissions"           : "pub.devrel:easypermissions:2.0.1",
+            "wxapi"                     : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+",
+            "glide"                     : "com.github.bumptech.glide:glide:4.9.0"
     ]
 }

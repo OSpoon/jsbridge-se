@@ -128,6 +128,15 @@ const native = {
       }
     })
   },
+  shareWeChat(data, success, fail) {
+    bridge.callhandler('shareWeChat', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
   idCardScan(data, success, fail) {
     bridge.callhandler('IDCardScan', data, (result) => {
       if (!result.error) {

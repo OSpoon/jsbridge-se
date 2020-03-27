@@ -384,11 +384,38 @@ native.imageSelect({
     alert(error)
   })
 ```
+##### 15. shareWeChat:微信分享
+> 可以通过此API进行微信分享
 
-##### 15. idCardScan:通过旷世提供的SDK获取身份证正面反图像
+请求参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+platform | String | 1:分享到好友会话,2:分享到朋友圈,3:进行收藏 | 分享类型的标志
+url | String | 无 | 分享的图片地址
+title | String | 无 | 分享的标题
+dec | String | 无 | 分享的内容
+
+响应参数: 无
+
+API`shareWeChat`示例:
+
+```js
+native.shareWeChat({
+        platform: '1',
+        url: 'www.baidu.com',
+        title: '测试分享标题',
+        dec: '测试分享内容'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+```
+
+##### 16. idCardScan:通过旷世提供的SDK获取身份证正面反图像
 > 可以通过此API通过旷世提供的SDK获取身份证正面反图像
 
-请求参数: 
+请求参数:
 参数 | 类型 | 枚举 | 含义
 ---|---|---|---
 isVertical | bool | 必传 | 是否竖屏识别

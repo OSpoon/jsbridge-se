@@ -46,6 +46,8 @@
     <van-button type="primary" block @click="imageSelect()">选择图片</van-button>
     <p />
     <van-button type="primary" block @click="idCardScan()">身份证识别</van-button>
+    <p />
+    <van-button type="primary" block @click="shareWeChat()">分享到微信</van-button>
   </div>
 </template>
 
@@ -249,6 +251,18 @@ export default {
     imageSelect() {
       native.imageSelect({
         'limit': 2
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    shareWeChat() {
+      native.shareWeChat({
+        platform: '1',
+        url: 'www.baidu.com',
+        title: '测试分享标题',
+        dec: '测试分享内容'
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {

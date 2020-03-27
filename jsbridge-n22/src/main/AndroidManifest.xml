@@ -3,5 +3,6 @@
     <application>
         <activity android:name=".activity.BridgeWebViewActivity" />
         <activity android:name=".activity.X5WebViewActivity" />
+
     </application>
 </manifest>

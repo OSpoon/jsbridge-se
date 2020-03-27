@@ -14,7 +14,6 @@ import com.spoon.app.jsbridge_n22.core.BridgePlugin;
  */
 @BridgePlugin(name = "sendMsg")
 public class SendMsgBridgeHandler extends BaseBridgeHandler {
-
     /**
      * 权限数组,不申请权限设置为null
      *
