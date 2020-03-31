@@ -3,6 +3,7 @@ package com.spoon.app.jsbridge_n22.core;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.ClientCertRequest;
 import android.webkit.HttpAuthHandler;
@@ -26,7 +27,7 @@ class BridgeWebViewClient extends WebViewClient {
     private BridgeTiny bridgeTiny;
     private BridgeWebView bridgeWebView;
 
-    public BridgeWebViewClient(BridgeWebView bridgeWebView,BridgeTiny bridgeTiny) {
+    public BridgeWebViewClient(BridgeWebView bridgeWebView, BridgeTiny bridgeTiny) {
         this.bridgeTiny = bridgeTiny;
         this.bridgeWebView = bridgeWebView;
     }
@@ -37,6 +38,10 @@ class BridgeWebViewClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        if (url.startsWith("gap:")) {
+            Log.i("BridgeWebView", "BridgeWebView does not support Cordova API calls:" + url);
+            return true;
+        }
         view.loadUrl(url);
         if (mClient != null) {
             return mClient.shouldOverrideUrlLoading(view, url);
@@ -47,6 +52,10 @@ class BridgeWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if ("ready".equals(request.getUrl().getAuthority())) {
+                Log.i("BridgeWebView", "BridgeWebView does not support Cordova API calls:" + request.getUrl().getAuthority());
+                return true;
+            }
             view.loadUrl(request.getUrl().getAuthority());
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && mClient != null) {
@@ -222,7 +231,7 @@ class BridgeWebViewClient extends WebViewClient {
     }
 
     @Override
-    public void onReceivedLoginRequest(WebView view, String realm,  String account, String args) {
+    public void onReceivedLoginRequest(WebView view, String realm, String account, String args) {
         if (mClient != null) {
             mClient.onReceivedLoginRequest(view, realm, account, args);
         } else {
@@ -232,7 +241,7 @@ class BridgeWebViewClient extends WebViewClient {
 
     @Override
     public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mClient != null){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mClient != null) {
             return mClient.onRenderProcessGone(view, detail);
         }
         return super.onRenderProcessGone(view, detail);
@@ -240,9 +249,9 @@ class BridgeWebViewClient extends WebViewClient {
 
     @Override
     public void onSafeBrowsingHit(WebView view, WebResourceRequest request, int threatType, SafeBrowsingResponse callback) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1 && mClient != null){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1 && mClient != null) {
             mClient.onSafeBrowsingHit(view, request, threatType, callback);
-        }else {
+        } else {
             super.onSafeBrowsingHit(view, request, threatType, callback);
         }
     }
