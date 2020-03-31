@@ -52,12 +52,16 @@ public class BridgeWebView extends WebView implements IWebView {
 //		webView.getSettings().setLoadWithOverviewMode(true);
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         getSettings().setJavaScriptEnabled(true);
+        getSettings().setDomStorageEnabled(true);//开启
 //        mContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        //开启Http和Https混用
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Bridge.INSTANCE.getDEBUG()) {
             WebView.setWebContentsDebuggingEnabled(true);
         }
-
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+        }
         bridgeTiny = new BridgeTiny(this);
 
         mClient = new BridgeWebViewClient(this,bridgeTiny);
