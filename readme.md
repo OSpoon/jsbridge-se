@@ -215,6 +215,7 @@ window.WebViewJavascriptBridge.callHandler(
  1. 页面提示ERR_CACHE_MISS:请设置网络权限`<uses-permission android:name="android.permission.INTERNET"/>`
  2. 页面提示ERR_CLEARTEXT_NOT_PERMITTED:请在`AndroidManifest.xml`的`application`节点增加`android:usesCleartextTraffic="true"`
  3. 如发生样式冲突请在app模块中的添加AndroidManifest.xml文件的application节点添加`tools:replace="android:theme"`
+ 4. 提交代码提示`validate-commit-msg: command not found`,请全局安装插件,执行命令:`cnpm install validate-commit-msg -g`,因内部包含vue项目中配置提交钩子
 
 使用方案为[JSBridge-Android](https://github.com/smallbuer/JSBridge-Android)
 
