@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.AbsoluteLayout;
 import android.widget.ProgressBar;
 
@@ -109,6 +110,10 @@ public class X5WebView extends WebView implements IWebView {
          * prevent system browser from launching when web page loads
          */
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            if(url.startsWith("gap:")){
+                Log.i("X5WebView", "BridgeWebView does not support Cordova API calls:" + url);
+                return true;
+            }
             view.loadUrl(url);
             return true;
         }
