@@ -232,9 +232,10 @@ native.openBrowser({
 
 参数 | 类型 | 枚举 | 含义
 ---|---|---|---
-mode | int | 1:获取MD5T验签,2:3des加密,3:3des解密 | 内核选择
-key | String | 指定长度24位 | 加/解密时的秘钥
+mode | int | 1:获取MD5T验签,2:3des加密,3:3des解密 | 
+key | String | 指定长度24位,设置`default`可使用默认秘钥 | 加/解密时的秘钥
 content | String | 无 | 待加/解密的内容
+
 
 响应参数:
 
