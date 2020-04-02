@@ -27,6 +27,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.dependencies['gson']
+    implementation rootProject.ext.dependencies['toprightmenu']
     api rootProject.ext.dependencies['permission']
     api rootProject.ext.dependencies['tbssdk']
 }

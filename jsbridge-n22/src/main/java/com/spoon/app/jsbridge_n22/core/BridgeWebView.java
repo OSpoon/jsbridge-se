@@ -18,6 +18,7 @@ public class BridgeWebView extends WebView implements IWebView {
 
     private ProgressBar progressbar;
 
+    private WebViewLoadListener listener;
 
     private String TAG = "BridgeWebView";
     private BridgeTiny bridgeTiny;
@@ -31,6 +32,12 @@ public class BridgeWebView extends WebView implements IWebView {
 
     public BridgeWebView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init(context);
+    }
+
+    public BridgeWebView(Context context, WebViewLoadListener listener) {
+        super(context);
+        this.listener = listener;
         init(context);
     }
 
@@ -59,12 +66,12 @@ public class BridgeWebView extends WebView implements IWebView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Bridge.INSTANCE.getDEBUG()) {
             WebView.setWebContentsDebuggingEnabled(true);
         }
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         }
         bridgeTiny = new BridgeTiny(this);
 
-        mClient = new BridgeWebViewClient(this,bridgeTiny);
+        mClient = new BridgeWebViewClient(this, bridgeTiny, listener);
         super.setWebViewClient(mClient);
         mChromeClient = new BridgeWebChromeClient(progressbar);
         super.setWebChromeClient(mChromeClient);
@@ -89,7 +96,7 @@ public class BridgeWebView extends WebView implements IWebView {
 
     @Override
     public void callHandler(String handlerName, Object data, OnBridgeCallback responseCallback) {
-        bridgeTiny.callHandler(handlerName,data,responseCallback);
+        bridgeTiny.callHandler(handlerName, data, responseCallback);
     }
 
     @Override
@@ -100,4 +107,5 @@ public class BridgeWebView extends WebView implements IWebView {
         progressbar.setLayoutParams(lp);
         super.onScrollChanged(l, t, oldl, oldt);
     }
+
 }

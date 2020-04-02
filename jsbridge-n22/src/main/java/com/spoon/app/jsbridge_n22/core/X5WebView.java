@@ -26,9 +26,18 @@ public class X5WebView extends WebView implements IWebView {
     private ProgressBar progressbar;
     private BridgeTiny bridgeTiny;
 
+    private WebViewLoadListener listener;
+
     @SuppressLint("SetJavaScriptEnabled")
     public X5WebView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context);
+        this.getView().setClickable(true);
+    }
+
+    public X5WebView(Context context, WebViewLoadListener listener) {
+        super(context);
+        this.listener = listener;
         init(context);
         this.getView().setClickable(true);
     }
@@ -122,6 +131,10 @@ public class X5WebView extends WebView implements IWebView {
         public void onPageFinished(WebView webView, String s) {
             super.onPageFinished(webView, s);
             bridgeTiny.webViewLoadJs((IWebView) webView);
+            if (listener != null) {
+                listener.onPageFinished(s, webView.canGoBack(),
+                        webView.canGoForward());
+            }
         }
 
     };

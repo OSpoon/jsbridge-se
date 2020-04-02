@@ -26,10 +26,12 @@ class BridgeWebViewClient extends WebViewClient {
     private WebViewClient mClient;
     private BridgeTiny bridgeTiny;
     private BridgeWebView bridgeWebView;
+    private WebViewLoadListener listener;
 
-    public BridgeWebViewClient(BridgeWebView bridgeWebView, BridgeTiny bridgeTiny) {
+    public BridgeWebViewClient(BridgeWebView bridgeWebView, BridgeTiny bridgeTiny, WebViewLoadListener listener) {
         this.bridgeTiny = bridgeTiny;
         this.bridgeWebView = bridgeWebView;
+        this.listener = listener;
     }
 
     public void setWebViewClient(WebViewClient client) {
@@ -76,7 +78,10 @@ class BridgeWebViewClient extends WebViewClient {
 
     @Override
     public void onPageFinished(WebView view, String url) {
-
+        if (listener != null) {
+            listener.onPageFinished(url, view.canGoBack(),
+                    view.canGoForward());
+        }
         if (mClient != null) {
             mClient.onPageFinished(view, url);
         } else {
@@ -255,5 +260,4 @@ class BridgeWebViewClient extends WebViewClient {
             super.onSafeBrowsingHit(view, request, threatType, callback);
         }
     }
-
 }

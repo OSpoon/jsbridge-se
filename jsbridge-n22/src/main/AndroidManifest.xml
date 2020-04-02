@@ -2,7 +2,9 @@
     package="com.spoon.app.jsbridge_n22">
     <application>
         <activity android:name=".activity.BridgeWebViewActivity" />
+        <activity android:name=".activity.BridgeWebViewCustomActivity" />
         <activity android:name=".activity.X5WebViewActivity" />
+        <activity android:name=".activity.X5WebViewCustomActivity"/>
 
     </application>
 </manifest>
