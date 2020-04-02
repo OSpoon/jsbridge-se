@@ -56,6 +56,8 @@
     <van-button type="primary" block @click="pushData()">推送数据</van-button>
     <p />
     <van-button type="primary" block @click="dictation()">语音听写</van-button>
+    <p />
+    <van-button type="primary" block @click="picPreview()">图片预览</van-button>
   </div>
 </template>
 
@@ -319,6 +321,29 @@ export default {
           agentCode: '1100011010',
           orgCode: '0001'
         }
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    picPreview() {
+      native.picPreview({
+        images: [
+          'http://img6.16fan.com/201510/11/005258wdngg6rv0tpn8z9z.jpg',
+          'http://img6.16fan.com/201510/11/013553aj3kp9u6iuz6k9uj.jpg',
+          'http://img6.16fan.com/201510/11/011753fnanichdca0wbhxc.jpg',
+          'http://img6.16fan.com/201510/11/011819zbzbciir9ctn295o.jpg',
+          'http://img6.16fan.com/201510/11/004847l7w568jc5n5wn385.jpg',
+          'http://img6.16fan.com/201510/11/004906z0a0a0e0hs56ce0t.jpg',
+          'http://img6.16fan.com/201510/11/004937pwttwjt0bgtoton7.jpg',
+          'http://img6.16fan.com/201510/11/004946t38ybzt8bq8c838y.jpg',
+          'http://img6.16fan.com/201510/11/004955d8ftz3t1sttt7ft7.jpg',
+          'http://img6.16fan.com/201510/11/005027qy2g55yyglb59zdu.jpg',
+          'http://img6.16fan.com/201510/11/005229bbtxkczcl0btmw8e.jpg',
+          'http://img6.16fan.com/attachments/wenzhang/201805/18/152660818127263ge.jpeg',
+          'http://img6.16fan.com/attachments/wenzhang/201805/18/152660818716180ge.jpeg'
+        ]
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {

@@ -182,6 +182,15 @@ const native = {
       }
     })
   },
+  picPreview(data, success, fail) {
+    bridge.callhandler('picPreview', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
   openOther(data, success, fail) {
     bridge.callhandler('openOther', data, (result) => {
       if (!result.error) {

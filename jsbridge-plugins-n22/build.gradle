@@ -43,10 +43,12 @@ dependencies {
     api project(path: ':idcard_quality') // 证件识别模块
     api project(path: ':livenesslib') // 人脸识别模块
     api project(path: ':speech') // 语音听写模块
+    api project(path: ':picpreview') // 图片预览模块
     //依赖在线模块
 //    api rootProject.ext.dependencies["jsbridge-n22"]
 //    api rootProject.ext.dependencies["speech"]
 //    api rootProject.ext.dependencies["idcard_quality"]
 //    api rootProject.ext.dependencies["livenesslib"]
 //    api rootProject.ext.dependencies["imagepicker"]
+//    api rootProject.ext.dependencies["picpreview"]
 }

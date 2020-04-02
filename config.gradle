@@ -51,6 +51,10 @@ ext {
             "universal-image-loader"    : "com.nostra13.universalimageloader:universal-image-loader:1.9.5",
             "easypermissions"           : "pub.devrel:easypermissions:2.0.1",
             "wxapi"                     : "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+",
-            "openCamera"                : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.3"
+            "openCamera"                : "com.github.LuckSiege.PictureSelector:picture_library:v2.2.3",
+            "BigImageViewPager"         : "com.github.SherlockGougou:BigImageViewPager:v4_6.0.0",
+            "glide"                     : "com.github.bumptech.glide:glide:4.8.0",
+            "compiler"                  : "com.github.bumptech.glide:compiler:4.8.0",
+            "okhttp3-integration"       : "com.github.bumptech.glide:okhttp3-integration:4.8.0"
     ]
 }
