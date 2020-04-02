@@ -29,7 +29,7 @@ package com.ospoon.app.sunlife.jsbridge_plugins_n22.core.security.httpcore;
 import java.nio.charset.Charset;
 
 /**
- * Commons constants.
+ * Commons Constants.
  *
  * @since 4.2
  */

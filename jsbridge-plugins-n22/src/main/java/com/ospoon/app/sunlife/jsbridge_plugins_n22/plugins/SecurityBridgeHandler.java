@@ -3,6 +3,7 @@ package com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins;
 import android.content.Intent;
 
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.core.security.SecurityUtil;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.core.security.httpcore.TextUtils;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.emuns.SecurityEmun;
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
@@ -21,6 +22,9 @@ import java.util.Map;
  */
 @BridgePlugin(name = "security")
 public class SecurityBridgeHandler extends BaseBridgeHandler {
+
+    private final static String DEFAULT_KEY = "MOAPPINTERFACE2017#@!%88";
+
     @Override
     public String[] authorization() {
         return new String[0];
@@ -50,6 +54,9 @@ public class SecurityBridgeHandler extends BaseBridgeHandler {
     }
 
     public void security(int mode, String key, String json) {
+        if("default".equalsIgnoreCase(key)){
+            key = DEFAULT_KEY;
+        }
         if (mode == SecurityEmun.ENCODE.getCode()) {
             //报文加密
             try {
