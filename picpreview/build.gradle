@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply from: './bintrayReleaseUpload.gradle'
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -22,6 +22,7 @@ android {
 }
 
 dependencies {
+    implementation rootProject.ext.dependencies['appcompat-v7']
     // glide
     implementation rootProject.ext.dependencies['glide']
     annotationProcessor rootProject.ext.dependencies['compiler']
