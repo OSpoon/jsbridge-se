@@ -1,7 +1,10 @@
 package com.spoon.app.jsbridge_n22.demo.wxapi;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -24,7 +27,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     private IWXAPI wxapi;
-    public static final String wx_appid = "wxba50597b5a9c762d";
+//    public static final String wx_appid = "wxba50597b5a9c762d";
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -37,6 +40,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String wx_appid = getAppMetaKey(this);
         wxapi = WXAPIFactory.createWXAPI(this, "appId");
         wxapi.registerApp(wx_appid);
         wxapi.handleIntent(getIntent(), this);
@@ -86,6 +90,24 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                 }
                 break;
         }
+    }
+
+    private String getAppMetaKey(Context context) {
+        Bundle metaData = null;
+        String appKey = null;
+        try {
+            ApplicationInfo ai = context.getPackageManager().getApplicationInfo(
+                    context.getPackageName(), PackageManager.GET_META_DATA);
+            if (null != ai)
+                metaData = ai.metaData;
+            if (null != metaData) {
+                // MY_META_KEY是meta-data中对应的key值
+                appKey = metaData.getString("JSBRIDGE_N22_WECHAT_SHARE_KEY");
+                return appKey;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        return appKey;
     }
 
 }

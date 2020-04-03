@@ -1,9 +1,9 @@
-package com.ospoon.app.sunlife.jsbridge_plugins_n22.share;
+package com.spoon.app.jsbridge_n22.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.widget.Toast;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
@@ -26,10 +26,11 @@ public class ShareUtils {
     public static void shareWeb(Context context, String title, String content, Bitmap imgBitmap, String webPageUrl,
                                 String platform) {
         // 通过appId得到IWXAPI这个对象 todo appid 暂定写死,后修改为可配置
-        IWXAPI wxapi = WXAPIFactory.createWXAPI(context, "wxba50597b5a9c762d");
+        String jsbridge_n22_wechat_share_key = Utils.getAppMetaKey(context, "JSBRIDGE_N22_WECHAT_SHARE_KEY");
+        IWXAPI wxapi = WXAPIFactory.createWXAPI(context, jsbridge_n22_wechat_share_key);
         // 检查手机或者模拟器是否安装了微信
         if (!wxapi.isWXAppInstalled()) {
-            ToastUtils.showShort("您还没有安装微信");
+            Toast.makeText(context, "您还没有安装微信", Toast.LENGTH_SHORT).show();
             return;
         }
         // 初始化一个WXWebpageObject对象

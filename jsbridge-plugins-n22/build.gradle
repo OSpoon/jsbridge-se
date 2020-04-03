@@ -34,7 +34,6 @@ dependencies {
     implementation rootProject.ext.dependencies["utilcode"]
     implementation rootProject.ext.dependencies["zxing"]
     implementation rootProject.ext.dependencies["openCamera"]
-    api rootProject.ext.dependencies['wxapi']
     implementation rootProject.ext.dependencies["location"]
 
     //依赖本地模块

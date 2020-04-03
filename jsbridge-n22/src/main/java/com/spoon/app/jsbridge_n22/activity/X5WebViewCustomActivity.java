@@ -29,11 +29,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.spoon.app.jsbridge_n22.R;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
-import com.spoon.app.jsbridge_n22.core.BridgeWebView;
 import com.spoon.app.jsbridge_n22.core.WebViewLoadListener;
 import com.spoon.app.jsbridge_n22.core.X5WebView;
 import com.spoon.app.jsbridge_n22.core.extension.HideSelectedAdapter;
@@ -43,6 +41,7 @@ import com.spoon.app.jsbridge_n22.core.extension.bean.EventLabel;
 import com.spoon.app.jsbridge_n22.core.extension.bean.Options;
 import com.spoon.app.jsbridge_n22.core.extension.bean.Title;
 import com.spoon.app.jsbridge_n22.core.extension.bean.Toolbar;
+import com.spoon.app.jsbridge_n22.utils.ShareUtils;
 import com.spoon.app.jsbridge_n22.utils.Utils;
 import com.zaaach.toprightmenu.MenuItem;
 import com.zaaach.toprightmenu.TopRightMenu;
@@ -136,6 +135,7 @@ public class X5WebViewCustomActivity extends BaseActivity {
         options.fullscreen = false;
         setContentView(getLayout(options));
     }
+
     /**
      * 显示带有指定URL的新浏览器。
      *
@@ -501,11 +501,11 @@ public class X5WebViewCustomActivity extends BaseActivity {
         return main;
     }
 
-    private void popupShareMenu(Activity activity, Button button) {
+    private void popupShareMenu(final Activity activity, Button button) {
         TopRightMenu mTopRightMenu = new TopRightMenu(activity);
         mTopRightMenu
-                .setHeight(260)     //默认高度480
-                .setWidth(380)      //默认宽度wrap_content
+                .setHeight(Utils.dpToPixels(activity, 95))     //默认高度480
+                //.setWidth(Utils.dpToPixels(activity,500))      //默认宽度wrap_content
                 .showIcon(true)     //显示菜单图标，默认为true
                 .dimBackground(true)           //背景变暗，默认为true
                 .needAnimationStyle(true)   //显示动画，默认为true
@@ -515,9 +515,26 @@ public class X5WebViewCustomActivity extends BaseActivity {
                 .setOnMenuItemClickListener(new TopRightMenu.OnMenuItemClickListener() {
                     @Override
                     public void onMenuItemClick(int position) {
-                        Toast.makeText(X5WebViewCustomActivity.this, inAppWebView.getOriginalUrl(), Toast.LENGTH_LONG).show();
-                        Toast.makeText(X5WebViewCustomActivity.this, "点击菜单:" + position, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(X5WebViewCustomActivity.this, inAppWebView.getUrl(), Toast.LENGTH_LONG).show();
+                        if (TextUtils.isEmpty(inAppWebView.getUrl())) {
+                            return;
+                        }
+                        String title = inAppWebView.getTitle();
+                        if (!title.isEmpty()) {
+                            String mainTitle = "";
+                            String subTitle = "";
+                            if (title.contains("%|%")) {
+                                String[] titles = title.split("%|%");
+                                mainTitle = titles[0];
+                                subTitle = titles[1];
+                            } else {
+                                mainTitle = title;
+                            }
+                            if (position == 0) {
+                                ShareUtils.shareWeb(activity, mainTitle, subTitle, inAppWebView.getFavicon(), inAppWebView.getUrl(), "1");
+                            } else if (position == 1) {
+                                ShareUtils.shareWeb(activity, mainTitle, subTitle, inAppWebView.getFavicon(), inAppWebView.getUrl(), "2");
+                            }
+                        }
                     }
                 })
                 .showAsDropDown(button, -325, 10);

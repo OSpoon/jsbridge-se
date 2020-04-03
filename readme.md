@@ -209,6 +209,14 @@ window.WebViewJavascriptBridge.callHandler(
     }
     ```
 
+5. 如需要使用分享功能请将微信分享的APPKEY配置到app的AndroidManifest.xml参照如下
+    ```xml
+    <!-- 配置微信分享 APPKEY-->
+    <meta-data
+        android:name="JSBRIDGE_N22_WECHAT_SHARE_KEY"
+        android:value="wxba50597b5a9c762d" />
+    ```
+
 
 
  注意事项:

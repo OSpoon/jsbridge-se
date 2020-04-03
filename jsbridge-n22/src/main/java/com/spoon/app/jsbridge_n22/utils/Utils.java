@@ -1,12 +1,16 @@
 package com.spoon.app.jsbridge_n22.utils;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
@@ -99,5 +103,23 @@ public class Utils {
             }
         }
         return result;
+    }
+
+    public static String getAppMetaKey(Context context,String metaKey) {
+        Bundle metaData = null;
+        String appKey = null;
+        try {
+            ApplicationInfo ai = context.getPackageManager().getApplicationInfo(
+                    context.getPackageName(), PackageManager.GET_META_DATA);
+            if (null != ai)
+                metaData = ai.metaData;
+            if (null != metaData) {
+                // MY_META_KEY是meta-data中对应的key值
+                appKey = metaData.getString(metaKey);
+                return appKey;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        return appKey;
     }
 }

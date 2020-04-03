@@ -10,9 +10,9 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.gson.Gson;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.request.ShareWeChatJsRequest;
-import com.ospoon.app.sunlife.jsbridge_plugins_n22.share.ShareUtils;
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
+import com.spoon.app.jsbridge_n22.utils.ShareUtils;
 
 /**
  * 发送信息的方法
