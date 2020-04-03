@@ -1,6 +1,6 @@
 {
   "name": "js-native-n22",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "配合jsbridge-n22使用的js模块",
   "main": "./src/native.js",
   "scripts": {
