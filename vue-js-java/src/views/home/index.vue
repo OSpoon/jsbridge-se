@@ -27,6 +27,8 @@
     <p />
     <van-button type="primary" block @click="openBrowser()">打开新的浏览器</van-button>
     <p />
+    <van-button type="primary" block @click="openNewBrowser()">打开自定义新的浏览器</van-button>
+    <p />
     <van-button type="primary" block @click="encode()">加密</van-button>
     <p />
     <van-button type="primary" block @click="decode()">解密</van-button>
@@ -184,6 +186,28 @@ export default {
       native.openBrowser({
         mode: 1,
         url: 'http://xrkj.gitee.io/jsbridge-n22/#/'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    openNewBrowser() {
+      native.openBrowser({
+        mode: 2,
+        url: 'http://xrkj.gitee.io/jsbridge-n22/#/',
+        isCustom: true,
+        isShowClose: true,
+        isShowBack: true,
+        isShowShare: true,
+        toolbar: {
+          height: 44,
+          color: '#0000CC'
+        },
+        title: {
+          color: '#666633',
+          staticText: '自定义Title'
+        }
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
