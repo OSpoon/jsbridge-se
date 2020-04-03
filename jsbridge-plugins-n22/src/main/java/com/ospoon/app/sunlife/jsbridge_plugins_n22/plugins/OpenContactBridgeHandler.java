@@ -1,7 +1,9 @@
 package com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.provider.ContactsContract;
 import android.util.Log;
 
@@ -50,49 +52,10 @@ public class OpenContactBridgeHandler extends BaseBridgeHandler {
      */
     @Override
     public void process(String data) {
-//        getContacts();
-        Intent intent = new Intent(Intent.ACTION_PICK,ContactsContract.Contacts.CONTENT_URI);
+        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         getActivity().startActivityForResult(intent, 0);
     }
 
-    /**
-     * 获取联系人列表
-     */
-    private void getContacts() {
-//        List<OpenContactsResponse> list = new ArrayList<>();
-//        OpenContactsResponse openContactsResponse;
-//        Cursor cursor = null;
-//        try {
-//            cursor = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-//                    null, null, null, null);
-//            if (cursor != null) {
-//                while (cursor.moveToNext()) {
-//                    openContactsResponse = new OpenContactsResponse();
-//                    String displayName = cursor.getString(cursor.getColumnIndex(
-//                            ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-//                    String number = cursor.getString(cursor.getColumnIndex(
-//                            ContactsContract.CommonDataKinds.Phone.NUMBER));
-//                    openContactsResponse.setDisplayName(displayName);
-//                    openContactsResponse.setNumber(number);
-//                    list.add(openContactsResponse);
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (cursor != null) {
-//                cursor.close();
-//            }
-//        }
-//        ToastUtils.showShort(list.toString());
-//        Log.e("tag", "getContacts: " + list.toString());
-//        if (list.size() > 0) {
-//            callBack.onCallBack(ResultUtil.success(list));
-//        } else {
-//            callBack.onCallBack(ResultUtil.error("1", "The format of the request parameter is wrong, please check~"));
-//        }
-
-    }
 
     /**
      * 接收回调数据
@@ -103,6 +66,53 @@ public class OpenContactBridgeHandler extends BaseBridgeHandler {
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        switch (requestCode) {
+            case 0:
+                if (intent == null) {
+                    return;
+                }
+                Uri uri = intent.getData();
+                OpenContactsResponse phoneContacts = getPhoneContacts(uri);
+                if (phoneContacts != null) {
+                    callBack.onCallBack(ResultUtil.success(phoneContacts));
+                } else {
+                    callBack.onCallBack(ResultUtil.error("1", "The format of the request parameter is wrong, please check~"));
+                }
+            default:
+                break;
+        }
+    }
 
+    /**
+     * 获取单个联系人
+     *
+     * @param uri
+     * @return
+     */
+    private OpenContactsResponse getPhoneContacts(Uri uri) {
+        OpenContactsResponse openContactsResponse = new OpenContactsResponse();
+        //得到ContentResolver对象**
+        ContentResolver cr = getActivity().getContentResolver();
+        //取得电话本中开始一项的光标**
+        Cursor cursor = cr.query(uri, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            //取得联系人姓名**
+            int nameFieldColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
+            openContactsResponse.setDisplayName(cursor.getString(nameFieldColumnIndex));
+            //取得电话号码**
+            String ContactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+            Cursor phone = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + ContactId, null, null);
+            if (phone != null) {
+                phone.moveToFirst();
+                openContactsResponse.setNumber(phone.getString(phone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
+            }
+            phone.close();
+            cursor.close();
+        } else {
+            return null;
+        }
+        return openContactsResponse;
     }
 }

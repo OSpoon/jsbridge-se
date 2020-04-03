@@ -347,8 +347,7 @@ API`sendMsg`示例:
 响应参数:
 参数 | 类型 | 枚举 | 含义
 ---|---|---|---
-displayName | String | 无 | 联系人的名字
-number | String | 无 | 联系人的电话
+data | 数组 | [{'displayName':'联系人姓名','number':'联系人电话'}] | 联系人的信息列表
 
 API`openContacts`示例:
 
@@ -584,4 +583,24 @@ native.picPreview({
   }, (error) => {
     alert(error)
   })
+```
+##### 21. openContact:调用原生获取单个联系人信息
+> 可以通过此API调用原生获取单个联系人信息
+
+请求参数: 无
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+displayName | String | 无 | 联系人的名字
+number | String | 无 | 联系人的电话
+
+API`openContact`示例:
+
+```js
+ native.openContact((content) => {
+         alert(JSON.stringify(content))
+       }, (error) => {
+         alert(error)
+       })
 ```

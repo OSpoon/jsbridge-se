@@ -61,6 +61,8 @@
     <p />
     <van-button type="primary" block @click="openCamera()">打开相机</van-button>
     <p />
+    <van-button type="primary" block @click="openAlbum()">打开相册</van-button>
+    <p />
     <van-button type="primary" block @click="pushData()">推送数据</van-button>
     <p />
     <van-button type="primary" block @click="dictation()">语音听写</van-button>
@@ -362,8 +364,18 @@ export default {
     },
     openCamera() {
       native.openCamera({
-        openFlag: '2', // 打开相机,1.打开相机,2.是打开相册
+        openFlag: '1', // 打开相机,1.打开相机,2.是打开相册
         isCompress: 1 // 1.压缩,2.不压缩
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    openAlbum() {
+      native.openCamera({
+        openFlag: '2', // 打开相机,1.打开相机,2.是打开相册
+        isCompress: 2 // 1.压缩,2.不压缩
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {

@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.ImgUtils.ImgUtils;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.request.OpenCameraJsRequest;
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
@@ -27,6 +28,7 @@ import java.util.Map;
 public class OpenCameraBridgeHandler extends BaseBridgeHandler {
     private static final int REQUEST_CODE_OPEN_CAMERA = 100;
     private static final int REQUEST_CODE_SELECT_PICTURE = 101;
+    private int compress;
 
     /**
      * 权限数组,不申请权限设置为null
@@ -57,6 +59,7 @@ public class OpenCameraBridgeHandler extends BaseBridgeHandler {
     @Override
     public void process(String data) {
         OpenCameraJsRequest request = new Gson().fromJson(data, OpenCameraJsRequest.class);
+        compress = request.getIsCompress();
         if ("1".equals(request.getOpenFlag())) {
             PictureSelector.create(getActivity())
                     .openCamera(PictureMimeType.ofImage())
@@ -91,7 +94,12 @@ public class OpenCameraBridgeHandler extends BaseBridgeHandler {
                     //获取照片的路径和名字
                     List<LocalMedia> localMediaTake = PictureSelector.obtainMultipleResult(intent);
                     for (LocalMedia media : localMediaTake) {
-                        photoNamesList.add(media.getPath());
+                        if (compress == 1) {
+                            photoNamesList.addAll(ImgUtils.getCompressImg("", media.getPath()));
+                        } else {
+                            photoNamesList.add(media.getPath());
+                        }
+
                     }
                     map.put("paths", photoNamesList);
                     callBack.onCallBack(ResultUtil.success(map));
@@ -100,7 +108,11 @@ public class OpenCameraBridgeHandler extends BaseBridgeHandler {
                 case REQUEST_CODE_SELECT_PICTURE:
                     List<LocalMedia> localMediaTake2 = PictureSelector.obtainMultipleResult(intent);
                     for (LocalMedia media : localMediaTake2) {
-                        photoNamesList.add(media.getPath());
+                        if (compress == 1) {
+                            photoNamesList.addAll(ImgUtils.getCompressImg("", media.getPath()));
+                        } else {
+                            photoNamesList.add(media.getPath());
+                        }
                     }
                     map.put("paths", photoNamesList);
                     callBack.onCallBack(ResultUtil.success(map));

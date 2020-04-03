@@ -13,7 +13,9 @@ import com.spoon.app.jsbridge_n22.utils.ResultUtil;
 import com.yanzhenjie.permission.runtime.Permission;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 获取联系人列表信息的桥接方法
@@ -84,8 +86,11 @@ public class OpenContactsBridgeHandler extends BaseBridgeHandler {
         }
         ToastUtils.showShort(list.toString());
         Log.e("tag", "getContacts: " + list.toString());
+        //将结果返回给页面
         if (list.size() > 0) {
-            callBack.onCallBack(ResultUtil.success(list));
+            Map<String,List<OpenContactsResponse>> map = new HashMap<>();
+            map.put("data",list);
+            callBack.onCallBack(ResultUtil.success(map));
         } else {
             callBack.onCallBack(ResultUtil.error("1", "The format of the request parameter is wrong, please check~"));
         }

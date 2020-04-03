@@ -2,6 +2,7 @@ package com.ospoon.app.sunlife.jsbridge_plugins_n22.response;
 
 /**
  * Created by gdk on 2020/03/25 15:02
+ *
  * @author gdk
  * 联系人返回数据
  */
