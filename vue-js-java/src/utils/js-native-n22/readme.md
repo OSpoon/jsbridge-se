@@ -395,7 +395,7 @@ platform | String | 1:分享到好友会话,2:分享到朋友圈,3:进行收藏 
 webPageUrl | String | 无 | 分享跳转的链接
 iconUrl | String | 无 | 分享的logo图片地址
 title | String | 无 | 分享的标题
-dec | String | 无 | 分享的内容
+desc | String | 无 | 分享的内容
 
 响应参数: 无
 
@@ -403,16 +403,16 @@ API`shareWeChat`示例:
 
 ```js
 native.shareWeChat({
-        platform: '1',
-        webPageUrl: 'https://www.baidu.com',
-        iconUrl: 'https://www.zhihu.com',
-        title: '测试分享标题',
-        dec: '测试分享内容'
-      }, (content) => {
-        alert(JSON.stringify(content))
-      }, (error) => {
-        alert(error)
-      })
+    platform: '1',
+    webPageUrl: 'http://n22.online/',
+    iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
+    title: '测试分享标题',
+    desc: '测试分享内容'
+  }, (content) => {
+    alert(JSON.stringify(content))
+  }, (error) => {
+    alert(error)
+  })
 ```
 
 ##### 16. idCardScan:通过旷世提供的SDK获取身份证正面反图像
