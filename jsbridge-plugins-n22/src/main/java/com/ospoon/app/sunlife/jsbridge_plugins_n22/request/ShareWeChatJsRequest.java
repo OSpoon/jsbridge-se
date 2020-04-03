@@ -11,6 +11,7 @@ public class ShareWeChatJsRequest {
     public String title;       // 分享标题
     public String dec;        // 分享内容
     public String imageUrl;   // 分享的图片url，可以使本地图片路径，也可以是网络图片路径
+    public String webPageUrl;   // 分享要跳转的网页
 
     public String getPlatform() {
         return platform == null ? "" : platform;
@@ -42,5 +43,13 @@ public class ShareWeChatJsRequest {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getWebPageUrl() {
+        return webPageUrl == null ? "" : webPageUrl;
+    }
+
+    public void setWebPageUrl(String webPageUrl) {
+        this.webPageUrl = webPageUrl;
     }
 }

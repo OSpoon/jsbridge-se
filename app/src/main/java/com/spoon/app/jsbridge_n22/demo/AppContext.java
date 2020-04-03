@@ -15,12 +15,13 @@ import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.JsPushDataBridgeHandl
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.LocationBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenBrowserBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenCameraBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenContactBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenContactsBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenWeChatBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.PicPreviewBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.QRCodeBridgeHandler;
-import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SendMsgBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SecurityBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SendMsgBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ShareWechatBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SharedPreferencesBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SwitchScreenBridgeHandler;
@@ -39,7 +40,7 @@ public class AppContext extends Application {
         //初始化bugly
         Bugly.init(getApplicationContext(), "b05b3b76f4", true);
         //注册科大讯飞语音听写
-        SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID +"=5aa5fa15");
+        SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID + "=5aa5fa15");
         //注册JsBridge-n22插件
         Bridge.INSTANCE.registerHandler(ToastBridgeHandler.class,
                 DeviceBridgeHandler.class,
@@ -63,6 +64,7 @@ public class AppContext extends Application {
                 OpenCameraBridgeHandler.class,
                 DictationBridgeHandler.class,
                 JsPushDataBridgeHandler.class,
-                PicPreviewBridgeHandler.class);
+                PicPreviewBridgeHandler.class,
+                OpenContactBridgeHandler.class);
     }
 }

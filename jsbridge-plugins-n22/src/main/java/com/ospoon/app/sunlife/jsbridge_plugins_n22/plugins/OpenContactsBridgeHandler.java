@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 打开联系人的桥接方法
+ * 获取联系人列表信息的桥接方法
  *
  * @author gdk
  */

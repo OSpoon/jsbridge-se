@@ -101,6 +101,15 @@ const native = {
       }
     })
   },
+  openContact(success, fail) {
+    bridge.callhandler('openContact', '', (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
   openWeChat(success, fail) {
     bridge.callhandler('openWeChat', '', (result) => {
       if (!result.error) {

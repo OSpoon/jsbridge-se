@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -62,7 +63,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     // ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX是微信分享，api自带
                     case ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX:
                         // 只是做了简单的finish操作
-//                        ToastUtils.showShort("分享成功");
+                        Toast.makeText(this, "分享成功", Toast.LENGTH_SHORT).show();
                         Log.e("tag", "onResp: " + "分享成功");
                         finish();
                         break;
@@ -76,7 +77,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     // 微信分享
                     case ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX:
 //                        Log.i("WXEntryActivity" , ">>>errCode = " + baseResp.errCode);
-//                        ToastUtils.showShort("分享失败!");
+                        Toast.makeText(this, "分享失败", Toast.LENGTH_SHORT).show();
                         Log.e("tag", "onResp: " + "分享失败");
                         finish();
                         break;

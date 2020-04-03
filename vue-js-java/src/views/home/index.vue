@@ -37,7 +37,9 @@
     <p />
     <van-button type="primary" block @click="sendMsg()">发送短信</van-button>
     <p />
-    <van-button type="primary" block @click="openContacts()">获取联系人信息</van-button>
+    <van-button type="primary" block @click="openContacts()">获取联系人列表信息</van-button>
+    <p />
+    <van-button type="primary" block @click="openContact()">获取单个联系人信息</van-button>
     <p />
     <van-button type="primary" block @click="openWeChat()">打开微信</van-button>
     <p />
@@ -47,7 +49,11 @@
     <p />
     <van-button type="primary" block @click="idCardScan()">身份证识别</van-button>
     <p />
-    <van-button type="primary" block @click="shareWeChat()">分享到微信</van-button>
+    <van-button type="primary" block @click="shareWeChat()">分享到微信好友</van-button>
+    <p />
+    <van-button type="primary" block @click="shareWeChatTimeline()">分享到微信朋友圈</van-button>
+    <p />
+    <van-button type="primary" block @click="shareWeChatFavorite()">分享到微信收藏</van-button>
     <p />
     <van-button type="primary" block @click="faceScan()">人脸识别</van-button>
     <p />
@@ -244,6 +250,13 @@ export default {
         alert(error)
       })
     },
+    openContact() {
+      native.openContact((content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
     openWeChat() {
       native.openWeChat((content) => {
         alert(JSON.stringify(content))
@@ -270,7 +283,34 @@ export default {
     shareWeChat() {
       native.shareWeChat({
         platform: '1',
-        url: 'www.baidu.com',
+        webPageUrl: 'https://www.baidu.com',
+        imgUrl: 'https://www.zhihu.com',
+        title: '测试分享标题',
+        dec: '测试分享内容'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    shareWeChatTimeline() {
+      native.shareWeChat({
+        platform: '2',
+        webPageUrl: 'https://www.baidu.com',
+        imgUrl: 'https://www.zhihu.com',
+        title: '测试分享标题',
+        dec: '测试分享内容'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    shareWeChatFavorite() {
+      native.shareWeChat({
+        platform: '3',
+        webPageUrl: 'https://www.zhihu.com',
+        imgUrl: 'https://www.baidu.com',
         title: '测试分享标题',
         dec: '测试分享内容'
       }, (content) => {

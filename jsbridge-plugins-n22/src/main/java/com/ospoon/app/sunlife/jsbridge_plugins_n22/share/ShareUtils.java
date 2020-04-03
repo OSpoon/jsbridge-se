@@ -20,10 +20,11 @@ public class ShareUtils {
      * @param context
      * @param title
      * @param content
-     * @param bitmap
+     * @param imgBitmap
      * @param platform
      */
-    public static void shareWeb(Context context, String title, String content, Bitmap bitmap, String platform) {
+    public static void shareWeb(Context context, String title, String content, Bitmap imgBitmap, String webPageUrl,
+                                String platform) {
         // 通过appId得到IWXAPI这个对象 todo appid 暂定写死,后修改为可配置
         IWXAPI wxapi = WXAPIFactory.createWXAPI(context, "wxba50597b5a9c762d");
         // 检查手机或者模拟器是否安装了微信
@@ -33,15 +34,15 @@ public class ShareUtils {
         }
         // 初始化一个WXWebpageObject对象
         WXWebpageObject webpageObject = new WXWebpageObject();
-        webpageObject.webpageUrl ="https://www.baidu.com";
+        webpageObject.webpageUrl = webPageUrl;
         // 用WXWebpageObject对象初始化一个WXMediaMessage对象
         WXMediaMessage msg = new WXMediaMessage(webpageObject);
         // 填写网页标题、描述、位图
         msg.title = title;
         msg.description = content;
         // 如果没有位图，可以传null，会显示默认的图片
-        if(bitmap != null){
-            msg.setThumbImage(bitmap);
+        if (imgBitmap != null) {
+            msg.setThumbImage(imgBitmap);
         }
         // 构造一个Req
         SendMessageToWX.Req req = new SendMessageToWX.Req();
@@ -49,7 +50,7 @@ public class ShareUtils {
         req.transaction = "webpage";
         // 上文的WXMediaMessage对象
         req.message = msg;
-        //1.是朋友,2.朋友圈,3.收藏, 默认是收藏
+        //1.好友会话,2.朋友圈,3.收藏, 默认是好友会话
         if ("1".equals(platform)) {
             req.scene = SendMessageToWX.Req.WXSceneSession;//是分享到好友会话
         } else if ("2".equals(platform)) {
@@ -57,7 +58,7 @@ public class ShareUtils {
         } else if ("3".equals(platform)) {
             req.scene = SendMessageToWX.Req.WXSceneFavorite;//是收藏
         } else {
-            req.scene = SendMessageToWX.Req.WXSceneSession;//是分享到朋友圈
+            req.scene = SendMessageToWX.Req.WXSceneSession;//是分享到好友会话
         }
         wxapi.sendReq(req);
     }

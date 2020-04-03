@@ -56,7 +56,8 @@ public class ShareWechatBridgeHandler extends BaseBridgeHandler {
             @Override
             public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
                 // 下面这句代码是一个过度dialog，因为是获取网络图片，需要等待时间
-                ShareUtils.shareWeb(getActivity(), reqest.getTitle(), reqest.getDec(), bitmap, reqest.getPlatform());
+                ShareUtils.shareWeb(getActivity(), reqest.getTitle(), reqest.getDec(), bitmap,
+                        reqest.getWebPageUrl(), reqest.getPlatform());
             }
 
             /**
@@ -65,7 +66,8 @@ public class ShareWechatBridgeHandler extends BaseBridgeHandler {
             @Override
             public void onLoadFailed(@Nullable Drawable errorDrawable) {
                 super.onLoadFailed(errorDrawable);
-                ShareUtils.shareWeb(getActivity(), reqest.getTitle(), reqest.getDec(), null, reqest.getPlatform());
+                ShareUtils.shareWeb(getActivity(), reqest.getTitle(), reqest.getDec(), null,
+                        reqest.getWebPageUrl(), reqest.getPlatform());
             }
         });
 

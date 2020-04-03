@@ -308,8 +308,8 @@ API`sendMsg`示例:
          alert(error)
        })
 ```
-##### 11. openContacts:调用原生获取联系人
-> 可以通过此API调用原生获取联系人
+##### 11. openContacts:调用原生获取联系人列表信息
+> 可以通过此API调用原生获取联系人列表信息
 
 请求参数: 无
 
@@ -392,7 +392,8 @@ native.imageSelect({
 参数 | 类型 | 枚举 | 含义
 ---|---|---|---
 platform | String | 1:分享到好友会话,2:分享到朋友圈,3:进行收藏 | 分享类型的标志
-url | String | 无 | 分享的图片地址
+webPageUrl | String | 无 | 分享跳转的链接
+imgUrl | String | 无 | 分享的图片地址
 title | String | 无 | 分享的标题
 dec | String | 无 | 分享的内容
 
@@ -403,7 +404,8 @@ API`shareWeChat`示例:
 ```js
 native.shareWeChat({
         platform: '1',
-        url: 'www.baidu.com',
+        webPageUrl: 'https://www.baidu.com',
+        imgUrl: 'https://www.zhihu.com',
         title: '测试分享标题',
         dec: '测试分享内容'
       }, (content) => {
