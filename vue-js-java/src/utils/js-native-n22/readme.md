@@ -209,6 +209,14 @@ native.storage({
 ---|---|---|---
 mode | int | 1:自身内核,2:X5内核 | 内核选择
 url | String | 无 | 待打开的页面
+isCustom | bool | 默认:`false` | 是否自定义导航栏
+isShowClose | bool | 默认:`false` | 是否显示关闭按钮
+isShowBack | bool | 默认:`true` | 是否显示返回按钮
+isShowShare | bool | 默认:`true` | 是否显示分享按钮
+toolbar-height | number | 默认:`44` | 导航栏高度
+toolbar-color | String | 默认:`#f0f0f0ff` | 导航背景色
+title-color | String | 默认:`#003264ff` | 标题颜色
+title-staticText | String | 默认:`` | 标题内容
 
 响应参数: 无
     
@@ -223,6 +231,29 @@ native.openBrowser({
 }, (error) => {
     alert(error)
 })
+```
+
+```js
+native.openBrowser({
+    mode: 1,
+    url: 'http://xrkj.gitee.io/jsbridge-n22/#/',
+    isCustom: true,
+    isShowClose: true,
+    isShowBack: true,
+    isShowShare: true,
+    toolbar: {
+      height: 44,
+      color: '#0000CC'
+    },
+    title: {
+      color: '#666633',
+      staticText: '自定义Title'
+    }
+  }, (content) => {
+    alert(JSON.stringify(content))
+  }, (error) => {
+    alert(error)
+  })
 ```
 
 ##### 8. security:调用原生3DES加解密和MD5编码
