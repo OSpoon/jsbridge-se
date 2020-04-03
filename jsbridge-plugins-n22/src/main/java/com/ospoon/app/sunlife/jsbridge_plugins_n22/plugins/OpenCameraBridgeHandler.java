@@ -67,7 +67,7 @@ public class OpenCameraBridgeHandler extends BaseBridgeHandler {
         } else {
             PictureSelector.create(getActivity())
                     .openGallery(PictureMimeType.ofImage())
-                    .maxSelectNum(1)
+                    .maxSelectNum(request.getPhotoNum())
                     .imageSpanCount(4)
                     .isCamera(false)
                     .compress(true)
