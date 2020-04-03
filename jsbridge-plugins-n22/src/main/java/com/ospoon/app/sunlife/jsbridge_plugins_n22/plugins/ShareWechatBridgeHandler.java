@@ -49,14 +49,14 @@ public class ShareWechatBridgeHandler extends BaseBridgeHandler {
     @Override
     public void process(String data) {
         final ShareWeChatJsRequest reqest = new Gson().fromJson(data, ShareWeChatJsRequest.class);
-        Glide.with(getActivity()).asBitmap().load(reqest.getImageUrl()).into(new SimpleTarget<Bitmap>() {
+        Glide.with(getActivity()).asBitmap().load(reqest.getIconUrl()).into(new SimpleTarget<Bitmap>() {
             /**
              * 成功的回调
              */
             @Override
             public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
                 // 下面这句代码是一个过度dialog，因为是获取网络图片，需要等待时间
-                ShareUtils.shareWeb(getActivity(), reqest.getTitle(), reqest.getDec(), bitmap,
+                ShareUtils.shareWeb(getActivity(), reqest.getTitle(), reqest.getDesc(), bitmap,
                         reqest.getWebPageUrl(), reqest.getPlatform());
             }
 
@@ -66,7 +66,7 @@ public class ShareWechatBridgeHandler extends BaseBridgeHandler {
             @Override
             public void onLoadFailed(@Nullable Drawable errorDrawable) {
                 super.onLoadFailed(errorDrawable);
-                ShareUtils.shareWeb(getActivity(), reqest.getTitle(), reqest.getDec(), null,
+                ShareUtils.shareWeb(getActivity(), reqest.getTitle(), reqest.getDesc(), null,
                         reqest.getWebPageUrl(), reqest.getPlatform());
             }
         });

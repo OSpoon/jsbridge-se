@@ -393,7 +393,7 @@ native.imageSelect({
 ---|---|---|---
 platform | String | 1:分享到好友会话,2:分享到朋友圈,3:进行收藏 | 分享类型的标志
 webPageUrl | String | 无 | 分享跳转的链接
-imgUrl | String | 无 | 分享的图片地址
+iconUrl | String | 无 | 分享的logo图片地址
 title | String | 无 | 分享的标题
 dec | String | 无 | 分享的内容
 
@@ -405,7 +405,7 @@ API`shareWeChat`示例:
 native.shareWeChat({
         platform: '1',
         webPageUrl: 'https://www.baidu.com',
-        imgUrl: 'https://www.zhihu.com',
+        iconUrl: 'https://www.zhihu.com',
         title: '测试分享标题',
         dec: '测试分享内容'
       }, (content) => {

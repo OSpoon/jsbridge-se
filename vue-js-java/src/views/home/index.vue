@@ -283,8 +283,8 @@ export default {
     shareWeChat() {
       native.shareWeChat({
         platform: '1',
-        webPageUrl: 'https://www.baidu.com',
-        imgUrl: 'https://www.zhihu.com',
+        webPageUrl: 'http://n22.online/',
+        iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
         title: '测试分享标题',
         dec: '测试分享内容'
       }, (content) => {
@@ -296,8 +296,8 @@ export default {
     shareWeChatTimeline() {
       native.shareWeChat({
         platform: '2',
-        webPageUrl: 'https://www.baidu.com',
-        imgUrl: 'https://www.zhihu.com',
+        webPageUrl: 'http://n22.online/',
+        iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
         title: '测试分享标题',
         dec: '测试分享内容'
       }, (content) => {
@@ -309,8 +309,8 @@ export default {
     shareWeChatFavorite() {
       native.shareWeChat({
         platform: '3',
-        webPageUrl: 'https://www.zhihu.com',
-        imgUrl: 'https://www.baidu.com',
+        webPageUrl: 'http://n22.online/',
+        iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
         title: '测试分享标题',
         dec: '测试分享内容'
       }, (content) => {
