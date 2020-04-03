@@ -286,7 +286,7 @@ export default {
         webPageUrl: 'http://n22.online/',
         iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
         title: '测试分享标题',
-        dec: '测试分享内容'
+        desc: '测试分享内容'
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
@@ -299,7 +299,7 @@ export default {
         webPageUrl: 'http://n22.online/',
         iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
         title: '测试分享标题',
-        dec: '测试分享内容'
+        desc: '测试分享内容'
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
@@ -312,7 +312,7 @@ export default {
         webPageUrl: 'http://n22.online/',
         iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
         title: '测试分享标题',
-        dec: '测试分享内容'
+        desc: '测试分享内容'
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
