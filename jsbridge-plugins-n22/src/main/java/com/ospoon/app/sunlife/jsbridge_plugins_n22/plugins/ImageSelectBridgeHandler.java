@@ -21,6 +21,7 @@ import java.util.Map;
  * date : 2020-03-25 16:02
  * description :
  */
+@Deprecated
 @BridgePlugin(name = "imageSelect")
 public class ImageSelectBridgeHandler extends BaseBridgeHandler {
     @Override

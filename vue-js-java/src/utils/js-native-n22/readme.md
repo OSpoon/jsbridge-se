@@ -361,7 +361,7 @@ API`switchScreen`示例:
        })
 ```
 
-##### 14. imageSelect:获取手机中的图片
+##### ~~14. imageSelect:获取手机中的图片~~
 > 可以通过此API获取手机中的图片
 
 请求参数: 
