@@ -193,7 +193,7 @@ export default {
     sign() {
       native.security({
         mode: 1,
-        key: 'MOAPPINTERFACE2017#@!%88',
+        key: 'default',
         content: '1234567890'
       }, (content) => {
         alert(JSON.stringify(content))
@@ -204,7 +204,7 @@ export default {
     encode() {
       native.security({
         mode: 2,
-        key: 'MOAPPINTERFACE2017#@!%88',
+        key: 'default',
         content: '1234567890'
       }, (content) => {
         alert(JSON.stringify(content))
@@ -215,7 +215,7 @@ export default {
     decode() {
       native.security({
         mode: 3,
-        key: 'MOAPPINTERFACE2017#@!%88',
+        key: 'default',
         content: 'zWI1jkgPpYUys5c06MYEQQ=='
       }, (content) => {
         alert(JSON.stringify(content))
