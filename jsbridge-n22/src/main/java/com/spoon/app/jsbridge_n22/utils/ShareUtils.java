@@ -56,8 +56,6 @@ public class ShareUtils {
             req.scene = SendMessageToWX.Req.WXSceneSession;//是分享到好友会话
         } else if ("2".equals(platform)) {
             req.scene = SendMessageToWX.Req.WXSceneTimeline;//是分享到朋友圈
-        } else if ("3".equals(platform)) {
-            req.scene = SendMessageToWX.Req.WXSceneFavorite;//是收藏
         } else {
             req.scene = SendMessageToWX.Req.WXSceneSession;//是分享到好友会话
         }

@@ -55,8 +55,6 @@
     <p />
     <van-button type="primary" block @click="shareWeChatTimeline()">分享到微信朋友圈</van-button>
     <p />
-    <van-button type="primary" block @click="shareWeChatFavorite()">分享到微信收藏</van-button>
-    <p />
     <van-button type="primary" block @click="faceScan()">人脸识别</van-button>
     <p />
     <van-button type="primary" block @click="openCamera()">打开相机</van-button>
@@ -322,19 +320,6 @@ export default {
     shareWeChatTimeline() {
       native.shareWeChat({
         platform: '2',
-        webPageUrl: 'http://n22.online/',
-        iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
-        title: '测试分享标题',
-        desc: '测试分享内容'
-      }, (content) => {
-        alert(JSON.stringify(content))
-      }, (error) => {
-        alert(error)
-      })
-    },
-    shareWeChatFavorite() {
-      native.shareWeChat({
-        platform: '3',
         webPageUrl: 'http://n22.online/',
         iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
         title: '测试分享标题',
