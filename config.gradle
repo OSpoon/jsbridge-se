@@ -5,8 +5,8 @@ ext {
             buildToolsVersion: "29.0.2",
             minSdkVersion    : 21,
             targetSdkVersion : 29,
-            versionCode      : 9,
-            versionName      : "1.0.9"
+            versionCode      : 12,
+            versionName      : "1.0.12"
     ]
 
     version = [
@@ -31,16 +31,16 @@ ext {
             "recyclerview-v7"          : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
 
             //插件相关的自定义模块
-            "jsbridge-n22"             : "com.ospoon:jsbridge-n22:1.0.7",
-            "jsbridge-plugins-n22"     : "com.ospoon:jsbridge-plugins-n22:1.0.7",
-            "speech"                   : "com.ospoon:speech:1.0.7",
-            "idcard_quality"           : "com.ospoon:idcard_quality:1.0.7",
-            "livenesslib"              : "com.ospoon:livenesslib:1.0.7",
-            "imagepicker"              : "com.ospoon:imagepicker:1.0.7",
+            "jsbridge-n22"             : "com.ospoon:jsbridge-n22:1.0.12",
+            "jsbridge-plugins-n22"     : "com.ospoon:jsbridge-plugins-n22:1.0.12",
+            "speech"                   : "com.ospoon:speech:1.0.12",
+            "idcard_quality"           : "com.ospoon:idcard_quality:1.0.12",
+            "livenesslib"              : "com.ospoon:livenesslib:1.0.12",
+            "imagepicker"              : "com.ospoon:imagepicker:1.0.12",
+            "picpreview"               : "com.ospoon:picpreview:1.0.12",
 
             "gson"                      : "com.google.code.gson:gson:2.8.5",
             "utilcode"                  : "com.blankj:utilcode:1.26.0",
-            "jsbridge-n22"              : "com.ospoon:jsbridge-n22:1.0.4",
             "permission"                : "com.yanzhenjie.permission:support:2.0.0",
             "tbssdk"                    : "com.tencent.tbs.tbssdk:sdk:43697",
             "zxing"                     : "com.github.yuzhiqiang1993:zxing:2.2.5",
