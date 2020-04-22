@@ -40,7 +40,7 @@ class BridgeWebViewClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        if (url.startsWith("gap:")) {
+        if (url.startsWith("gap:") || url.startsWith("gap_init:")) {
             Log.i("BridgeWebView", "BridgeWebView does not support Cordova API calls:" + url);
             return true;
         }
