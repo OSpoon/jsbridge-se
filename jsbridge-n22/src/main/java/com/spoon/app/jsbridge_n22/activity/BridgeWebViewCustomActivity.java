@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +71,21 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
         intent.putExtra(ROOT_URL, url);
         intent.putExtra(OPTIONS, options);
         context.startActivity(intent);
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) { // 返回键
+            if (!canGoBack()) {
+                closePage();
+            } else {
+                goBack();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+
     }
 
     @Override
@@ -200,6 +216,7 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
                 features.backButton,
                 "back button",
                 new View.OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         if (features.backButtonCanClose && !canGoBack()) {
                             closePage();
@@ -219,6 +236,7 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
                 features.getForwardButton(),
                 "forward button",
                 new View.OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         goForward();
                     }
@@ -235,6 +253,7 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
                 features.closeButton,
                 "close button",
                 new View.OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         closePage();
                     }

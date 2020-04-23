@@ -199,6 +199,7 @@ public class X5WebViewCustomActivity extends BaseActivity {
                 features.backButton,
                 "back button",
                 new View.OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         if (features.backButtonCanClose && !canGoBack()) {
                             closePage();
@@ -218,6 +219,7 @@ public class X5WebViewCustomActivity extends BaseActivity {
                 features.getForwardButton(),
                 "forward button",
                 new View.OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         goForward();
                     }
@@ -234,6 +236,7 @@ public class X5WebViewCustomActivity extends BaseActivity {
                 features.closeButton,
                 "close button",
                 new View.OnClickListener() {
+                    @Override
                     public void onClick(View v) {
                         closePage();
                     }
