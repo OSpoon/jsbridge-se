@@ -66,6 +66,8 @@
     <van-button type="primary" block @click="dictation()">语音听写</van-button>
     <p />
     <van-button type="primary" block @click="picPreview()">图片预览</van-button>
+    <p />
+    <van-button type="primary" block @click="getClearData()">获取存储的指定数据</van-button>
   </div>
 </template>
 
@@ -408,6 +410,30 @@ export default {
         ]
       }, (content) => {
         alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    getClearData() {
+      native.storage({
+        mode: 2,
+        key: 'name'
+      }, (content) => {
+        alert(JSON.stringify(content.value))
+        try {
+          // 将字符串转为对象
+          // content.value 的类型为字符串 需通过JSON.parse(json)转为对象使用
+          const result = JSON.parse(content.value)
+          alert(JSON.stringify(result.personsal))
+          alert(JSON.stringify(result.personsal.agentName))
+        } catch {
+          console.log('value的内容非JSON对象,无法转换')
+        }
+        // 直接获取对象
+        if (content['object'] !== undefined) {
+          alert(JSON.stringify(content.object.personsal))
+          alert(JSON.stringify(content.object.personsal.agentName))
+        }
       }, (error) => {
         alert(error)
       })
