@@ -1,0 +1,35 @@
+{
+  "personsal": {
+    "agentCode": "1200800248",
+    "password": "9136c5b09ac6535f15fcc13fb37a6ea4",
+    "agentName": "杨静",
+    "cerdNum": "120102197205250220",
+    "mobile": "13820488005",
+    "channel": "02",
+    "orgId": "861200",
+    "comName": "天津",
+    "insureDate": "2012-11-22",
+    "jobNum": "初级金融服务专员",
+    "appntSex": "1",
+    "cerdType": "11",
+    "loginMedol": {
+      "@xmlns:java": "http://java.sun.com",
+      "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "@xsi:type": "java:java.lang.String"
+    },
+    "upgrade": {
+      "@xmlns:java": "http://java.sun.com",
+      "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+      "@xsi:type": "java:java.lang.String"
+    },
+    "andriod_versionNo": "",
+    "andriod_URL": "",
+    "IOS_versionNo": "",
+    "IOS_URL": "",
+    "agentList": [],
+    "activeList": [],
+    "productList": [],
+    "subChannel": "",
+    "cultivateYesNo": ""
+  }
+}
