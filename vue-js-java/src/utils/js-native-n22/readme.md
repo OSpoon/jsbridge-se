@@ -167,6 +167,7 @@ native.location({
 mode | int | 详见下方补充mode枚举 | 操作模式
 key | String | 模式5不传,其他模式必传 | 待存储数据的key
 value | String | 模式1必传,其他模式不传 | 待存储的数据
+object | Object | 如value可转为JSON对象,节点存在 | 获取数据如果参数三"value"可转为JSON对象,可取到此节点
 
 补充mode枚举:
 ```
