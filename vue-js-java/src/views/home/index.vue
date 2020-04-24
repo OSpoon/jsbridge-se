@@ -417,7 +417,7 @@ export default {
     getClearData() {
       native.storage({
         mode: 2,
-        key: 'name'
+        key: 'userInfo'
       }, (content) => {
         alert(JSON.stringify(content.value))
         try {
