@@ -4,8 +4,14 @@ import android.app.Activity;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.blankj.utilcode.util.FileUtils;
+import com.blankj.utilcode.util.ResourceUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.Constants;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.core.security.httpcore.TextUtils;
 import com.spoon.app.jsbridge_n22.activity.BridgeWebViewActivity;
 import com.spoon.app.jsbridge_n22.activity.BridgeWebViewCustomActivity;
 import com.spoon.app.jsbridge_n22.activity.X5WebViewActivity;
@@ -17,11 +23,26 @@ import com.spoon.app.jsbridge_n22.core.extension.bean.Toolbar;
 public class MainActivity extends Activity {
 
     MyBroadcastReceiver mMyBroadcastReceiver;
+    EditText edit_host;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        edit_host = findViewById(R.id.edit_host);
+
+        findViewById(R.id.button_edit_host).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String host = edit_host.getText().toString();
+                if (!TextUtils.isEmpty(host)) {
+                    BridgeWebViewActivity.start(MainActivity.this, host);
+                } else {
+                    Toast.makeText(MainActivity.this, "请填写访问地址", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,6 +103,10 @@ public class MainActivity extends Activity {
         //注册广播用于接收Js通过插件Push到原生的数据
         mMyBroadcastReceiver = new MyBroadcastReceiver();
         registerReceiver(mMyBroadcastReceiver, new IntentFilter(Constants.JSBRIDGEN22_JS_PUSH_DATA_ACTION));
+
+        SPUtils instance = SPUtils.getInstance();
+        String resourceFromAssets = ResourceUtils.readAssets2String("userInfo.json");
+        instance.put("userInfo", resourceFromAssets);
     }
 
     @Override

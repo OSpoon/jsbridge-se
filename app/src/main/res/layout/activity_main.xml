@@ -7,6 +7,19 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <EditText
+        android:id="@+id/edit_host"
+        android:hint="请输入访问地址"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/button_edit_host"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开一个指定访问地址的WebView" />
+
+
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
