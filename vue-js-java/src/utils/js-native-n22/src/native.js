@@ -50,7 +50,18 @@ const native = {
   storage(data, success, fail) {
     bridge.callhandler('storage', data, (result) => {
       if (!result.error) {
-        success(result.content)
+        if (result.content['value'] !== undefined) {
+          try {
+            // 猜测返回的value(字符串类型)如果可以转为JSON对象就多提前向对象返回
+            const pack = {
+              value: result.content['value'],
+              object: JSON.parse(result.content['value'])
+            }
+            success(pack)
+          } catch (err) {
+            success(result.content)
+          }
+        }
       } else {
         fail(result.content)
       }
