@@ -607,3 +607,22 @@ API`openContact`示例:
          alert(error)
        })
 ```
+##### 22. dictation:语音识别听写
+> 可以通过此API调用语音识别插件
+
+请求参数: 无
+
+响应参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+reslut | String | 无 | 语音识别结果
+
+API`dictation`示例:
+
+```js
+  native.dictation((content) => {
+         alert(JSON.stringify(content))
+       }, (error) => {
+         alert(error)
+       })
+```

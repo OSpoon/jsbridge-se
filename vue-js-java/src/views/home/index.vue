@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-nav-bar
-      title="JS-JAVA-DEMO"
+      title="我是测试页面"
     />
     <van-button type="primary" block @click="toast()">Toast</van-button>
     <p />
