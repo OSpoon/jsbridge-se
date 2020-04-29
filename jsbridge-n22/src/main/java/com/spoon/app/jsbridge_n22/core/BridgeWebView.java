@@ -69,6 +69,9 @@ public class BridgeWebView extends WebView implements IWebView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            getSettings().setAllowUniversalAccessFromFileURLs(true);
+        }
         bridgeTiny = new BridgeTiny(this);
 
         mClient = new BridgeWebViewClient(this, bridgeTiny, listener);
