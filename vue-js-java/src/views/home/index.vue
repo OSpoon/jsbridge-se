@@ -68,6 +68,10 @@
     <van-button type="primary" block @click="picPreview()">图片预览</van-button>
     <p />
     <van-button type="primary" block @click="getClearData()">获取存储的指定数据</van-button>
+    <p />
+    <van-button type="primary" block @click="loginOperation()">登录操作</van-button>
+    <p />
+    <van-button type="primary" block @click="loginOperationOut()">退出登录操作</van-button>
   </div>
 </template>
 
@@ -434,6 +438,24 @@ export default {
           alert(JSON.stringify(content.object.personsal))
           alert(JSON.stringify(content.object.personsal.agentName))
         }
+      }, (error) => {
+        alert(error)
+      })
+    },
+    loginOperation() {
+      native.loginOperation({
+        loginFlag: '1'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    loginOperationOut() {
+      native.loginOperation({
+        loginFlag: '2'
+      }, (content) => {
+        alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
       })

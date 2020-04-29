@@ -626,3 +626,25 @@ API`dictation`示例:
          alert(error)
        })
 ```
+##### 23. loginOperation:登录和退出登录操作
+> 可以通过此API调用原生登录页面和退出登录
+
+请求参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+loginFlag | String | 1:调用登录. 2:是调用退出登录 | 登录和退出登录的标志
+
+响应参数: 无
+
+
+API`loginOperation`示例:
+
+```js
+  native.loginOperation({
+          loginFlag: '1' //登录
+        }, (content) => {
+          alert(JSON.stringify(content))
+        }, (error) => {
+          alert(error)
+        })
+```
