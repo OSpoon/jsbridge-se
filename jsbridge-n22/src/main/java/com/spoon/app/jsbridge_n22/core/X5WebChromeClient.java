@@ -4,45 +4,45 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
 import android.widget.ProgressBar;
 
-import com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage;
+import com.spoon.app.jsbridge_n22.core.extension.bean.X5UploadMessage;
+import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebView;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 /**
  * BridgeWebChromeClient github:https://github.com/shuhaoSCode/AndroidWebviewInputFile
- *
- * 现改名使用BridgeWebChromeClient
+ * <p>
+ * 现改名使用X5WebChromeClient
  */
-public class BridgeWebChromeClient extends WebChromeClient {
+public class X5WebChromeClient extends WebChromeClient {
     static class BridgeWebChromeClientBuild {
-        UploadMessage uploadMessage;
+        X5UploadMessage uploadMessage;
         ActivityCallBack callBack;
         ProgressBar progressbar;
 
         BridgeWebChromeClientBuild(ProgressBar progressbar, ActivityCallBack callBack) {
-            this.uploadMessage = new UploadMessage();
+            this.uploadMessage = new X5UploadMessage();
             this.callBack = callBack;
             this.progressbar = progressbar;
         }
 
-        public BridgeWebChromeClient build() {
-            return new BridgeWebChromeClient(this);
+        public X5WebChromeClient build() {
+            return new X5WebChromeClient(this);
         }
     }
 
-    public static BridgeWebChromeClient createBuild(ProgressBar progressbar, ActivityCallBack callBack) {
+    public static X5WebChromeClient createBuild(ProgressBar progressbar, ActivityCallBack callBack) {
         return new BridgeWebChromeClientBuild(progressbar, callBack).build();
     }
 
     BridgeWebChromeClientBuild build;
 
-    private BridgeWebChromeClient(BridgeWebChromeClientBuild build) {
+    private X5WebChromeClient(BridgeWebChromeClientBuild build) {
         this.build = build;
     }
 
@@ -51,7 +51,7 @@ public class BridgeWebChromeClient extends WebChromeClient {
     }
 
     @Override
-    public void onProgressChanged(WebView view, int newProgress) {
+    public void onProgressChanged(WebView webView, int newProgress) {
         if (newProgress == 100) {
             build.progressbar.setVisibility(GONE);
         } else {
@@ -60,16 +60,24 @@ public class BridgeWebChromeClient extends WebChromeClient {
             }
             build.progressbar.setProgress(newProgress);
         }
-        super.onProgressChanged(view, newProgress);
+        super.onProgressChanged(webView, newProgress);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-        build.uploadMessage.setUploadMessageAboveL(filePathCallback);
+    public boolean onShowFileChooser(WebView webView, com.tencent.smtt.sdk.ValueCallback<Uri[]> valueCallback, FileChooserParams fileChooserParams) {
+        build.uploadMessage.setUploadMessageAboveL(valueCallback);
         build.callBack.FileChooserBack(build.uploadMessage.openImageChooserActivity(fileChooserParams.getAcceptTypes()));
         return true;
     }
+
+//    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+//    @Override
+//    public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
+//        build.uploadMessage.setUploadMessageAboveL(filePathCallback);
+//        build.callBack.FileChooserBack(build.uploadMessage.openImageChooserActivity(fileChooserParams.getAcceptTypes()));
+//        return true;
+//    }
 
     public void openFileChooser(ValueCallback<Uri> valueCallback) {
         //uploadMessage = valueCallback;
@@ -89,7 +97,7 @@ public class BridgeWebChromeClient extends WebChromeClient {
         build.callBack.FileChooserBack(build.uploadMessage.openImageChooserActivity(acceptType));
     }
 
-    public UploadMessage getUploadMessage() {
+    public X5UploadMessage getUploadMessage() {
         return build.uploadMessage;
     }
 }

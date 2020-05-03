@@ -10,6 +10,8 @@ import com.spoon.app.jsbridge_n22.base.BaseActivity;
 import com.spoon.app.jsbridge_n22.core.BridgeWebView;
 import com.spoon.app.jsbridge_n22.core.X5WebView;
 
+import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
+
 public class X5WebViewActivity extends BaseActivity {
 
     private final static String ROOT_URL = "ROOT_URL";
@@ -33,4 +35,13 @@ public class X5WebViewActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FILE_CHOOSER_RESULT_CODE) {
+            if (x5WebView.getWebChromeClient() != null) {
+                x5WebView.getWebChromeClient().getUploadMessage().onActivityResult(requestCode, resultCode, data);
+            }
+        }
+    }
 }

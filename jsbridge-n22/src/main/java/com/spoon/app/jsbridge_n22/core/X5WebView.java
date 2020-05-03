@@ -2,6 +2,7 @@ package com.spoon.app.jsbridge_n22.core;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -9,12 +10,14 @@ import android.widget.AbsoluteLayout;
 import android.widget.ProgressBar;
 
 import com.spoon.app.jsbridge_n22.R;
+import com.spoon.app.jsbridge_n22.base.BaseActivity;
 import com.tencent.smtt.sdk.ValueCallback;
-import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
+
+import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
 
 /**
  * author : zhangxin
@@ -27,6 +30,7 @@ public class X5WebView extends WebView implements IWebView {
     private BridgeTiny bridgeTiny;
 
     private WebViewLoadListener listener;
+    private X5WebChromeClient webChromeClient;
 
     @SuppressLint("SetJavaScriptEnabled")
     public X5WebView(Context context, AttributeSet attrs) {
@@ -42,7 +46,7 @@ public class X5WebView extends WebView implements IWebView {
         this.getView().setClickable(true);
     }
 
-    private void init(Context context) {
+    private void init(final Context context) {
         //添加进度条
         progressbar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
         progressbar.setLayoutParams(new AbsoluteLayout.LayoutParams(AbsoluteLayout.LayoutParams.MATCH_PARENT, 5, 0, 0));
@@ -79,7 +83,17 @@ public class X5WebView extends WebView implements IWebView {
         bridgeTiny = new BridgeTiny(this);
 
         super.setWebViewClient(client);
-        super.setWebChromeClient(ChromeClient);
+        webChromeClient = X5WebChromeClient.createBuild(progressbar, new X5WebChromeClient.ActivityCallBack() {
+            @Override
+            public void FileChooserBack(Intent intent) {
+                try{
+                    ((BaseActivity) context).startActivityForResult(intent, FILE_CHOOSER_RESULT_CODE);
+                }catch (Exception e){
+                    Log.e("X5WebView","类型转换出现异常,使用webview的activity需要继承自BaseActivity");
+                }
+            }
+        });
+        super.setWebChromeClient(webChromeClient);
     }
 
     @Override
@@ -102,20 +116,20 @@ public class X5WebView extends WebView implements IWebView {
         bridgeTiny.callHandler(handlerName,data,responseCallback);
     }
 
-    private WebChromeClient ChromeClient = new WebChromeClient(){
-        @Override
-        public void onProgressChanged(WebView webView, int newProgress) {
-            if (newProgress == 100) {
-                progressbar.setVisibility(GONE);
-            } else {
-                if (progressbar.getVisibility() == GONE) {
-                    progressbar.setVisibility(VISIBLE);
-                }
-                progressbar.setProgress(newProgress);
-            }
-            super.onProgressChanged(webView, newProgress);
-        }
-    };
+//    private WebChromeClient ChromeClient = new WebChromeClient(){
+//        @Override
+//        public void onProgressChanged(WebView webView, int newProgress) {
+//            if (newProgress == 100) {
+//                progressbar.setVisibility(GONE);
+//            } else {
+//                if (progressbar.getVisibility() == GONE) {
+//                    progressbar.setVisibility(VISIBLE);
+//                }
+//                progressbar.setProgress(newProgress);
+//            }
+//            super.onProgressChanged(webView, newProgress);
+//        }
+//    };
 
     private WebViewClient client = new WebViewClient() {
         /**
@@ -139,6 +153,10 @@ public class X5WebView extends WebView implements IWebView {
                         webView.canGoForward());
             }
         }
-
     };
+
+    @Override
+    public X5WebChromeClient getWebChromeClient() {
+        return webChromeClient;
+    }
 }

@@ -2,9 +2,11 @@ package com.spoon.app.jsbridge_n22.core;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -12,6 +14,9 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.spoon.app.jsbridge_n22.R;
+import com.spoon.app.jsbridge_n22.base.BaseActivity;
+
+import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class BridgeWebView extends WebView implements IWebView {
@@ -46,7 +51,7 @@ public class BridgeWebView extends WebView implements IWebView {
         init(context);
     }
 
-    private void init(Context context) {
+    private void init(final Context context) {
         //添加进度条
         progressbar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
         progressbar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 5, 0, 0));
@@ -76,7 +81,16 @@ public class BridgeWebView extends WebView implements IWebView {
 
         mClient = new BridgeWebViewClient(this, bridgeTiny, listener);
         super.setWebViewClient(mClient);
-        mChromeClient = new BridgeWebChromeClient(progressbar);
+        mChromeClient = BridgeWebChromeClient.createBuild(progressbar, new BridgeWebChromeClient.ActivityCallBack() {
+            @Override
+            public void FileChooserBack(Intent intent) {
+                try{
+                    ((BaseActivity) context).startActivityForResult(intent, FILE_CHOOSER_RESULT_CODE);
+                }catch (Exception e){
+                    Log.e("BridgeWebView","类型转换出现异常,使用webview的activity需要继承自BaseActivity");
+                }
+            }
+        });
         super.setWebChromeClient(mChromeClient);
     }
 
@@ -111,4 +125,7 @@ public class BridgeWebView extends WebView implements IWebView {
         super.onScrollChanged(l, t, oldl, oldt);
     }
 
+    public BridgeWebChromeClient getChromeClient() {
+        return mChromeClient;
+    }
 }

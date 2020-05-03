@@ -52,6 +52,7 @@ import java.io.IOException;
 import static com.spoon.app.jsbridge_n22.core.extension.Constants.ALIGN_RIGHT;
 import static com.spoon.app.jsbridge_n22.core.extension.Constants.DISABLED_ALPHA;
 import static com.spoon.app.jsbridge_n22.core.extension.Constants.TOOLBAR_DEF_HEIGHT;
+import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
 
 public class BridgeWebViewCustomActivity extends BaseActivity {
 
@@ -713,4 +714,13 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FILE_CHOOSER_RESULT_CODE) {
+            if (inAppWebView.getChromeClient() != null) {
+                inAppWebView.getChromeClient().getUploadMessage().onActivityResult(requestCode, resultCode, data);
+            }
+        }
+    }
 }
