@@ -404,6 +404,12 @@ export default {
         isCompress: 1 // 1.压缩,2.不压缩
       }, (content) => {
         alert(JSON.stringify(content))
+        this.loadImageFile(content.paths[0], (rst) => {
+          this.showDialog = !this.showDialog
+          this.imageBase64 = rst.base64
+        }, err => {
+          alert(err)
+        })
       }, (error) => {
         alert(error)
       })
@@ -415,6 +421,12 @@ export default {
         photoNum: 3 // 打开相册选择照片的数量
       }, (content) => {
         alert(JSON.stringify(content))
+        this.loadImageFile(content.paths[0], (rst) => {
+          this.showDialog = !this.showDialog
+          this.imageBase64 = rst.base64
+        }, err => {
+          alert(err)
+        })
       }, (error) => {
         alert(error)
       })
