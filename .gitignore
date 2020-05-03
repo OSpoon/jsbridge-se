@@ -1,0 +1,10 @@
+.gradle/
+.idea/
+*/build/
+*/node_modules/
+*.iml
+local.properties
+security.gradle
+app/release/
+vue-js-java/yarn.lock
+vue-js-java/yarn-error.log
