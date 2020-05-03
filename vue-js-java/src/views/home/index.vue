@@ -76,6 +76,8 @@
     <p />
     <van-button type="primary" block @click="loginOperationOut()">退出登录操作</van-button>
     <p />
+    <van-button type="primary" block @click="testNetImage()">TestNetImage</van-button>
+    <p />
     <van-uploader :after-read="afterRead" />
   </div>
 </template>
@@ -125,6 +127,14 @@ export default {
       // 此时可以自行将文件上传至服务器
       this.showDialog = !this.showDialog
       this.imageBase64 = file.content
+    },
+    testNetImage() {
+      this.loadImageFile('http://img6.16fan.com/attachments/wenzhang/201805/18/152660818127263ge.jpeg', (rst) => {
+        this.showDialog = !this.showDialog
+        this.imageBase64 = rst.base64
+      }, err => {
+        alert(err)
+      })
     },
     toast() {
       native.toast({ text: '你好啊赛利亚', duration: 0 }, (content) => {
