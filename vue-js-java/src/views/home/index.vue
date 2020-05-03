@@ -3,6 +3,9 @@
     <van-nav-bar
       title="我是测试页面"
     />
+    <van-dialog v-model="showDialog" title="图片预览" show-cancel-button>
+      <img width="300" height="300" :src="imageBase64">
+    </van-dialog>
     <van-button type="primary" block @click="toast()">Toast</van-button>
     <p />
     <van-button type="primary" block @click="openOther()">打开另一个原生页面</van-button>
@@ -72,11 +75,13 @@
     <van-button type="primary" block @click="loginOperation()">登录操作</van-button>
     <p />
     <van-button type="primary" block @click="loginOperationOut()">退出登录操作</van-button>
+    <p />
+    <van-uploader :after-read="afterRead" />
   </div>
 </template>
 
 <script>
-
+import lrz from 'lrz'
 import native from '@/utils/js-native-n22/src/native'
 // import native from 'js-native-n22'
 
@@ -86,7 +91,10 @@ export default {
   name: 'Home',
   props: {},
   data() {
-    return {}
+    return {
+      showDialog: false,
+      imageBase64: ''
+    }
   },
   created() {},
   mounted() {
@@ -96,6 +104,28 @@ export default {
     })
   },
   methods: {
+    /**
+     * 通过Lrz来加载本地图片
+     */
+    loadImageFile(path, successCallback, errorCallback, alwaysCallback) {
+      lrz(path, { quality: 1 })
+        .then((rst) => {
+          // 处理成功会执行
+          successCallback && successCallback(rst)
+        })
+        .catch((err) => {
+          // 处理失败会执行
+          errorCallback && errorCallback(err)
+        })
+        .always(() => {
+          alwaysCallback && alwaysCallback()
+        })
+    },
+    afterRead(file) {
+      // 此时可以自行将文件上传至服务器
+      this.showDialog = !this.showDialog
+      this.imageBase64 = file.content
+    },
     toast() {
       native.toast({ text: '你好啊赛利亚', duration: 0 }, (content) => {
         alert(JSON.stringify(content))
@@ -305,7 +335,12 @@ export default {
       native.imageSelect({
         'limit': 2
       }, (content) => {
-        alert(JSON.stringify(content))
+        this.loadImageFile(content.paths[0], (rst) => {
+          this.showDialog = !this.showDialog
+          this.imageBase64 = rst.base64
+        }, err => {
+          alert(err)
+        })
       }, (error) => {
         alert(error)
       })
