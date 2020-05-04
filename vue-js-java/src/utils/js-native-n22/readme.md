@@ -615,7 +615,7 @@ API`openContact`示例:
 响应参数:
 参数 | 类型 | 枚举 | 含义
 ---|---|---|---
-reslut | String | 无 | 语音识别结果
+result | String | 无 | 语音识别结果
 
 API`dictation`示例:
 
