@@ -42,7 +42,7 @@ public class DictationBridgeHandler extends BaseBridgeHandler {
             if (null != data) {
                 if (resultCode == Activity.RESULT_OK) {
                     Map<String, String> map = new HashMap<>();
-                    map.put("reslut", data.getStringExtra("result"));
+                    map.put("result", data.getStringExtra("result"));
                     callBack.onCallBack(ResultUtil.success(map));
                 }
             }
