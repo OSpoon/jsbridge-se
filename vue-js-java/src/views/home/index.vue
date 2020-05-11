@@ -78,6 +78,8 @@
     <p />
     <van-button type="primary" block @click="testNetImage()">TestNetImage</van-button>
     <p />
+    <van-button type="primary" block @click="openUrl()">调用原生打开资源链接</van-button>
+    <p />
     <van-uploader :after-read="afterRead" />
   </div>
 </template>
@@ -519,6 +521,15 @@ export default {
     },
     openOther() {
       native.openOther(new Date(), (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    openUrl() {
+      native.openUrl({
+        url: 'https://mitphone.sunlife-everbright.com:8010/com.ifp.ipartner/proposaMsg?uuid=657c1962b5a44b9ebec1ea53b57abd6b'
+      }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
