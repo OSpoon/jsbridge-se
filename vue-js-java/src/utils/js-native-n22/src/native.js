@@ -228,6 +228,15 @@ const native = {
         fail(result.content)
       }
     })
+  },
+  openUrl(data, success, fail) {
+    bridge.callhandler('openUrl', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
   }
 }
 

@@ -648,3 +648,29 @@ API`loginOperation`示例:
           alert(error)
         })
 ```
+
+##### 24. openUrl:调用原生打开资源链接
+> 注意: 目前仅支持IOS
+> 可以通过此API调用原生打开网页查看资源信息\
+> 可以通过此API调用原生打开第三方应用\
+> 可以通过此API调用原生系统功能（比如打电话、发短信等）
+
+请求参数:
+
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+url | String | 无 | 资源链接
+
+响应参数: 无
+
+API`openUrl`示例:
+
+```js
+ native.openUrl({
+         phoneNumber: 'https://mitphone.sunlife-everbright.com:8010/com.ifp.ipartner/proposaMsg?uuid=657c1962b5a44b9ebec1ea53b57abd6b',
+       }, (content) => {
+         alert(JSON.stringify(content))
+       }, (error) => {
+         alert(error)
+       })
+```
