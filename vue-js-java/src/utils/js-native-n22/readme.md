@@ -667,7 +667,7 @@ API`openUrl`示例:
 
 ```js
  native.openUrl({
-         phoneNumber: 'https://mitphone.sunlife-everbright.com:8010/com.ifp.ipartner/proposaMsg?uuid=657c1962b5a44b9ebec1ea53b57abd6b',
+         url: 'https://mitphone.sunlife-everbright.com:8010/com.ifp.ipartner/proposaMsg?uuid=657c1962b5a44b9ebec1ea53b57abd6b',
        }, (content) => {
          alert(JSON.stringify(content))
        }, (error) => {
