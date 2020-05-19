@@ -3,6 +3,7 @@ package com.ospoon.app.sunlife.jsbridge_plugins_n22.ImgUtils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 
@@ -78,7 +79,7 @@ public class ImgUtils {
 //        bitmapoptions.inSampleSize = calculateInSampleSize(image);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
-        int options =100;
+        int options = 100;
         while (baos.toByteArray().length / 1024 > 1024) { // 循环判断如果压缩后图片是否大于1024kb,大于继续压缩
             baos.reset(); // 重置baos即清空baos
             image.compress(Bitmap.CompressFormat.JPEG, options, baos);// 这里压缩options%，把压缩后的数据存放到baos中
@@ -87,7 +88,8 @@ public class ImgUtils {
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());// 把压缩后的数据baos存放到ByteArrayInputStream中
         Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);// 把ByteArrayInputStream数据生成图片
 
-        String name = new DateFormat().format("yyyyMMdd_hhmmss", Calendar.getInstance(Locale.CHINA)) + ".png";
+//        String name = new DateFormat().format("yyyyMMdd_hhmmss", Calendar.getInstance(Locale.CHINA)) + ".png";
+        String name = System.currentTimeMillis() + ".png";
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();// 创建文件夹

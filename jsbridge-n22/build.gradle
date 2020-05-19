@@ -31,4 +31,5 @@ dependencies {
     api rootProject.ext.dependencies['permission']
     api rootProject.ext.dependencies['tbssdk']
     api rootProject.ext.dependencies['wxapi']
+    implementation rootProject.ext.dependencies["utilcode"]
 }

@@ -7,14 +7,19 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.google.gson.Gson;
 import com.spoon.app.jsbridge_n22.R;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
+import com.spoon.app.jsbridge_n22.bean.UserInfoBean;
 
 import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
 
@@ -60,6 +65,11 @@ public class BridgeWebView extends WebView implements IWebView {
         addView(progressbar);
 
         clearCache(true);
+        SPUtils instance = SPUtils.getInstance();
+        String userInfo = instance.getString("userInfo");
+        UserInfoBean userInfoBean = new Gson().fromJson(userInfo, UserInfoBean.class);
+        //设置cookie信息
+//        setCookie(userInfoBean.getToken())
         getSettings().setUseWideViewPort(true);
 //		webView.getSettings().setLoadWithOverviewMode(true);
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
@@ -84,10 +94,10 @@ public class BridgeWebView extends WebView implements IWebView {
         mChromeClient = BridgeWebChromeClient.createBuild(progressbar, new BridgeWebChromeClient.ActivityCallBack() {
             @Override
             public void FileChooserBack(Intent intent) {
-                try{
+                try {
                     ((BaseActivity) context).startActivityForResult(intent, FILE_CHOOSER_RESULT_CODE);
-                }catch (Exception e){
-                    Log.e("BridgeWebView","类型转换出现异常,使用webview的activity需要继承自BaseActivity");
+                } catch (Exception e) {
+                    Log.e("BridgeWebView", "类型转换出现异常,使用webview的activity需要继承自BaseActivity");
                 }
             }
         });
@@ -127,5 +137,24 @@ public class BridgeWebView extends WebView implements IWebView {
 
     public BridgeWebChromeClient getChromeClient() {
         return mChromeClient;
+    }
+
+    /**
+     * 设置cookie信息
+     *
+     * @param url:url地址
+     * @param cookie:cookie信息
+     */
+    private void setCookie(String url, String cookie) {
+        CookieManager cookieManager = CookieManager.getInstance();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cookieManager.removeSessionCookies(null);
+            cookieManager.flush();
+        } else {
+            cookieManager.removeSessionCookie();
+            CookieSyncManager.getInstance().sync();
+        }
+        cookieManager.setAcceptCookie(true);
+        cookieManager.setCookie(url, cookie);
     }
 }
