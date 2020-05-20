@@ -16,6 +16,13 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.Utils;
+import com.google.gson.Gson;
+import com.spoon.app.jsbridge_n22.bean.UserInfoBean;
+import com.spoon.app.jsbridge_n22.utils.CookieUtils;
+import com.spoon.app.jsbridge_n22.utils.GsonUtils;
+
 
 /**
  * 如果要自定义WebViewClient必须要集成此类
@@ -87,7 +94,12 @@ class BridgeWebViewClient extends WebViewClient {
         } else {
             super.onPageFinished(view, url);
         }
-
+        SPUtils instance = SPUtils.getInstance();
+        String userInfo = instance.getString("userInfo");
+        UserInfoBean userInfoBean = new Gson().fromJson(userInfo, UserInfoBean.class);
+        //向页面传输localStorage
+        String json = GsonUtils.toJson(userInfoBean.getAppLoginUser());
+        CookieUtils.LocalStorageData(view, json);
         bridgeTiny.webViewLoadJs(bridgeWebView);
 
     }

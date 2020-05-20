@@ -55,6 +55,11 @@ public class X5WebView extends WebView implements IWebView {
         addView(progressbar);
 
         WebSettings webSetting = this.getSettings();
+        //设置页面的缓存数据
+        getSettings().setAppCacheMaxSize(1024 * 1024 * 8);
+        String appCachePath = context.getApplicationContext().getCacheDir().getAbsolutePath();
+        getSettings().setAppCachePath(appCachePath);
+
         webSetting.setJavaScriptEnabled(true);
         webSetting.setJavaScriptCanOpenWindowsAutomatically(true);
         webSetting.setAllowFileAccess(true);
@@ -86,10 +91,10 @@ public class X5WebView extends WebView implements IWebView {
         webChromeClient = X5WebChromeClient.createBuild(progressbar, new X5WebChromeClient.ActivityCallBack() {
             @Override
             public void FileChooserBack(Intent intent) {
-                try{
+                try {
                     ((BaseActivity) context).startActivityForResult(intent, FILE_CHOOSER_RESULT_CODE);
-                }catch (Exception e){
-                    Log.e("X5WebView","类型转换出现异常,使用webview的activity需要继承自BaseActivity");
+                } catch (Exception e) {
+                    Log.e("X5WebView", "类型转换出现异常,使用webview的activity需要继承自BaseActivity");
                 }
             }
         });
@@ -104,7 +109,7 @@ public class X5WebView extends WebView implements IWebView {
 
     @Override
     public void evaluateJavascript(String var1, Object object) {
-        if(object == null){
+        if (object == null) {
             super.evaluateJavascript(var1, null);
             return;
         }
@@ -113,7 +118,7 @@ public class X5WebView extends WebView implements IWebView {
 
     @Override
     public void callHandler(String handlerName, Object data, OnBridgeCallback responseCallback) {
-        bridgeTiny.callHandler(handlerName,data,responseCallback);
+        bridgeTiny.callHandler(handlerName, data, responseCallback);
     }
 
 //    private WebChromeClient ChromeClient = new WebChromeClient(){
@@ -135,8 +140,9 @@ public class X5WebView extends WebView implements IWebView {
         /**
          * prevent system browser from launching when web page loads
          */
+        @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if(url.startsWith("gap:")){
+            if (url.startsWith("gap:")) {
                 Log.i("X5WebView", "BridgeWebView does not support Cordova API calls:" + url);
                 return true;
             }

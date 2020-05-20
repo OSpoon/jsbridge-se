@@ -1,35 +1,22 @@
 {
-  "personsal": {
-    "agentCode": "1200800248",
-    "password": "9136c5b09ac6535f15fcc13fb37a6ea4",
-    "agentName": "杨静",
-    "cerdNum": "120102197205250220",
-    "mobile": "13820488005",
-    "channel": "02",
-    "orgId": "861200",
-    "comName": "天津",
-    "insureDate": "2012-11-22",
-    "jobNum": "初级金融服务专员",
+  "appLoginUser": {
+    "agentCode": "1100000006",
+    "agentName": "孙燕归",
+    "agenttype": null,
     "appntSex": "1",
+    "cerdNum": "110222198701140825",
     "cerdType": "11",
-    "loginMedol": {
-      "@xmlns:java": "http://java.sun.com",
-      "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-      "@xsi:type": "java:java.lang.String"
-    },
-    "upgrade": {
-      "@xmlns:java": "http://java.sun.com",
-      "@xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
-      "@xsi:type": "java:java.lang.String"
-    },
-    "andriod_versionNo": "",
-    "andriod_URL": "",
-    "IOS_versionNo": "",
-    "IOS_URL": "",
-    "agentList": [],
-    "activeList": [],
-    "productList": [],
-    "subChannel": "",
-    "cultivateYesNo": ""
-  }
+    "channel": "01",
+    "channelName": "个险代理人渠道",
+    "comName": "宏海营销服务部",
+    "id": 44,
+    "insureDate": null,
+    "jobNum": null,
+    "mobile": "13911994828",
+    "orgId": "861100001",
+    "roleCoding": "OUTDOOR_STAFF"
+  },
+  "branchTypeList": null,
+  "status": 2,
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0NCIsImNsIjoyLCJ0eSI6MSwia3ciOiJiYTFjNDBlMGMwZDM2ZjUxZWY0NjU4NTMwZWFkNTg1YSIsImx0Ijo3ODAwOTE3LCJldCI6ODA2MDExNywicnMiOiIifQ.Xh9_YxkVSL7wos967GyQP18Nr0k4D0ELL-fEcYHqWcU"
 }

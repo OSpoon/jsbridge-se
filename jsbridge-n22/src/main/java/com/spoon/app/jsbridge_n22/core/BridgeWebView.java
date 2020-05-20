@@ -65,11 +65,11 @@ public class BridgeWebView extends WebView implements IWebView {
         addView(progressbar);
 
         clearCache(true);
-        SPUtils instance = SPUtils.getInstance();
-        String userInfo = instance.getString("userInfo");
-        UserInfoBean userInfoBean = new Gson().fromJson(userInfo, UserInfoBean.class);
-        //设置cookie信息
-//        setCookie(userInfoBean.getToken())
+
+        getSettings().setAppCacheMaxSize(1024 * 1024 * 8);
+        String appCachePath = context.getApplicationContext().getCacheDir().getAbsolutePath();
+        getSettings().setAppCachePath(appCachePath);
+
         getSettings().setUseWideViewPort(true);
 //		webView.getSettings().setLoadWithOverviewMode(true);
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
@@ -109,7 +109,6 @@ public class BridgeWebView extends WebView implements IWebView {
         mClient.setWebViewClient(client);
     }
 
-
     @Override
     public void destroy() {
         super.destroy();
@@ -139,22 +138,4 @@ public class BridgeWebView extends WebView implements IWebView {
         return mChromeClient;
     }
 
-    /**
-     * 设置cookie信息
-     *
-     * @param url:url地址
-     * @param cookie:cookie信息
-     */
-    private void setCookie(String url, String cookie) {
-        CookieManager cookieManager = CookieManager.getInstance();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            cookieManager.removeSessionCookies(null);
-            cookieManager.flush();
-        } else {
-            cookieManager.removeSessionCookie();
-            CookieSyncManager.getInstance().sync();
-        }
-        cookieManager.setAcceptCookie(true);
-        cookieManager.setCookie(url, cookie);
-    }
 }

@@ -4,11 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.google.gson.Gson;
 import com.spoon.app.jsbridge_n22.R;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
+import com.spoon.app.jsbridge_n22.bean.UserInfoBean;
 import com.spoon.app.jsbridge_n22.core.BridgeWebView;
+import com.spoon.app.jsbridge_n22.utils.CookieUtils;
 
 import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
 
@@ -27,9 +32,17 @@ public class BridgeWebViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_bridge);
-        bridgeWebview = findViewById(R.id.activity_bridge_webview);
         String url = getIntent().getStringExtra(ROOT_URL);
+        //获取用户信息
+        SPUtils instance = SPUtils.getInstance();
+        String userInfo = instance.getString("userInfo");
+        UserInfoBean userInfoBean = new Gson().fromJson(userInfo, UserInfoBean.class);
+        Log.e("tag", "onCreate: " + userInfoBean.getToken());
+//        CookieUtils.setCookie(url, userInfoBean.getToken());
+        CookieUtils.synCookies(url, userInfoBean.getToken(), this);
+        bridgeWebview = findViewById(R.id.activity_bridge_webview);
         if (!TextUtils.isEmpty(url)) {
             bridgeWebview.loadUrl(url);
         }
