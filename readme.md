@@ -7,10 +7,10 @@
 
 ```
 //仅包含WebView中Js与Java交互,插件需按指定格式编写
-implementation 'com.ospoon:jsbridge-n22:1.0.16'
+implementation 'com.ospoon:jsbridge-n22:1.0.17'
 
 //包含WebView中Js与Java交互和基础插件,节省开发
-implementation 'com.ospoon:jsbridge-plugins-n22:1.0.16'
+implementation 'com.ospoon:jsbridge-plugins-n22:1.0.17'
 ```
 
 #### 2. 创建插件 #####
