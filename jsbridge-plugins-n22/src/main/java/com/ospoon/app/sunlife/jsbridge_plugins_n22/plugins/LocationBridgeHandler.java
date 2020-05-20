@@ -32,8 +32,7 @@ public class LocationBridgeHandler extends BaseBridgeHandler implements AMapLoca
         return new String[]{Permission.ACCESS_COARSE_LOCATION,
                 Permission.ACCESS_FINE_LOCATION,
                 Permission.WRITE_EXTERNAL_STORAGE,
-                Permission.READ_EXTERNAL_STORAGE,
-                Permission.READ_PHONE_STATE};
+                Permission.READ_EXTERNAL_STORAGE};
     }
 
     @Override
