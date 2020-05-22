@@ -31,6 +31,43 @@ public class Options implements Serializable {
     public boolean fullscreen;
     public BrowserProgress browserProgress;
 
+    private String imageUrl; //分享的图片
+    private String shareDescription; //分享的描述
+    private String shareTitle; //分享的标题
+    private String shareUrl; //分享的跳转链接
+
+    public String getImageUrl() {
+        return imageUrl == null ? "" : imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getShareDescription() {
+        return shareDescription == null ? "" : shareDescription;
+    }
+
+    public void setShareDescription(String shareDescription) {
+        this.shareDescription = shareDescription;
+    }
+
+    public String getShareTitle() {
+        return shareTitle == null ? "" : shareTitle;
+    }
+
+    public void setShareTitle(String shareTitle) {
+        this.shareTitle = shareTitle;
+    }
+
+    public String getShareUrl() {
+        return shareUrl == null ? "" : shareUrl;
+    }
+
+    public void setShareUrl(String shareUrl) {
+        this.shareUrl = shareUrl;
+    }
+
     public boolean isLocation() {
         return location;
     }

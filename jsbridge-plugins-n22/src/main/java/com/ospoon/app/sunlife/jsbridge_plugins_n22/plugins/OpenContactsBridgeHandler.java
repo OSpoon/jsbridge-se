@@ -66,14 +66,20 @@ public class OpenContactsBridgeHandler extends BaseBridgeHandler {
             cursor = getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                     null, null, null, null);
             if (cursor != null) {
+                int count = 0;
                 while (cursor.moveToNext()) {
+                    count++;
                     openContactsResponse = new OpenContactsResponse();
                     String displayName = cursor.getString(cursor.getColumnIndex(
                             ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                     String number = cursor.getString(cursor.getColumnIndex(
                             ContactsContract.CommonDataKinds.Phone.NUMBER));
-                    openContactsResponse.setDisplayName(displayName);
-                    openContactsResponse.setNumber(number);
+                    //设置名字
+                    openContactsResponse.setName(displayName);
+                    //设置手机号码
+                    openContactsResponse.setMobilePhone(number);
+                    //设置ID
+                    openContactsResponse.setId(String.valueOf(count));
                     list.add(openContactsResponse);
                 }
             }
@@ -88,8 +94,8 @@ public class OpenContactsBridgeHandler extends BaseBridgeHandler {
         Log.e("tag", "getContacts: " + list.toString());
         //将结果返回给页面
         if (list.size() > 0) {
-            Map<String,List<OpenContactsResponse>> map = new HashMap<>();
-            map.put("data",list);
+            Map<String, List<OpenContactsResponse>> map = new HashMap<>();
+            map.put("data", list);
             callBack.onCallBack(ResultUtil.success(map));
         } else {
             callBack.onCallBack(ResultUtil.error("1", "The format of the request parameter is wrong, please check~"));

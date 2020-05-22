@@ -15,6 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -31,6 +32,9 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.spoon.app.jsbridge_n22.R;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
 import com.spoon.app.jsbridge_n22.core.BridgeWebView;
@@ -54,10 +58,16 @@ import static com.spoon.app.jsbridge_n22.core.extension.Constants.DISABLED_ALPHA
 import static com.spoon.app.jsbridge_n22.core.extension.Constants.TOOLBAR_DEF_HEIGHT;
 import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
 
+/**
+ * 自定义的跳转页面
+ *
+ * @author thinkpad
+ */
 public class BridgeWebViewCustomActivity extends BaseActivity {
 
     private final static String ROOT_URL = "ROOT_URL";
     private final static String OPTIONS = "OPTIONS";
+    private Options options;
 
     private BridgeWebView inAppWebView;
 
@@ -76,31 +86,14 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
 
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) { // 返回键
-            if (!canGoBack()) {
-                closePage();
-            } else {
-                goBack();
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Options options = (Options) getIntent().getSerializableExtra(OPTIONS);
-
+        options = (Options) getIntent().getSerializableExtra(OPTIONS);
         //初始化Toolbar
         Toolbar toolbar = new Toolbar();
         toolbar.height = options.toolbar.height;
         toolbar.color = options.toolbar.color;
         options.toolbar = toolbar;
-
         //初始化Title
         Title title = new Title();
         title.color = options.title.color;
@@ -161,10 +154,8 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
      * @return
      */
     public ViewGroup getLayout(final Options features) {
-
         // Main container layout
         ViewGroup main = null;
-
         //全屏模式
         if (features.fullscreen) {
             main = new FrameLayout(this);
@@ -535,27 +526,74 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
                 .addMenuItem(new MenuItem(R.drawable.icon_circle, "分享到朋友圈"))
                 .setOnMenuItemClickListener(new TopRightMenu.OnMenuItemClickListener() {
                     @Override
-                    public void onMenuItemClick(int position) {
+                    public void onMenuItemClick(final int position) {
                         if (TextUtils.isEmpty(inAppWebView.getUrl())) {
                             return;
                         }
                         String title = inAppWebView.getTitle();
-                        if (!title.isEmpty()) {
-                            String mainTitle = "";
-                            String subTitle = "";
-                            if (title.contains("%|%")) {
-                                String[] titles = title.split("%|%");
-                                mainTitle = titles[0];
-                                subTitle = titles[1];
-                            } else {
-                                mainTitle = title;
-                            }
-                            if (position == 0) {
-                                ShareUtils.shareWeb(activity, mainTitle, subTitle, inAppWebView.getFavicon(), inAppWebView.getUrl(), "1");
-                            } else if (position == 1) {
-                                ShareUtils.shareWeb(activity, mainTitle, subTitle, inAppWebView.getFavicon(), inAppWebView.getUrl(), "2");
+                        String shareTitle = "";
+                        String shareContent = "";
+
+                        //判断原生传过来的数据是否存在
+                        if (options != null) {
+                            Glide.with(BridgeWebViewCustomActivity.this).asBitmap().
+                                    load(options.getImageUrl()).into(new SimpleTarget<Bitmap>() {
+                                /**
+                                 * 成功的回调
+                                 */
+                                @Override
+                                public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
+                                    // 下面这句代码是一个过度dialog，因为是获取网络图片，需要等待时间
+                                    if (position == 0) {
+                                        ShareUtils.shareWeb(activity, options.getShareTitle(),
+                                                options.getShareDescription(), bitmap,
+                                                options.getShareUrl(), "1");
+                                    } else if (position == 1) {
+                                        ShareUtils.shareWeb(activity, options.getShareTitle(),
+                                                options.getShareDescription(), bitmap,
+                                                options.getShareUrl(), "2");
+                                    }
+                                }
+
+                                /**
+                                 * 失败的回调
+                                 */
+                                @Override
+                                public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                                    super.onLoadFailed(errorDrawable);
+                                    if (position == 0) {
+                                        ShareUtils.shareWeb(activity, options.getShareTitle(),
+                                                options.getShareDescription(), null,
+                                                options.getShareUrl(), "1");
+                                    } else if (position == 1) {
+                                        ShareUtils.shareWeb(activity, options.getShareTitle(),
+                                                options.getShareDescription(), null,
+                                                options.getShareUrl(), "2");
+                                    }
+                                }
+                            });
+
+
+                        } else {
+                            if (!title.isEmpty()) {
+                                if (title.contains("%|%")) {
+                                    String[] titles = title.split("%|%");
+                                    shareTitle = titles[0];
+                                    shareContent = titles[1];
+                                } else {
+                                    shareTitle = title;
+                                }
+                                if (position == 0) {
+                                    ShareUtils.shareWeb(activity, shareTitle, shareContent,
+                                            inAppWebView.getFavicon(), inAppWebView.getUrl(), "1");
+                                } else if (position == 1) {
+                                    ShareUtils.shareWeb(activity, shareTitle, shareContent,
+                                            inAppWebView.getFavicon(), inAppWebView.getUrl(), "2");
+                                }
                             }
                         }
+
+
                     }
                 })
                 .showAsDropDown(button, -325, 10);
@@ -678,14 +716,6 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
         return result;
     }
 
-    /**
-     * 检查是否可以返回历史记录中的一页，然后执行此操作。
-     */
-    public void goBack() {
-        if (this.inAppWebView != null && this.inAppWebView.canGoBack()) {
-            this.inAppWebView.goBack();
-        }
-    }
 
     /**
      * web浏览器可以返回吗?
@@ -705,6 +735,31 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
         }
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FILE_CHOOSER_RESULT_CODE) {
+            if (inAppWebView.getChromeClient() != null) {
+                inAppWebView.getChromeClient().getUploadMessage().onActivityResult(requestCode, resultCode, data);
+            }
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) { // 返回键
+            if (!canGoBack()) {
+                closePage();
+            } else {
+                goBack();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+
+    }
+
     /**
      * 关闭页面
      */
@@ -714,13 +769,12 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == FILE_CHOOSER_RESULT_CODE) {
-            if (inAppWebView.getChromeClient() != null) {
-                inAppWebView.getChromeClient().getUploadMessage().onActivityResult(requestCode, resultCode, data);
-            }
+    /**
+     * 检查是否可以返回历史记录中的一页，然后执行此操作。
+     */
+    public void goBack() {
+        if (this.inAppWebView != null && this.inAppWebView.canGoBack()) {
+            this.inAppWebView.goBack();
         }
     }
 }

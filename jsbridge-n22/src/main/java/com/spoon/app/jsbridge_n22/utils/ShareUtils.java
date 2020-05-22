@@ -17,15 +17,17 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
  */
 public class ShareUtils {
     /**
-     * @param context
-     * @param title
-     * @param content
-     * @param imgBitmap
-     * @param platform
+     * 分享
+     *
+     * @param context：上下文
+     * @param title：标题
+     * @param content：内容
+     * @param imgBitmap：bitmap格式的图片
+     * @param platform：平台类型
      */
     public static void shareWeb(Context context, String title, String content, Bitmap imgBitmap, String webPageUrl,
                                 String platform) {
-        // 通过appId得到IWXAPI这个对象 todo appid 暂定写死,后修改为可配置
+        // 通过appId得到IWXAPI这个对象
         String jsbridge_n22_wechat_share_key = Utils.getAppMetaKey(context, "JSBRIDGE_N22_WECHAT_SHARE_KEY");
         IWXAPI wxapi = WXAPIFactory.createWXAPI(context, jsbridge_n22_wechat_share_key);
         // 检查手机或者模拟器是否安装了微信

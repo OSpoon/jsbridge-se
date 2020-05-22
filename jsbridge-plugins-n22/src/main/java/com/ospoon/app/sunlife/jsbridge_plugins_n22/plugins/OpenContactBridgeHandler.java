@@ -99,14 +99,14 @@ public class OpenContactBridgeHandler extends BaseBridgeHandler {
             cursor.moveToFirst();
             //取得联系人姓名**
             int nameFieldColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
-            openContactsResponse.setDisplayName(cursor.getString(nameFieldColumnIndex));
+            openContactsResponse.setName(cursor.getString(nameFieldColumnIndex));
             //取得电话号码**
             String ContactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
             Cursor phone = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
                     ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + ContactId, null, null);
             if (phone != null) {
                 phone.moveToFirst();
-                openContactsResponse.setNumber(phone.getString(phone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
+                openContactsResponse.setMobilePhone(phone.getString(phone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
             }
             phone.close();
             cursor.close();

@@ -8,22 +8,31 @@ package com.ospoon.app.sunlife.jsbridge_plugins_n22.response;
  */
 public class OpenContactsResponse {
 
-    private String displayName;
-    private String number;
+    private String name;
+    private String mobilePhone;
+    private String id;
 
-    public String getDisplayName() {
-        return displayName == null ? "" : displayName;
+    public String getName() {
+        return name == null ? "" : name;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNumber() {
-        return number == null ? "" : number;
+    public String getMobilePhone() {
+        return mobilePhone == null ? "" : mobilePhone;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
+
+    public String getId() {
+        return id == null ? "" : id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
