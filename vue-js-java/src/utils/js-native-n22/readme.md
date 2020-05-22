@@ -348,7 +348,7 @@ API`sendMsg`示例:
 响应参数:
 参数 | 类型 | 枚举 | 含义
 ---|---|---|---
-data | 数组 | [{'displayName':'联系人姓名','number':'联系人电话'}] | 联系人的信息列表
+data | 数组 | [{'id':'序号',name':'联系人姓名','mobilePhone':'联系人电话'}] | 联系人的信息列表
 
 API`openContacts`示例:
 
@@ -595,8 +595,9 @@ native.picPreview({
 响应参数:
 参数 | 类型 | 枚举 | 含义
 ---|---|---|---
-displayName | String | 无 | 联系人的名字
-number | String | 无 | 联系人的电话
+name | String | 无 | 联系人的名字
+mobilePhone | String | 无 | 联系人的电话
+id | String | 无 | 联系人的序号
 
 API`openContact`示例:
 
