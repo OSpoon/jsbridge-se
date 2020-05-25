@@ -10,13 +10,14 @@ import android.webkit.WebView;
 import android.widget.ProgressBar;
 
 import com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage;
+import com.spoon.app.jsbridge_n22.utils.LoadingDialog;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 /**
  * BridgeWebChromeClient github:https://github.com/shuhaoSCode/AndroidWebviewInputFile
- *
+ * <p>
  * 现改名使用BridgeWebChromeClient
  */
 public class BridgeWebChromeClient extends WebChromeClient {
@@ -24,20 +25,23 @@ public class BridgeWebChromeClient extends WebChromeClient {
         UploadMessage uploadMessage;
         ActivityCallBack callBack;
         ProgressBar progressbar;
+        LoadingDialog loadingDialog;
 
-        BridgeWebChromeClientBuild(ProgressBar progressbar, ActivityCallBack callBack) {
+        BridgeWebChromeClientBuild(ProgressBar progressbar, LoadingDialog loadingDialog, ActivityCallBack callBack) {
             this.uploadMessage = new UploadMessage();
             this.callBack = callBack;
             this.progressbar = progressbar;
+            this.loadingDialog = loadingDialog;
         }
 
         public BridgeWebChromeClient build() {
             return new BridgeWebChromeClient(this);
         }
+
     }
 
-    public static BridgeWebChromeClient createBuild(ProgressBar progressbar, ActivityCallBack callBack) {
-        return new BridgeWebChromeClientBuild(progressbar, callBack).build();
+    public static BridgeWebChromeClient createBuild(ProgressBar progressbar, LoadingDialog loadingDialog, ActivityCallBack callBack) {
+        return new BridgeWebChromeClientBuild(progressbar, loadingDialog, callBack).build();
     }
 
     BridgeWebChromeClientBuild build;
@@ -54,9 +58,15 @@ public class BridgeWebChromeClient extends WebChromeClient {
     public void onProgressChanged(WebView view, int newProgress) {
         if (newProgress == 100) {
             build.progressbar.setVisibility(GONE);
+            if (build.loadingDialog != null) {
+                build.loadingDialog.dismiss();
+            }
         } else {
+            if (build.loadingDialog != null) {
+                build.loadingDialog.show();
+            }
             if (build.progressbar.getVisibility() == GONE) {
-                build.progressbar.setVisibility(VISIBLE);
+                build.progressbar.setVisibility(GONE);
             }
             build.progressbar.setProgress(newProgress);
         }

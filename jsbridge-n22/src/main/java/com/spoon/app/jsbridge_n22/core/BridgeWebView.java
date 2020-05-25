@@ -7,19 +7,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import com.blankj.utilcode.util.SPUtils;
-import com.google.gson.Gson;
 import com.spoon.app.jsbridge_n22.R;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
-import com.spoon.app.jsbridge_n22.bean.UserInfoBean;
+import com.spoon.app.jsbridge_n22.utils.LoadingDialog;
 
 import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
 
@@ -34,6 +30,7 @@ public class BridgeWebView extends WebView implements IWebView {
     private BridgeTiny bridgeTiny;
     private BridgeWebViewClient mClient;
     private BridgeWebChromeClient mChromeClient;
+    private LoadingDialog loadingDialog;
 
     public BridgeWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -62,10 +59,12 @@ public class BridgeWebView extends WebView implements IWebView {
         progressbar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 5, 0, 0));
         Drawable drawable = context.getResources().getDrawable(R.drawable.progress_bar_states);
         progressbar.setProgressDrawable(drawable);
+        progressbar.setVisibility(GONE);
         addView(progressbar);
 
-        clearCache(true);
+        loadingDialog = new LoadingDialog(context);
 
+        clearCache(true);
         getSettings().setAppCacheMaxSize(1024 * 1024 * 8);
         String appCachePath = context.getApplicationContext().getCacheDir().getAbsolutePath();
         getSettings().setAppCachePath(appCachePath);
@@ -91,7 +90,7 @@ public class BridgeWebView extends WebView implements IWebView {
 
         mClient = new BridgeWebViewClient(this, bridgeTiny, listener);
         super.setWebViewClient(mClient);
-        mChromeClient = BridgeWebChromeClient.createBuild(progressbar, new BridgeWebChromeClient.ActivityCallBack() {
+        mChromeClient = BridgeWebChromeClient.createBuild(progressbar, loadingDialog, new BridgeWebChromeClient.ActivityCallBack() {
             @Override
             public void FileChooserBack(Intent intent) {
                 try {

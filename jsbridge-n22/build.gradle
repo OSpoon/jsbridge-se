@@ -33,4 +33,5 @@ dependencies {
     api rootProject.ext.dependencies['wxapi']
     implementation rootProject.ext.dependencies["utilcode"]
     implementation rootProject.ext.dependencies['glide']
+    implementation rootProject.ext.dependencies['gifDrawable']
 }
