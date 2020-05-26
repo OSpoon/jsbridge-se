@@ -32,7 +32,6 @@ public class BridgeWebViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_bridge);
         String url = getIntent().getStringExtra(ROOT_URL);
         //获取用户信息
@@ -40,7 +39,6 @@ public class BridgeWebViewActivity extends BaseActivity {
         String userInfo = instance.getString("userInfo");
         UserInfoBean userInfoBean = new Gson().fromJson(userInfo, UserInfoBean.class);
         Log.e("tag", "onCreate: " + userInfoBean.getToken());
-//        CookieUtils.setCookie(url, userInfoBean.getToken());
         CookieUtils.synCookies(url, userInfoBean.getToken(), this);
         bridgeWebview = findViewById(R.id.activity_bridge_webview);
         if (!TextUtils.isEmpty(url)) {

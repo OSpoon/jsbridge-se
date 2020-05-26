@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="margin_size_15">15dp</dimen>
+    <dimen name="margin_size_18">18dp</dimen>
+    <dimen name="margin_size_19">19dp</dimen>
+    <dimen name="margin_size_2">2dp</dimen>
+    <dimen name="margin_size_20">20dp</dimen>
+    <dimen name="margin_size_25">25dp</dimen>
+    <dimen name="margin_size_28">28dp</dimen>
+    <dimen name="margin_size_30">30dp</dimen>
+    <dimen name="margin_size_35">35dp</dimen>
+    <dimen name="margin_size_0.5" tools:ignore="MissingDefaultResource">0.5dp</dimen>
+    <dimen name="text_11sp">11sp</dimen>
+    <dimen name="text_12sp">12sp</dimen>
+    <dimen name="text_13sp">13sp</dimen>
+    <dimen name="text_14sp">14sp</dimen>
+    <dimen name="text_15sp">15sp</dimen>
+    <dimen name="text_16sp">16sp</dimen>
+    <dimen name="text_17sp">17sp</dimen>
+    <dimen name="text_18sp">18sp</dimen>
+    <dimen name="text_18sp_plus">18.76sp</dimen>
+    <dimen name="text_20sp">20sp</dimen>
+    <dimen name="text_21sp">21sp</dimen>
+    <dimen name="text_22sp">22sp</dimen>
+    <dimen name="text_23sp">23sp</dimen>
+    <dimen name="bar_height" tools:ignore="MissingDefaultResource">44dp</dimen>
+    <dimen name="text_8sp">8sp</dimen>
+    <dimen name="text_6sp">6sp</dimen>
+</resources>

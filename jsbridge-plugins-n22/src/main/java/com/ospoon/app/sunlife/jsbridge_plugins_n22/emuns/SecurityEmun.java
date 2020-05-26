@@ -11,8 +11,7 @@ public enum SecurityEmun {
 
     ENCODE(2, "3des加密"),
 
-    DECODE(3,"3des解密"),
-    ;
+    DECODE(3,"3des解密"),;
 
     private Integer code;
     private String message;
