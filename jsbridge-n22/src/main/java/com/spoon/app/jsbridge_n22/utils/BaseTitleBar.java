@@ -76,9 +76,9 @@ public class BaseTitleBar {
 
         //图标列表
         GridLayoutManager layoutManagerFunction = new GridLayoutManager(activity, 4);
-        navigationBarAdapter = new NavigationBarAdapter(R.layout.item_navigation_function, activity);
-        recyclerViewFunction.setLayoutManager(layoutManagerFunction);
-        recyclerViewFunction.setAdapter(navigationBarAdapter);
+//        navigationBarAdapter = new NavigationBarAdapter(R.layout.item_navigation_function, activity);
+//        recyclerViewFunction.setLayoutManager(layoutManagerFunction);
+//        recyclerViewFunction.setAdapter(navigationBarAdapter);
 
     }
 
@@ -86,7 +86,7 @@ public class BaseTitleBar {
         if (navigationBarDataBean != null) {
             changeRightImageBeanList = navigationBarDataBean.getNavigationBar().getChangeRightImage();
             Collections.sort(changeRightImageBeanList);
-            navigationBarAdapter.setNewData(changeRightImageBeanList);
+//            navigationBarAdapter.setNewData(changeRightImageBeanList);
         }
     }
 

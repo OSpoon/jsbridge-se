@@ -58,6 +58,6 @@ ext {
             "okhttp3-integration"   : "com.github.bumptech.glide:okhttp3-integration:4.8.0",
             "toprightmenu"          : "com.zaaach:toprightmenu:1.1.2",
             "gifDrawable"           : "pl.droidsonroids.gif:android-gif-drawable:1.2.7",
-            "baseAdapter"           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42",
+//            "baseAdapter"           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42",
     ]
 }

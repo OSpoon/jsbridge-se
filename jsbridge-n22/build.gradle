@@ -34,7 +34,7 @@ dependencies {
     implementation rootProject.ext.dependencies["utilcode"]
     implementation rootProject.ext.dependencies['glide']
     implementation rootProject.ext.dependencies['gifDrawable']
-    implementation rootProject.ext.dependencies['baseAdapter']
+//    implementation rootProject.ext.dependencies['baseAdapter']
 //    implementation rootProject.ext.dependencies['recyclerview']
 
 }

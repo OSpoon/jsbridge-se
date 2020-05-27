@@ -70,7 +70,7 @@ public class BridgeWebView extends WebView implements IWebView {
         getSettings().setAppCachePath(appCachePath);
 
         getSettings().setUseWideViewPort(true);
-//		webView.getSettings().setLoadWithOverviewMode(true);
+		getSettings().setLoadWithOverviewMode(true);
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         getSettings().setJavaScriptEnabled(true);
         getSettings().setDomStorageEnabled(true);//开启
