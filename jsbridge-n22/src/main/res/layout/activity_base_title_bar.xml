@@ -53,11 +53,11 @@
         android:layout_toLeftOf="@+id/iv_right"
         android:gravity="center_vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView_function"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        </androidx.recyclerview.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
     <ImageView
