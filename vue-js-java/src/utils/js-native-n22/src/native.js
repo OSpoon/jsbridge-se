@@ -237,6 +237,15 @@ const native = {
         fail(result.content)
       }
     })
+  },
+  openPDF(data, success, fail) {
+    bridge.callhandler('openPDF', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
   }
 }
 

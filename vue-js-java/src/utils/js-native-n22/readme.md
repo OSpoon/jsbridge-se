@@ -675,3 +675,29 @@ API`openUrl`示例:
          alert(error)
        })
 ```
+
+##### 25. openPDF:打开PDF文件
+> 可以通过此API调用原生页面打开PDF文件
+
+请求参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+title | String | 无 | 打开PDF的标题
+url | String | 无 | PDF的链接
+
+响应参数: 无
+
+
+API`openPDF`示例:
+
+```js
+  native.openPDF({
+          title: 'PDF的标题',
+          url: 'https://xinyidongzhanyeguangsubao-st-1254235118.cos.ap-beijing.myqcloud.com/Default/HCT010-T.pdf' 
+        }, (content) => {
+          alert(JSON.stringify(content))
+        }, (error) => {
+          alert(error)
+        })
+```
+

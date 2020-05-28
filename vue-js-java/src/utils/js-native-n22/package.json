@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["native","bridge","js"],
+  "keywords": [
+    "native",
+    "bridge",
+    "js"
+  ],
   "author": "OSpoon",
   "license": "ISC"
 }
