@@ -46,8 +46,8 @@ public class MainActivity extends Activity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
-                BridgeWebViewActivity.start(MainActivity.this, "file:///android_asset/www/index.html#/uploadFile/2");
+                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
+//                BridgeWebViewActivity.start(MainActivity.this, "file:///android_asset/www/index.html#/uploadFile/2");
             }
         });
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {

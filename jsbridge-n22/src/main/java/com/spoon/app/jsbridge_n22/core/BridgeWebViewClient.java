@@ -96,10 +96,10 @@ class BridgeWebViewClient extends WebViewClient {
         }
         SPUtils instance = SPUtils.getInstance();
         String userInfo = instance.getString("userInfo");
-        UserInfoBean userInfoBean = new Gson().fromJson(userInfo, UserInfoBean.class);
-        //向页面传输localStorage
-        String json = GsonUtils.toJson(userInfoBean.getAppLoginUser());
-        CookieUtils.LocalStorageData(view, json);
+//        UserInfoBean userInfoBean = new Gson().fromJson(userInfo, UserInfoBean.class);
+//        //向页面传输localStorage
+//        String json = GsonUtils.toJson(userInfoBean.getAppLoginUser());
+//        CookieUtils.LocalStorageData(view, json);
         bridgeTiny.webViewLoadJs(bridgeWebView);
 
     }

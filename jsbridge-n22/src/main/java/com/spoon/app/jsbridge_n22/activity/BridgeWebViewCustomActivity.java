@@ -61,7 +61,7 @@ import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_
 /**
  * 自定义的跳转页面
  *
- * @author thinkpad
+ * @author gdk
  */
 public class BridgeWebViewCustomActivity extends BaseActivity {
 

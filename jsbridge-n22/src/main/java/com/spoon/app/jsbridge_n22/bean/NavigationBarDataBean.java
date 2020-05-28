@@ -202,25 +202,25 @@ public class NavigationBarDataBean {
 
     public static class ShareModelBean {
 
-        private String shareContent;
-        private String shareImageUrl;
+        private String imageUrl;
+        private String shareDescription;
         private String shareTitle;
-        private String shareWebUrl;
+        private String shareUrl;
 
-        public String getShareContent() {
-            return shareContent == null ? "" : shareContent;
+        public String getImageUrl() {
+            return imageUrl == null ? "" : imageUrl;
         }
 
-        public void setShareContent(String shareContent) {
-            this.shareContent = shareContent;
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
         }
 
-        public String getShareImageUrl() {
-            return shareImageUrl == null ? "" : shareImageUrl;
+        public String getShareDescription() {
+            return shareDescription == null ? "" : shareDescription;
         }
 
-        public void setShareImageUrl(String shareImageUrl) {
-            this.shareImageUrl = shareImageUrl;
+        public void setShareDescription(String shareDescription) {
+            this.shareDescription = shareDescription;
         }
 
         public String getShareTitle() {
@@ -231,12 +231,12 @@ public class NavigationBarDataBean {
             this.shareTitle = shareTitle;
         }
 
-        public String getShareWebUrl() {
-            return shareWebUrl == null ? "" : shareWebUrl;
+        public String getShareUrl() {
+            return shareUrl == null ? "" : shareUrl;
         }
 
-        public void setShareWebUrl(String shareWebUrl) {
-            this.shareWebUrl = shareWebUrl;
+        public void setShareUrl(String shareUrl) {
+            this.shareUrl = shareUrl;
         }
     }
 }
