@@ -246,6 +246,15 @@ const native = {
         fail(result.content)
       }
     })
+  },
+  goHome(data, success, fail) {
+    bridge.callhandler('goHome', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
   }
 }
 

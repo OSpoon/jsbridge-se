@@ -700,4 +700,19 @@ API`openPDF`示例:
           alert(error)
         })
 ```
+##### 26. goHome:回到首页
+> 可以通过此API调用原生页面回到首页
+
+请求参数: 无
+响应参数: 无
+
+API`goHome`示例:
+
+```js
+  native.goHome((content) => {
+          alert(JSON.stringify(content))
+        }, (error) => {
+          alert(error)
+        })
+```
 
