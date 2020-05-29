@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.FileUtils;
+import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.Constants;
@@ -16,6 +17,7 @@ import com.spoon.app.jsbridge_n22.activity.BridgeWebViewActivity;
 import com.spoon.app.jsbridge_n22.activity.BridgeWebViewCustomActivity;
 import com.spoon.app.jsbridge_n22.activity.X5WebViewActivity;
 import com.spoon.app.jsbridge_n22.activity.X5WebViewCustomActivity;
+import com.spoon.app.jsbridge_n22.bean.NavigationBarDataBean;
 import com.spoon.app.jsbridge_n22.core.extension.bean.Options;
 import com.spoon.app.jsbridge_n22.core.extension.bean.Title;
 import com.spoon.app.jsbridge_n22.core.extension.bean.Toolbar;
@@ -46,8 +48,28 @@ public class MainActivity extends Activity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
-//                BridgeWebViewActivity.start(MainActivity.this, "file:///android_asset/www/index.html#/uploadFile/2");
+//                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
+//                BridgeWebViewActivity.start(MainActivity.this, "file:///android_asset/www/index.html#/personal/personalInfo");
+                NavigationBarDataBean navigationBarDataBean = new NavigationBarDataBean();
+                NavigationBarDataBean.NavigationBarBean navigationBarBean = new NavigationBarDataBean.NavigationBarBean();
+                navigationBarDataBean.setIsShowShare("1");
+                navigationBarDataBean.setIsShowNavigationBar("1");
+                navigationBarBean.setIsShowClose("1");
+                navigationBarBean.setIsShowTitle("1");
+                navigationBarBean.setTitle("我是个人中心");
+                navigationBarBean.setTitleColor("#FC7989");
+                navigationBarBean.setTitleSize("12");
+
+                navigationBarDataBean.setNavigationBar(navigationBarBean);
+                NavigationBarDataBean.ShareModelBean shareModelBean = new NavigationBarDataBean.ShareModelBean();
+                shareModelBean.setImageUrl("https://xinyidongzhanyeguangsubao-st-1254235118.cos.ap-beijing.myqcloud.com/PC/showConfig/hotSaleProduct/Show/2020-05-15/1589523629974_41586340874_.pic_hd.jpg");
+                shareModelBean.setShareTitle("我是分享页面的标题");
+                shareModelBean.setShareDescription("光速宝3.0更新");
+                shareModelBean.setShareUrl("https://www.baidu.com");
+                navigationBarDataBean.setShareModel(shareModelBean);
+                BridgeWebViewActivity.start(MainActivity.this,
+                        "file:///android_asset/www/index.html#/personal/personalInfo",navigationBarDataBean);
+
             }
         });
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {

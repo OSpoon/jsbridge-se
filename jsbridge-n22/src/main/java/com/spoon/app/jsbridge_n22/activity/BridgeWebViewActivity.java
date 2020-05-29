@@ -1,24 +1,37 @@
 package com.spoon.app.jsbridge_n22.activity;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.spoon.app.jsbridge_n22.R;
 import com.spoon.app.jsbridge_n22.adapter.NavigationBarAdapter;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
 import com.spoon.app.jsbridge_n22.bean.NavigationBarDataBean;
 import com.spoon.app.jsbridge_n22.core.BridgeWebView;
-import com.spoon.app.jsbridge_n22.core.extension.bean.Options;
+import com.spoon.app.jsbridge_n22.utils.ShareUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -34,17 +47,17 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     /**
      * 左侧/右侧图标和中间标题
      */
-    private RelativeLayout rl_title_bar;
+    private RelativeLayout rlTitleBar;
     /**
      * 左侧图标
      */
-    private ImageView iv_left_icon;
+    private ImageView ivLeft;
     /*右侧图标*/
-    private ImageView iv_rightIco;
+    private ImageView ivRight;
     /* 中间标题*/
-    private TextView tv_title_middle;
+    private TextView tvTitleContent;
     /* 左侧关闭按钮标题*/
-    private TextView tvClose;
+    private ImageView ivClose;
     /* 左侧关闭按钮标题*/
     private RecyclerView recyclerViewFunction;
     private NavigationBarAdapter navigationBarAdapter;
@@ -52,20 +65,20 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
 
     private BridgeWebView bridgeWebview;
     private String url;
-    private final static String OPTIONS = "OPTIONS";
-    private Options options;
+    private final static String DATA = "data";
+    private NavigationBarDataBean navigationBarDataBean;
 
-    public static void start(Context context, String url) {
-        Intent intent = new Intent(context, BridgeWebViewActivity.class);
+    public static void start(Activity activity, String url) {
+        Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
-        context.startActivity(intent);
+        activity.startActivity(intent);
     }
 
-    public static void start(Context context, String url, Options options) {
-        Intent intent = new Intent(context, BridgeWebViewActivity.class);
+    public static void start(Activity activity, String url, NavigationBarDataBean navigationBarDataBean) {
+        Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
-        intent.putExtra(OPTIONS, options);
-        context.startActivity(intent);
+        intent.putExtra(DATA, navigationBarDataBean);
+        activity.startActivity(intent);
     }
 
     @Override
@@ -73,11 +86,11 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bridge);
         url = getIntent().getStringExtra(ROOT_URL);
-        options = (Options) getIntent().getSerializableExtra(OPTIONS);
+        navigationBarDataBean = (NavigationBarDataBean) getIntent().getSerializableExtra(DATA);
         //获取用户信息并且设置cookie
         getUserInfo();
         initView();
-        setNavigationBarData(options);
+        setNavigationBarData(navigationBarDataBean);
         initData();
     }
 
@@ -86,11 +99,11 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      */
     private void initView() {
         bridgeWebview = findViewById(R.id.activity_bridge_webview);
-        rl_title_bar = findViewById(R.id.rl_title_bar);
-        tv_title_middle = findViewById(R.id.tv_title_middle);
-        iv_left_icon = findViewById(R.id.iv_back);
-        tvClose = findViewById(R.id.tv_close);
-        iv_rightIco = findViewById(R.id.iv_right);
+        rlTitleBar = findViewById(R.id.rl_title_bar);
+        tvTitleContent = findViewById(R.id.tv_title_middle);
+        ivLeft = findViewById(R.id.iv_back);
+        ivClose = findViewById(R.id.iv_close);
+        ivRight = findViewById(R.id.iv_right);
         recyclerViewFunction = findViewById(R.id.recyclerView_function);
 
         //图标列表
@@ -98,25 +111,93 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         navigationBarAdapter = new NavigationBarAdapter(R.layout.item_navigation_function, this);
         recyclerViewFunction.setLayoutManager(layoutManagerFunction);
         recyclerViewFunction.setAdapter(navigationBarAdapter);
-
-        tvClose.setOnClickListener(this);
-        iv_rightIco.setOnClickListener(this);
-        iv_left_icon.setOnClickListener(this);
+        //点击调用网页端的方法
+        navigationBarAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//                List data = adapter.getData(); todo
+            }
+        });
+        ivClose.setOnClickListener(this);
+        ivRight.setOnClickListener(this);
+        ivLeft.setOnClickListener(this);
     }
 
     /**
      * 设置标题栏数据
      *
-     * @param options
+     * @param navigationBarData:
      */
-    private void setNavigationBarData(Options options) {
-        if (options != null) {
-            //判断是否显示分享按钮
-            if (options.isShowShare()) {
-                iv_rightIco.setVisibility(View.VISIBLE);
+    private void setNavigationBarData(NavigationBarDataBean navigationBarData) {
+        if (navigationBarData != null) {
+            //是否显示标题栏
+            if ("0".equals(navigationBarData.getIsShowNavigationBar())) {
+                rlTitleBar.setVisibility(View.GONE);
+            } else {
+                rlTitleBar.setVisibility(View.VISIBLE);
+                //设置左侧返回图片的样式 0代表黄色返回按钮（默认），1代表黑色返回按钮，2灰色返回按钮，3代表白色按钮
+                setLeftOrCloseImage(ivLeft, ivClose, navigationBarData.getNavigationBar().getChangeLeftImage());
+                //是否显示关闭按钮
+                if ("0".equals(navigationBarData.getNavigationBar().getIsShowClose())) {
+                    ivClose.setVisibility(View.GONE);
+                } else {
+                    ivClose.setVisibility(View.VISIBLE);
+                }
+                //是否显示分享按钮 0是隐藏，1是显示
+                if ("0".equals(navigationBarData.getIsShowShare())) {
+                    ivRight.setVisibility(View.GONE);
+                } else {
+                    ivRight.setVisibility(View.VISIBLE);
+                }
+                //是否显示标题
+                if ("0".equals(navigationBarData.getNavigationBar().getIsShowTitle())) {
+                    tvTitleContent.setVisibility(View.GONE);
+                } else {
+                    tvTitleContent.setVisibility(View.VISIBLE);
+                    //设置标题
+                    tvTitleContent.setText(navigationBarData.getNavigationBar().getTitle());
+                    //标题显示的颜色
+                    if (!TextUtils.isEmpty(navigationBarData.getNavigationBar().getTitleColor())) {
+                        tvTitleContent.setTextColor(Color.parseColor(navigationBarData.
+                                getNavigationBar().getTitleColor()));
+                    }
+                    //标题显示的字体的大小字号
+                    if (!TextUtils.isEmpty(navigationBarData.getNavigationBar().getTitleSize())) {
+                        tvTitleContent.setTextSize(Float.valueOf(navigationBarData.
+                                getNavigationBar().getTitleSize()));
+                    }
+                }
+                changeRightImageBeanList = navigationBarData.getNavigationBar().getChangeRightImage();
+                Collections.sort(changeRightImageBeanList);
+                navigationBarAdapter.setNewData(changeRightImageBeanList);
             }
         }
+    }
 
+    /**
+     * 设置返回和关闭按钮的图片
+     *
+     * @param ivLeft
+     * @param ivClose
+     * @param changeLeftImage
+     */
+    private void setLeftOrCloseImage(ImageView ivLeft, ImageView ivClose, String changeLeftImage) {
+        switch (changeLeftImage) {
+            case "1":
+                ivLeft.setImageResource(R.drawable.img_common_back_black);
+                ivClose.setImageResource(R.drawable.img_common_close_black);
+                break;
+            case "2":
+                ivLeft.setImageResource(R.drawable.img_common_back_gray);
+                ivClose.setImageResource(R.drawable.img_common_close_gray);
+                break;
+            case "3":
+                ivLeft.setImageResource(R.drawable.img_common_back_white);
+                ivClose.setImageResource(R.drawable.img_common_close_white);
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -142,32 +223,124 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     }
 
 
-
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-//            case R.id.iv_right:
-//
-//                break;
-//            case R.id.tv_close:
-//
-//                break;
-            default:
-                break;
+        int id = view.getId();
+        if (id == R.id.iv_right) { //点击右边的分享按钮
+            shareInfo(navigationBarDataBean);
+        } else if (id == R.id.iv_close) { //点击关闭按钮
+            //关闭按钮
+            closePage();
+        } else if (id == R.id.iv_back) { //点击左侧的返回键
+            if (!canGoBack()) {
+                //关闭页面
+                closePage();
+            } else {
+                //返回前一个页面
+                goBack();
+            }
         }
     }
 
     /**
+     * 点击分享按钮的弹框
      *
-     * @param navigationBarDataBean
+     * @param navigationBarDataBean:
      */
-    public void setTitleBar(NavigationBarDataBean navigationBarDataBean) {
+    private void shareInfo(final NavigationBarDataBean navigationBarDataBean) {
         if (navigationBarDataBean != null) {
-            changeRightImageBeanList = navigationBarDataBean.getNavigationBar().getChangeRightImage();
-            Collections.sort(changeRightImageBeanList);
-            navigationBarAdapter.setNewData(changeRightImageBeanList);
+            View contentView = LayoutInflater.from(this).inflate(R.layout.dialog_popup_share, null);
+            PopupWindow popupWindow = createPop(contentView);
+            //分享给朋友
+            LinearLayout llShareFriends = contentView.findViewById(R.id.ll_share_friends);
+            llShareFriends.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    shareToWechat(navigationBarDataBean, 0);
+                }
+            });
+            //分享朋友圈
+            LinearLayout llShareMoments = contentView.findViewById(R.id.ll_share_moments);
+            llShareMoments.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    shareToWechat(navigationBarDataBean, 1);
+                }
+            });
+            popupWindow.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED); //这句代码必须要才能获得正确的popupwindow的宽度
+            int xOff;
+            int buttonWidth = ivRight.getWidth();
+            int popupwindowWidth = popupWindow.getContentView().getMeasuredWidth();
+            xOff = buttonWidth - popupwindowWidth + 45;
+            popupWindow.showAsDropDown(ivRight, xOff, 0);
         }
     }
+
+    /**
+     * 分享到微信
+     *
+     * @param navigationBarDataBean:
+     * @param position               :
+     */
+    private void shareToWechat(final NavigationBarDataBean navigationBarDataBean, final int position) {
+        if (navigationBarDataBean.getShareModel() != null) {
+            Glide.with(BridgeWebViewActivity.this).asBitmap().
+                    load(navigationBarDataBean.getShareModel().getImageUrl()).into(new SimpleTarget<Bitmap>() {
+                /**
+                 * 成功的回调
+                 */
+                @Override
+                public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
+                    // 下面这句代码是一个过度dialog，因为是获取网络图片，需要等待时间
+                    if (position == 0) {
+                        ShareUtils.shareWeb(BridgeWebViewActivity.this, navigationBarDataBean.getShareModel().getShareTitle(),
+                                navigationBarDataBean.getShareModel().getShareDescription(), bitmap,
+                                navigationBarDataBean.getShareModel().getShareUrl(), "1");
+                    } else if (position == 1) {
+                        ShareUtils.shareWeb(BridgeWebViewActivity.this, navigationBarDataBean.getShareModel().getShareTitle(),
+                                navigationBarDataBean.getShareModel().getShareDescription(), bitmap,
+                                navigationBarDataBean.getShareModel().getShareUrl(), "2");
+                    }
+                }
+
+                /**
+                 * 失败的回调
+                 */
+                @Override
+                public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                    super.onLoadFailed(errorDrawable);
+                    if (position == 0) {
+                        ShareUtils.shareWeb(BridgeWebViewActivity.this, navigationBarDataBean.getShareModel().getShareTitle(),
+                                navigationBarDataBean.getShareModel().getShareDescription(), null,
+                                navigationBarDataBean.getShareModel().getShareUrl(), "1");
+                    } else if (position == 1) {
+                        ShareUtils.shareWeb(BridgeWebViewActivity.this, navigationBarDataBean.getShareModel().getShareTitle(),
+                                navigationBarDataBean.getShareModel().getShareDescription(), null,
+                                navigationBarDataBean.getShareModel().getShareUrl(), "2");
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * 创建PopWindow窗体
+     *
+     * @param contentView
+     * @return
+     */
+    private static PopupWindow createPop(View contentView) {
+        PopupWindow mPopupWindow = new PopupWindow(contentView,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        // 如果不设置PopupWindow的背景，有些版本就会出现一个问题：无论是点击外部区域还是Back键都无法dismiss弹框
+        mPopupWindow.setBackgroundDrawable(new ColorDrawable());
+        // 设置好参数之后再show
+        contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        //设置属性，使popwindow不受dialog的影响。
+        mPopupWindow.setClippingEnabled(false);
+        return mPopupWindow;
+    }
+
     /**
      * 监听返回键的逻辑
      *

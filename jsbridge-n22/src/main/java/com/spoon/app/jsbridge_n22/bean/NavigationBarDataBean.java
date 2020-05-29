@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author thinkpad
  */
-public class NavigationBarDataBean {
+public class NavigationBarDataBean implements Serializable{
 
     /**
      * isShowNavigationBar : 0是隐藏，1是显示
@@ -57,7 +57,7 @@ public class NavigationBarDataBean {
         this.shareModel = shareModel;
     }
 
-    public static class NavigationBarBean {
+    public static class NavigationBarBean implements Serializable{
         /**
          * changeLeftImage : 0，1，2，3各代表一种图片显示样式
          * changeRightImage : [{"id":"显示功能的ID","image":"0，1，2，3各代表一种图片显示样式","method":"前端页面需要做的操作","methodDec":"前端方法的描述","sort":1},{"id":"显示功能的ID","image":"0，1，2，3各代表一种图片显示样式","method":"前端页面需要做的操作","methodDec":"前端方法的描述","sort":1}]
@@ -200,7 +200,7 @@ public class NavigationBarDataBean {
         }
     }
 
-    public static class ShareModelBean {
+    public static class ShareModelBean implements Serializable{
 
         private String imageUrl;
         private String shareDescription;

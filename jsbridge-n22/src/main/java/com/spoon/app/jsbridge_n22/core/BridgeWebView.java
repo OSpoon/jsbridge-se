@@ -17,6 +17,9 @@ import com.spoon.app.jsbridge_n22.R;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
 import com.spoon.app.jsbridge_n22.utils.LoadingDialog;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
 
 @SuppressLint("SetJavaScriptEnabled")
@@ -74,6 +77,8 @@ public class BridgeWebView extends WebView implements IWebView {
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         getSettings().setJavaScriptEnabled(true);
         getSettings().setDomStorageEnabled(true);//开启
+        getSettings().setLoadsImagesAutomatically(true);
+        getSettings().setBlockNetworkImage(true);
 //        mContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         //开启Http和Https混用
@@ -86,6 +91,25 @@ public class BridgeWebView extends WebView implements IWebView {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             getSettings().setAllowUniversalAccessFromFileURLs(true);
         }
+//        try {
+//            if (Build.VERSION.SDK_INT >= 16) {
+//                Class<?> clazz = getSettings().getClass();
+//                Method method = clazz.getMethod(
+//                        "setAllowUniversalAccessFromFileURLs", boolean.class);//利用反射机制去修改设置对象
+//                if (method != null) {
+//                    method.invoke(getSettings(), true);//修改设置
+//                }
+//            }
+//        } catch (IllegalArgumentException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
+
         bridgeTiny = new BridgeTiny(this);
 
         mClient = new BridgeWebViewClient(this, bridgeTiny, listener);

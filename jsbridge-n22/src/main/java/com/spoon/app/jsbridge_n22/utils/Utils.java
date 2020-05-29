@@ -105,7 +105,7 @@ public class Utils {
         return result;
     }
 
-    public static String getAppMetaKey(Context context,String metaKey) {
+    public static String getAppMetaKey(Context context, String metaKey) {
         Bundle metaData = null;
         String appKey = null;
         try {
