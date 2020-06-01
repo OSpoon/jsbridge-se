@@ -17,9 +17,6 @@ import com.spoon.app.jsbridge_n22.R;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
 import com.spoon.app.jsbridge_n22.utils.LoadingDialog;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
 
 @SuppressLint("SetJavaScriptEnabled")
@@ -73,12 +70,10 @@ public class BridgeWebView extends WebView implements IWebView {
         getSettings().setAppCachePath(appCachePath);
 
         getSettings().setUseWideViewPort(true);
-		getSettings().setLoadWithOverviewMode(true);
+        getSettings().setLoadWithOverviewMode(true);
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         getSettings().setJavaScriptEnabled(true);
         getSettings().setDomStorageEnabled(true);//开启
-        getSettings().setLoadsImagesAutomatically(true);
-        getSettings().setBlockNetworkImage(true);
 //        mContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         //开启Http和Https混用

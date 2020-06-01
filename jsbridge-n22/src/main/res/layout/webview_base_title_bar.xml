@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_title_bar"
+    android:id="@+id/rl_title_bar_web"
     android:layout_width="match_parent"
     android:layout_height="@dimen/bar_height"
     android:background="@color/white"
     android:visibility="gone">
 
     <ImageView
-        android:id="@+id/iv_back"
+        android:id="@+id/iv_back_web"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_centerVertical="true"
@@ -15,17 +15,17 @@
         android:src="@drawable/img_common_back_yellow" />
 
     <ImageView
-        android:id="@+id/iv_close"
+        android:id="@+id/iv_close_web"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_centerVertical="true"
         android:layout_marginStart="10dp"
-        android:layout_toEndOf="@+id/iv_back"
+        android:layout_toEndOf="@+id/iv_back_web"
         android:src="@drawable/img_common_close_yellow"
         android:visibility="gone" />
 
     <TextView
-        android:id="@+id/tv_title_middle"
+        android:id="@+id/tv_title_middle_web"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -34,7 +34,7 @@
         android:textSize="@dimen/text_18sp" />
 
     <ImageView
-        android:id="@+id/iv_right"
+        android:id="@+id/iv_right_web"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_alignParentEnd="true"
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginEnd="3dp"
-        android:layout_toLeftOf="@+id/iv_right"
+        android:layout_toLeftOf="@+id/iv_right_web"
         android:gravity="center_vertical"
         android:visibility="gone">
 
@@ -59,7 +59,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/line"
+        android:id="@+id/line_web"
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_size_0.5"
         android:layout_alignParentBottom="true"

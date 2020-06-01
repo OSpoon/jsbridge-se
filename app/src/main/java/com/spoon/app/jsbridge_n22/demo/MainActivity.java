@@ -1,6 +1,7 @@
 package com.spoon.app.jsbridge_n22.demo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
@@ -38,7 +39,7 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 final String host = edit_host.getText().toString();
                 if (!TextUtils.isEmpty(host)) {
-                    BridgeWebViewActivity.start(MainActivity.this, host);
+                    BridgeWebViewActivity.start(MainActivity.this, host, 1);
                 } else {
                     Toast.makeText(MainActivity.this, "请填写访问地址", Toast.LENGTH_SHORT).show();
                 }
@@ -68,8 +69,8 @@ public class MainActivity extends Activity {
                 shareModelBean.setShareUrl("https://www.baidu.com");
                 navigationBarDataBean.setShareModel(shareModelBean);
                 BridgeWebViewActivity.start(MainActivity.this,
-                        "file:///android_asset/www/index.html#/personal/personalInfo",navigationBarDataBean);
-
+                        "file:///android_asset/www/index.html#/personal/personalInfo", navigationBarDataBean, 2);
+//                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean, 2);
             }
         });
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
@@ -97,7 +98,8 @@ public class MainActivity extends Activity {
         findViewById(R.id.buttonx5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                X5WebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
+//                X5WebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
+                X5WebViewActivity.start(MainActivity.this, "https://wd.e-sleb.com/app.html#/myWechartShop?agentCode=mu5%2Bbi3QTyKogy8dba07bw%3D%3D&branchtype=01");
             }
         });
 
@@ -136,5 +138,16 @@ public class MainActivity extends Activity {
     protected void onDestroy() {
         unregisterReceiver(mMyBroadcastReceiver);
         super.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (Activity.RESULT_OK == resultCode) {
+            //判断跳转页面是否返回到首页
+            if (requestCode == 2) {
+                Toast.makeText(this, "我是调回来的页面", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

@@ -47,17 +47,17 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     /**
      * 左侧/右侧图标和中间标题
      */
-    private RelativeLayout rlTitleBar;
+    private RelativeLayout rlTitleBarWeb;
     /**
      * 左侧图标
      */
-    private ImageView ivLeft;
+    private ImageView ivLeftWeb;
     /*右侧图标*/
-    private ImageView ivRight;
+    private ImageView ivRightWeb;
     /* 中间标题*/
-    private TextView tvTitleContent;
+    private TextView tvTitleContentWeb;
     /* 左侧关闭按钮标题*/
-    private ImageView ivClose;
+    private ImageView ivCloseWeb;
     /* 左侧关闭按钮标题*/
     private RecyclerView recyclerViewFunction;
     private NavigationBarAdapter navigationBarAdapter;
@@ -68,17 +68,18 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     private final static String DATA = "data";
     private NavigationBarDataBean navigationBarDataBean;
 
-    public static void start(Activity activity, String url) {
+    public static void start(Activity activity, String url, int requestCode) {
         Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent, requestCode);
     }
 
-    public static void start(Activity activity, String url, NavigationBarDataBean navigationBarDataBean) {
+    public static void start(Activity activity, String url, NavigationBarDataBean navigationBarDataBean,
+                             int requestCode) {
         Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
         intent.putExtra(DATA, navigationBarDataBean);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     @Override
@@ -99,11 +100,11 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      */
     private void initView() {
         bridgeWebview = findViewById(R.id.activity_bridge_webview);
-        rlTitleBar = findViewById(R.id.rl_title_bar);
-        tvTitleContent = findViewById(R.id.tv_title_middle);
-        ivLeft = findViewById(R.id.iv_back);
-        ivClose = findViewById(R.id.iv_close);
-        ivRight = findViewById(R.id.iv_right);
+        rlTitleBarWeb = findViewById(R.id.rl_title_bar_web);
+        tvTitleContentWeb = findViewById(R.id.tv_title_middle_web);
+        ivLeftWeb = findViewById(R.id.iv_back_web);
+        ivCloseWeb = findViewById(R.id.iv_close_web);
+        ivRightWeb = findViewById(R.id.iv_right_web);
         recyclerViewFunction = findViewById(R.id.recyclerView_function);
 
         //图标列表
@@ -118,9 +119,9 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
 //                List data = adapter.getData(); todo
             }
         });
-        ivClose.setOnClickListener(this);
-        ivRight.setOnClickListener(this);
-        ivLeft.setOnClickListener(this);
+        ivCloseWeb.setOnClickListener(this);
+        ivRightWeb.setOnClickListener(this);
+        ivLeftWeb.setOnClickListener(this);
     }
 
     /**
@@ -132,38 +133,38 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         if (navigationBarData != null) {
             //是否显示标题栏
             if ("0".equals(navigationBarData.getIsShowNavigationBar())) {
-                rlTitleBar.setVisibility(View.GONE);
+                rlTitleBarWeb.setVisibility(View.GONE);
             } else {
-                rlTitleBar.setVisibility(View.VISIBLE);
+                rlTitleBarWeb.setVisibility(View.VISIBLE);
                 //设置左侧返回图片的样式 0代表黄色返回按钮（默认），1代表黑色返回按钮，2灰色返回按钮，3代表白色按钮
-                setLeftOrCloseImage(ivLeft, ivClose, navigationBarData.getNavigationBar().getChangeLeftImage());
+                setLeftOrCloseImage(ivLeftWeb, ivCloseWeb, navigationBarData.getNavigationBar().getChangeLeftImage());
                 //是否显示关闭按钮
                 if ("0".equals(navigationBarData.getNavigationBar().getIsShowClose())) {
-                    ivClose.setVisibility(View.GONE);
+                    ivCloseWeb.setVisibility(View.GONE);
                 } else {
-                    ivClose.setVisibility(View.VISIBLE);
+                    ivCloseWeb.setVisibility(View.VISIBLE);
                 }
                 //是否显示分享按钮 0是隐藏，1是显示
                 if ("0".equals(navigationBarData.getIsShowShare())) {
-                    ivRight.setVisibility(View.GONE);
+                    ivRightWeb.setVisibility(View.GONE);
                 } else {
-                    ivRight.setVisibility(View.VISIBLE);
+                    ivRightWeb.setVisibility(View.VISIBLE);
                 }
                 //是否显示标题
                 if ("0".equals(navigationBarData.getNavigationBar().getIsShowTitle())) {
-                    tvTitleContent.setVisibility(View.GONE);
+                    tvTitleContentWeb.setVisibility(View.GONE);
                 } else {
-                    tvTitleContent.setVisibility(View.VISIBLE);
+                    tvTitleContentWeb.setVisibility(View.VISIBLE);
                     //设置标题
-                    tvTitleContent.setText(navigationBarData.getNavigationBar().getTitle());
+                    tvTitleContentWeb.setText(navigationBarData.getNavigationBar().getTitle());
                     //标题显示的颜色
                     if (!TextUtils.isEmpty(navigationBarData.getNavigationBar().getTitleColor())) {
-                        tvTitleContent.setTextColor(Color.parseColor(navigationBarData.
+                        tvTitleContentWeb.setTextColor(Color.parseColor(navigationBarData.
                                 getNavigationBar().getTitleColor()));
                     }
                     //标题显示的字体的大小字号
                     if (!TextUtils.isEmpty(navigationBarData.getNavigationBar().getTitleSize())) {
-                        tvTitleContent.setTextSize(Float.valueOf(navigationBarData.
+                        tvTitleContentWeb.setTextSize(Float.valueOf(navigationBarData.
                                 getNavigationBar().getTitleSize()));
                     }
                 }
@@ -230,12 +231,12 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.iv_right) { //点击右边的分享按钮
+        if (id == R.id.iv_right_web) { //点击右边的分享按钮
             shareInfo(navigationBarDataBean);
-        } else if (id == R.id.iv_close) { //点击关闭按钮
+        } else if (id == R.id.iv_close_web) { //点击关闭按钮
             //关闭按钮
             closePage();
-        } else if (id == R.id.iv_back) { //点击左侧的返回键
+        } else if (id == R.id.iv_back_web) { //点击左侧的返回键
             if (!canGoBack()) {
                 //关闭页面
                 closePage();
@@ -273,10 +274,10 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
             });
             popupWindow.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED); //这句代码必须要才能获得正确的popupwindow的宽度
             int xOff;
-            int buttonWidth = ivRight.getWidth();
+            int buttonWidth = ivRightWeb.getWidth();
             int popupwindowWidth = popupWindow.getContentView().getMeasuredWidth();
             xOff = buttonWidth - popupwindowWidth + 45;
-            popupWindow.showAsDropDown(ivRight, xOff, 0);
+            popupWindow.showAsDropDown(ivRightWeb, xOff, 0);
         }
     }
 
