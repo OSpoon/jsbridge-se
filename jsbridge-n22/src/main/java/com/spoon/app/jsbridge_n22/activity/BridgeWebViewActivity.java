@@ -183,6 +183,10 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      */
     private void setLeftOrCloseImage(ImageView ivLeft, ImageView ivClose, String changeLeftImage) {
         switch (changeLeftImage) {
+            case "0":
+                ivLeft.setImageResource(R.drawable.img_common_back_yellow);
+                ivClose.setImageResource(R.drawable.img_common_close_yellow);
+                break;
             case "1":
                 ivLeft.setImageResource(R.drawable.img_common_back_black);
                 ivClose.setImageResource(R.drawable.img_common_close_black);

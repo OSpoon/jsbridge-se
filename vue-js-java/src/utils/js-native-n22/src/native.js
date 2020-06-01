@@ -255,6 +255,15 @@ const native = {
         fail(result.content)
       }
     })
+  },
+  showNavigationBar(data, success, fail) {
+    bridge.callhandler('showNavigationBar', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
   }
 }
 

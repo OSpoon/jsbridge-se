@@ -715,4 +715,77 @@ API`goHome`示例:
           alert(error)
         })
 ```
+##### 27. showNavigationBar:显示原生导航栏
+> 可以通过此API调用原生页面的导航栏
+
+请求参数: 
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+isShowNavigationBar | String | 0是隐藏，1是显示 | 显示原生的导航栏
+navigationBar | Object | 无 | 导航栏对象
+isShowShare | String | 0是隐藏，1是显示 | 是否显示分享按钮
+changeLeftImage | String | 0代表黄色返回按钮，1代表黑色返回按钮，2代表灰色返回按钮，3代表白色按钮 | 显示不同样式的导航栏（备注：不同样式的返回按钮需要不同背景的导航颜色作为支撑）
+changeRightImage | 数组 | 无 | 显示导航栏上的功能的数组
+id | String | 无 | 显示功能的ID
+image | String | 0，1，2，3各代表一种图片显示样式 | 显示功能的图片
+method | String | 无 | 前端页面需要做的操作（前端页面需要调用什么方法做什么操作需要传入方法）
+methodDec | String | 无 | 前端方法的描述
+sort | int | 无 | 前端方法显示在导航栏内的顺序
+isShowClose | String | 0是隐藏，1是显示 | 是否显示关闭按钮
+isShowTitle | String | 0是隐藏，1是显示 | 是否显示标题
+navigationBarBackGroundColor | String | 无 | 标题栏的背景颜色
+title | String | 无 | 标题栏的标题
+titleColor | String | 无 | 标题显示的颜色
+titleSize | String | 无 | 标题显示的字体的大小字号
+shareModel | Object | 无 | 分享的信息的对象
+shareContent | String | 无 | 分享的内容
+shareImageUrl | String | 无 | 分享图标的url
+shareTitle | String | 无 | 分享标题
+shareWebUrl | String | 无 | 分享的跳转链接
+
+响应参数: 无
+
+API`showNavigationBar`示例:
+
+```js
+  native.showNavigationBar({
+          isShowNavigationBar: '0是隐藏，1是显示',
+          isShowShare: '0是隐藏，1是显示',
+          navigationBar: {
+            changeLeftImage: '0代表黄色返回按钮，1代表黑色返回按钮，2代表灰色返回按钮，3代表白色按钮',
+            changeRightImage: [
+              {
+                id: '显示功能的ID',
+                image: '0，1，2，3各代表一种图片显示样式',
+                method: '前端页面需要做的操作',
+                methodDec: '前端方法的描述',
+                sort: 1
+              },
+              {
+                id: '显示功能的ID',
+                image: '0，1，2，3各代表一种图片显示样式',
+                method: '前端页面需要做的操作',
+                methodDec: '前端方法的描述',
+                sort: 1
+              }
+            ],
+            isShowClose: '是否显示关闭按钮，0是隐藏，1是显示',
+            isShowTitle: '是否显示标题 0隐藏1显示',
+            navigationBarBackGroundColor: '标题栏的背景颜色',
+            title: '标题栏的标题',
+            titleColor: '标题显示的颜色',
+            titleSize: '标题显示的字体的大小字号'
+          },
+          shareModel: {
+            shareDescription: '分享的内容',
+            imageUrl: '分享图标的url',
+            shareTitle: '分享标题',
+            shareUrl: '分享的跳转链接'
+          }
+        }, (content) => {
+          alert(JSON.stringify(content))
+        }, (error) => {
+          alert(error)
+        })
+```
 

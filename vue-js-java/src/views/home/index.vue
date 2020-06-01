@@ -84,6 +84,8 @@
     <p />
     <van-button type="primary" block @click="goHome()">回到首页</van-button>
     <p />
+    <van-button type="primary" block @click="showNavigationBar()">显示原生导航栏</van-button>
+    <p />
     <van-uploader :after-read="afterRead" />
   </div>
 </template>
@@ -552,6 +554,47 @@ export default {
     },
     goHome() {
       native.goHome((content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    showNavigationBar() {
+      native.showNavigationBar({
+        isShowNavigationBar: '0是隐藏，1是显示',
+        isShowShare: '0是隐藏，1是显示',
+        navigationBar: {
+          changeLeftImage: '0代表黄色返回按钮，1代表黑色返回按钮，2代表灰色返回按钮，3代表白色按钮',
+          changeRightImage: [
+            {
+              id: '显示功能的ID',
+              image: '0，1，2，3各代表一种图片显示样式',
+              method: '前端页面需要做的操作',
+              methodDec: '前端方法的描述',
+              sort: 0
+            },
+            {
+              id: '显示功能的ID',
+              image: '0，1，2，3各代表一种图片显示样式',
+              method: '前端页面需要做的操作',
+              methodDec: '前端方法的描述',
+              sort: 1
+            }
+          ],
+          isShowClose: '是否显示关闭按钮，0是隐藏，1是显示',
+          isShowTitle: '是否显示标题 0隐藏1显示',
+          navigationBarBackGroundColor: '标题栏的背景颜色',
+          title: '标题栏的标题',
+          titleColor: '标题显示的颜色',
+          titleSize: '标题显示的字体的大小字号'
+        },
+        shareModel: {
+          shareDescription: '分享的内容',
+          imageUrl: '分享图标的url',
+          shareTitle: '分享标题',
+          shareUrl: '分享的跳转链接'
+        }
+      }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
