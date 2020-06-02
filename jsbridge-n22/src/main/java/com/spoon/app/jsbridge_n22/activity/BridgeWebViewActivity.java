@@ -1,7 +1,10 @@
 package com.spoon.app.jsbridge_n22.activity;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +46,7 @@ import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_
  * @author thinkpad
  */
 public class BridgeWebViewActivity extends BaseActivity implements View.OnClickListener {
+    MyBroadcastReceiver mMyBroadcastReceiver;
 
     private final static String ROOT_URL = "ROOT_URL";
     /**
@@ -68,18 +73,18 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     private final static String DATA = "data";
     private NavigationBarDataBean navigationBarDataBean;
 
-    public static void start(Activity activity, String url, int requestCode) {
+    public static void start(Activity activity, String url) {
         Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
-        activity.startActivityForResult(intent, requestCode);
+        activity.startActivity(intent);
     }
 
-    public static void start(Activity activity, String url, NavigationBarDataBean navigationBarDataBean,
-                             int requestCode) {
+    public static void start(Activity activity, String url,
+                             NavigationBarDataBean navigationBarDataBean) {
         Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
         intent.putExtra(DATA, navigationBarDataBean);
-        activity.startActivityForResult(intent, requestCode);
+        activity.startActivity(intent);
     }
 
     @Override
@@ -91,8 +96,19 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         //获取用户信息并且设置cookie
         getUserInfo();
         initView();
+        initBrocast();
         setNavigationBarData(navigationBarDataBean);
         initData();
+    }
+
+    /**
+     * 注册广播
+     */
+    private void initBrocast() {
+        //注册广播用于接收Js通过插件Push到原生的数据
+        mMyBroadcastReceiver = new MyBroadcastReceiver();
+        registerReceiver(mMyBroadcastReceiver, new IntentFilter("com.n22.jsbridge.JS_TITLE_BAR_DATA"));
+
     }
 
     /**
@@ -178,9 +194,9 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     /**
      * 设置返回和关闭按钮的图片
      *
-     * @param ivLeft
-     * @param ivClose
-     * @param changeLeftImage
+     * @param ivLeft:左边的返回按钮
+     * @param ivClose：左边的关闭按钮
+     * @param changeLeftImage：设置图片的标志
      */
     private void setLeftOrCloseImage(ImageView ivLeft, ImageView ivClose, String changeLeftImage) {
         switch (changeLeftImage) {
@@ -376,6 +392,7 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         if (this != null) {
             this.finish();
         }
+
     }
 
     /**
@@ -403,6 +420,21 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
             if (bridgeWebview.getChromeClient() != null) {
                 bridgeWebview.getChromeClient().getUploadMessage().onActivityResult(requestCode, resultCode, data);
             }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mMyBroadcastReceiver);
+        super.onDestroy();
+    }
+
+    public class MyBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            NavigationBarDataBean navigationBarData = (NavigationBarDataBean) intent.getSerializableExtra("navigationBarData");
+            setNavigationBarData(navigationBarData);
+            Log.i("BroadcastReceiver", "event::: " + navigationBarData);
         }
     }
 }

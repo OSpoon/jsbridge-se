@@ -1,7 +1,5 @@
 package com.ospoon.app.sunlife.jsbridge_plugins_n22.request;
 
-import org.w3c.dom.Text;
-
 import java.io.Serializable;
 import java.util.Map;
 

@@ -86,27 +86,7 @@ public class BridgeWebView extends WebView implements IWebView {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             getSettings().setAllowUniversalAccessFromFileURLs(true);
         }
-//        try {
-//            if (Build.VERSION.SDK_INT >= 16) {
-//                Class<?> clazz = getSettings().getClass();
-//                Method method = clazz.getMethod(
-//                        "setAllowUniversalAccessFromFileURLs", boolean.class);//利用反射机制去修改设置对象
-//                if (method != null) {
-//                    method.invoke(getSettings(), true);//修改设置
-//                }
-//            }
-//        } catch (IllegalArgumentException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
-
         bridgeTiny = new BridgeTiny(this);
-
         mClient = new BridgeWebViewClient(this, bridgeTiny, listener);
         super.setWebViewClient(mClient);
         mChromeClient = BridgeWebChromeClient.createBuild(progressbar, loadingDialog, new BridgeWebChromeClient.ActivityCallBack() {

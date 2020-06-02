@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.blankj.utilcode.util.FileUtils;
-import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.Constants;
@@ -68,9 +66,9 @@ public class MainActivity extends Activity {
                 shareModelBean.setShareDescription("光速宝3.0更新");
                 shareModelBean.setShareUrl("https://www.baidu.com");
                 navigationBarDataBean.setShareModel(shareModelBean);
-                BridgeWebViewActivity.start(MainActivity.this,
-                        "file:///android_asset/www/index.html#/personal/personalInfo", navigationBarDataBean, 2);
-//                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean, 2);
+//                BridgeWebViewActivity.start(MainActivity.this,
+//                        "file:///android_asset/www/index.html#/personal/personalInfo", navigationBarDataBean, 2);
+                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean);
             }
         });
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {

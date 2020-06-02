@@ -9,7 +9,6 @@ import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ClosePageBridgeHandle
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DeviceBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DictationBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.FaceScanBridgerHandler;
-import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.GoHomeBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.IDCardScanBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ImageSelectBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.JsPushDataBridgeHandler;
@@ -25,6 +24,7 @@ import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SecurityBridgeHandler
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SendMsgBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ShareWechatBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SharedPreferencesBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ShowNavigationBarBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SwitchScreenBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ToastBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.Bridge;
@@ -66,7 +66,7 @@ public class AppContext extends Application {
                 DictationBridgeHandler.class,
                 JsPushDataBridgeHandler.class,
                 PicPreviewBridgeHandler.class,
-                GoHomeBridgeHandler.class,
+                ShowNavigationBarBridgeHandler.class,
                 OpenContactBridgeHandler.class);
     }
 }

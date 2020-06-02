@@ -17,11 +17,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.blankj.utilcode.util.Utils;
-import com.google.gson.Gson;
-import com.spoon.app.jsbridge_n22.bean.UserInfoBean;
-import com.spoon.app.jsbridge_n22.utils.CookieUtils;
-import com.spoon.app.jsbridge_n22.utils.GsonUtils;
 
 
 /**
