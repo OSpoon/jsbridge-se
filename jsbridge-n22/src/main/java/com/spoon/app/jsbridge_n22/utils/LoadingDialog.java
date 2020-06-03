@@ -32,7 +32,8 @@ public class LoadingDialog extends Dialog {
         initView();
         //单击dialog之外的地方，不可以dismiss掉dialog
         setCanceledOnTouchOutside(false);
-//        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND | WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND |
+                WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         showImage();
     }
 

@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 final String host = edit_host.getText().toString();
                 if (!TextUtils.isEmpty(host)) {
-                    BridgeWebViewActivity.start(MainActivity.this, host, 1);
+                    BridgeWebViewActivity.start(MainActivity.this, host);
                 } else {
                     Toast.makeText(MainActivity.this, "请填写访问地址", Toast.LENGTH_SHORT).show();
                 }
@@ -66,9 +66,9 @@ public class MainActivity extends Activity {
                 shareModelBean.setShareDescription("光速宝3.0更新");
                 shareModelBean.setShareUrl("https://www.baidu.com");
                 navigationBarDataBean.setShareModel(shareModelBean);
-//                BridgeWebViewActivity.start(MainActivity.this,
-//                        "file:///android_asset/www/index.html#/personal/personalInfo", navigationBarDataBean, 2);
-                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean);
+                BridgeWebViewActivity.start(MainActivity.this,
+                        "file:///android_asset/www/index.html#/personal/personalInfo", navigationBarDataBean);
+//                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean);
             }
         });
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {

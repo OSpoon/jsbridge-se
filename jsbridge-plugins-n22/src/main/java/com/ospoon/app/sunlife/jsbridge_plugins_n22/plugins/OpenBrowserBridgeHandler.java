@@ -61,7 +61,7 @@ public class OpenBrowserBridgeHandler extends BaseBridgeHandler {
                 if (options != null) {
                     BridgeWebViewCustomActivity.start(getActivity(), url, options);
                 } else {
-                    BridgeWebViewActivity.start(getActivity(), url,1);
+                    BridgeWebViewActivity.start(getActivity(), url);
                 }
             } else if (mode == OpenBrowserEmun.X5_WEB.getCode()) {
                 if (options != null) {
