@@ -1,6 +1,7 @@
 package com.spoon.app.jsbridge_n22.core;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -14,6 +15,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.spoon.app.jsbridge_n22.R;
+import com.spoon.app.jsbridge_n22.activity.BridgeWebViewActivity;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
 import com.spoon.app.jsbridge_n22.utils.LoadingDialog;
 
@@ -21,6 +23,7 @@ import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_
 
 @SuppressLint("SetJavaScriptEnabled")
 public class BridgeWebView extends WebView implements IWebView {
+
 
     private ProgressBar progressbar;
 
@@ -32,10 +35,12 @@ public class BridgeWebView extends WebView implements IWebView {
     private BridgeWebChromeClient mChromeClient;
     private LoadingDialog loadingDialog;
 
+
     public BridgeWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
+
 
     public BridgeWebView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -99,7 +104,7 @@ public class BridgeWebView extends WebView implements IWebView {
                             Log.e("BridgeWebView", "类型转换出现异常,使用webview的activity需要继承自BaseActivity");
                         }
                     }
-                }, (BaseActivity) context);
+                });
         super.setWebChromeClient(mChromeClient);
     }
 

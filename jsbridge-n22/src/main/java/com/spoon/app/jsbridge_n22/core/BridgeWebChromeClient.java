@@ -27,15 +27,13 @@ public class BridgeWebChromeClient extends WebChromeClient {
         private ActivityCallBack callBack;
         private ProgressBar progressbar;
         private LoadingDialog loadingDialog;
-        private Activity activity;
 
         BridgeWebChromeClientBuild(ProgressBar progressbar, LoadingDialog loadingDialog,
-                                   ActivityCallBack callBack, Activity activity) {
+                                   ActivityCallBack callBack) {
             this.uploadMessage = new UploadMessage();
             this.callBack = callBack;
             this.progressbar = progressbar;
             this.loadingDialog = loadingDialog;
-            this.activity = activity;
         }
 
         public BridgeWebChromeClient build() {
@@ -45,8 +43,8 @@ public class BridgeWebChromeClient extends WebChromeClient {
     }
 
     public static BridgeWebChromeClient createBuild(ProgressBar progressbar, LoadingDialog loadingDialog,
-                                                    ActivityCallBack callBack, Activity activity) {
-        return new BridgeWebChromeClientBuild(progressbar, loadingDialog, callBack, activity).build();
+                                                    ActivityCallBack callBack) {
+        return new BridgeWebChromeClientBuild(progressbar, loadingDialog, callBack).build();
     }
 
     BridgeWebChromeClientBuild build;
@@ -64,11 +62,11 @@ public class BridgeWebChromeClient extends WebChromeClient {
         if (newProgress == 100) {
             build.progressbar.setVisibility(GONE);
             //判断当前activity是否销毁，防止窗体泄露
-            if (build.loadingDialog != null && !build.activity.isFinishing()) {
+            if (build.loadingDialog != null) {
                 build.loadingDialog.dismiss();
             }
         } else {
-            if (build.loadingDialog != null && !build.activity.isFinishing()) {
+            if (build.loadingDialog != null) {
                 build.loadingDialog.show();
             }
             if (build.progressbar.getVisibility() == GONE) {
