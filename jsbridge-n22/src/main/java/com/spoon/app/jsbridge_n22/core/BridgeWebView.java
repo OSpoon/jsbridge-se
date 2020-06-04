@@ -89,16 +89,17 @@ public class BridgeWebView extends WebView implements IWebView {
         bridgeTiny = new BridgeTiny(this);
         mClient = new BridgeWebViewClient(this, bridgeTiny, listener);
         super.setWebViewClient(mClient);
-        mChromeClient = BridgeWebChromeClient.createBuild(progressbar, loadingDialog, new BridgeWebChromeClient.ActivityCallBack() {
-            @Override
-            public void FileChooserBack(Intent intent) {
-                try {
-                    ((BaseActivity) context).startActivityForResult(intent, FILE_CHOOSER_RESULT_CODE);
-                } catch (Exception e) {
-                    Log.e("BridgeWebView", "类型转换出现异常,使用webview的activity需要继承自BaseActivity");
-                }
-            }
-        });
+        mChromeClient = BridgeWebChromeClient.createBuild(progressbar, loadingDialog,
+                new BridgeWebChromeClient.ActivityCallBack() {
+                    @Override
+                    public void FileChooserBack(Intent intent) {
+                        try {
+                            ((BaseActivity) context).startActivityForResult(intent, FILE_CHOOSER_RESULT_CODE);
+                        } catch (Exception e) {
+                            Log.e("BridgeWebView", "类型转换出现异常,使用webview的activity需要继承自BaseActivity");
+                        }
+                    }
+                }, (BaseActivity) context);
         super.setWebChromeClient(mChromeClient);
     }
 

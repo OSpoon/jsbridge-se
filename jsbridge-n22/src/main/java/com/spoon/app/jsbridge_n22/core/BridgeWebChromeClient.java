@@ -1,6 +1,7 @@
 package com.spoon.app.jsbridge_n22.core;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -22,16 +23,19 @@ import static android.view.View.VISIBLE;
  */
 public class BridgeWebChromeClient extends WebChromeClient {
     static class BridgeWebChromeClientBuild {
-        UploadMessage uploadMessage;
-        ActivityCallBack callBack;
-        ProgressBar progressbar;
-        LoadingDialog loadingDialog;
+        private UploadMessage uploadMessage;
+        private ActivityCallBack callBack;
+        private ProgressBar progressbar;
+        private LoadingDialog loadingDialog;
+        private Activity activity;
 
-        BridgeWebChromeClientBuild(ProgressBar progressbar, LoadingDialog loadingDialog, ActivityCallBack callBack) {
+        BridgeWebChromeClientBuild(ProgressBar progressbar, LoadingDialog loadingDialog,
+                                   ActivityCallBack callBack, Activity activity) {
             this.uploadMessage = new UploadMessage();
             this.callBack = callBack;
             this.progressbar = progressbar;
             this.loadingDialog = loadingDialog;
+            this.activity = activity;
         }
 
         public BridgeWebChromeClient build() {
@@ -40,8 +44,9 @@ public class BridgeWebChromeClient extends WebChromeClient {
 
     }
 
-    public static BridgeWebChromeClient createBuild(ProgressBar progressbar, LoadingDialog loadingDialog, ActivityCallBack callBack) {
-        return new BridgeWebChromeClientBuild(progressbar, loadingDialog, callBack).build();
+    public static BridgeWebChromeClient createBuild(ProgressBar progressbar, LoadingDialog loadingDialog,
+                                                    ActivityCallBack callBack, Activity activity) {
+        return new BridgeWebChromeClientBuild(progressbar, loadingDialog, callBack, activity).build();
     }
 
     BridgeWebChromeClientBuild build;
@@ -58,11 +63,12 @@ public class BridgeWebChromeClient extends WebChromeClient {
     public void onProgressChanged(WebView view, int newProgress) {
         if (newProgress == 100) {
             build.progressbar.setVisibility(GONE);
-            if (build.loadingDialog != null) {
+            //判断当前activity是否销毁，防止窗体泄露
+            if (build.loadingDialog != null && !build.activity.isFinishing()) {
                 build.loadingDialog.dismiss();
             }
         } else {
-            if (build.loadingDialog != null) {
+            if (build.loadingDialog != null && !build.activity.isFinishing()) {
                 build.loadingDialog.show();
             }
             if (build.progressbar.getVisibility() == GONE) {

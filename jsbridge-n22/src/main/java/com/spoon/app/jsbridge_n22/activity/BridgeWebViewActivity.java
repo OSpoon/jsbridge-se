@@ -30,11 +30,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.google.gson.Gson;
 import com.spoon.app.jsbridge_n22.R;
 import com.spoon.app.jsbridge_n22.adapter.NavigationBarAdapter;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
 import com.spoon.app.jsbridge_n22.bean.NavigationBarDataBean;
+import com.spoon.app.jsbridge_n22.bean.UserInfoBean;
 import com.spoon.app.jsbridge_n22.core.BridgeWebView;
+import com.spoon.app.jsbridge_n22.utils.CookieUtils;
 import com.spoon.app.jsbridge_n22.utils.ShareUtils;
 
 import java.util.Collections;
@@ -228,9 +231,9 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         //获取用户信息
         SPUtils instance = SPUtils.getInstance();
         String userInfo = instance.getString("userInfo");
-//        UserInfoBean userInfoBean = new Gson().fromJson(userInfo, UserInfoBean.class);
-//        Log.e("tag", "onCreate: " + userInfoBean.getToken());
-//        CookieUtils.synCookies(url, userInfoBean.getToken(), this);
+        UserInfoBean userInfoBean = new Gson().fromJson(userInfo, UserInfoBean.class);
+        Log.e("tag", "onCreate: " + userInfoBean.getToken());
+        CookieUtils.synCookies(url, userInfoBean.getToken(), this);
     }
 
 
