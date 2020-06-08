@@ -247,8 +247,8 @@ const native = {
       }
     })
   },
-  goHome(data, success, fail) {
-    bridge.callhandler('goHome', data, (result) => {
+  goHome(success, fail) {
+    bridge.callhandler('goHome', '', (result) => {
       if (!result.error) {
         success(result.content)
       } else {
