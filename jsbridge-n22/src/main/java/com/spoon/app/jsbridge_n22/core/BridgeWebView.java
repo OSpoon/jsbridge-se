@@ -79,6 +79,7 @@ public class BridgeWebView extends WebView implements IWebView {
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         getSettings().setJavaScriptEnabled(true);
         getSettings().setDomStorageEnabled(true);//开启
+
 //        mContent.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         //开启Http和Https混用
@@ -141,5 +142,6 @@ public class BridgeWebView extends WebView implements IWebView {
     public BridgeWebChromeClient getChromeClient() {
         return mChromeClient;
     }
+
 
 }

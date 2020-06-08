@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import com.spoon.app.jsbridge_n22.core.BridgeHandler;
@@ -19,6 +20,7 @@ public abstract class BaseBridgeHandler extends BridgeHandler implements MAInter
 
     public CallBackFunction callBack;
     private BaseActivity activity;
+    private FragmentActivity fragmentActivity;
 
     @SuppressLint("WrongConstant")
     @Override
