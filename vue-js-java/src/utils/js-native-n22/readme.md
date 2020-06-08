@@ -65,6 +65,8 @@ isTablet | boolean | 无 | 判断是否是平板
 isEmulator | boolean | 无 | 判断是否是模拟器
 uniqueDeviceId | String | 无 | 获取唯一设备 ID
 isSameDevice | boolean | 无 | 判断是否同一设备
+statusHeight | String | 无 | 留海高度
+bottomHeight | String | 无 | 设备底部安全距离
 
 API`device`示例:
 ```js
@@ -738,10 +740,10 @@ title | String | 无 | 标题栏的标题
 titleColor | String | 无 | 标题显示的颜色
 titleSize | String | 无 | 标题显示的字体的大小字号
 shareModel | Object | 无 | 分享的信息的对象
-shareContent | String | 无 | 分享的内容
-shareImageUrl | String | 无 | 分享图标的url
+shareDescription | String | 无 | 分享的内容
+imageUrl | String | 无 | 分享图标的url
 shareTitle | String | 无 | 分享标题
-shareWebUrl | String | 无 | 分享的跳转链接
+shareUrl | String | 无 | 分享的跳转链接
 
 响应参数: 无
 
