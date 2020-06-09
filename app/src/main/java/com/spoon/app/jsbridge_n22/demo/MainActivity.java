@@ -49,25 +49,27 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
 //                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
 //                BridgeWebViewActivity.start(MainActivity.this, "file:///android_asset/www/index.html#/personal/personalInfo");
-                NavigationBarDataBean navigationBarDataBean = new NavigationBarDataBean();
-                NavigationBarDataBean.NavigationBarBean navigationBarBean = new NavigationBarDataBean.NavigationBarBean();
-                navigationBarDataBean.setIsShowShare("1");
-                navigationBarDataBean.setIsShowNavigationBar("1");
-                navigationBarBean.setIsShowClose("1");
-                navigationBarBean.setIsShowTitle("1");
-                navigationBarBean.setTitle("我是个人中心");
-                navigationBarBean.setTitleColor("#FC7989");
-                navigationBarBean.setTitleSize("12");
-
-                navigationBarDataBean.setNavigationBar(navigationBarBean);
-                NavigationBarDataBean.ShareModelBean shareModelBean = new NavigationBarDataBean.ShareModelBean();
-                shareModelBean.setImageUrl("https://xinyidongzhanyeguangsubao-st-1254235118.cos.ap-beijing.myqcloud.com/PC/showConfig/hotSaleProduct/Show/2020-05-15/1589523629974_41586340874_.pic_hd.jpg");
-                shareModelBean.setShareTitle("我是分享页面的标题");
-                shareModelBean.setShareDescription("光速宝3.0更新");
-                shareModelBean.setShareUrl("https://www.baidu.com");
-                navigationBarDataBean.setShareModel(shareModelBean);
+//                NavigationBarDataBean navigationBarDataBean = new NavigationBarDataBean();
+//                NavigationBarDataBean.NavigationBarBean navigationBarBean = new NavigationBarDataBean.NavigationBarBean();
+//                navigationBarDataBean.setIsShowShare("1");
+//                navigationBarDataBean.setIsShowNavigationBar("1");
+//                navigationBarBean.setIsShowClose("1");
+//                navigationBarBean.setIsShowTitle("1");
+//                navigationBarBean.setTitle("我是个人中心");
+//                navigationBarBean.setTitleColor("#FC7989");
+//                navigationBarBean.setTitleSize("12");
+//
+//                navigationBarDataBean.setNavigationBar(navigationBarBean);
+//                NavigationBarDataBean.ShareModelBean shareModelBean = new NavigationBarDataBean.ShareModelBean();
+//                shareModelBean.setImageUrl("https://xinyidongzhanyeguangsubao-st-1254235118.cos.ap-beijing.myqcloud.com/PC/showConfig/hotSaleProduct/Show/2020-05-15/1589523629974_41586340874_.pic_hd.jpg");
+//                shareModelBean.setShareTitle("我是分享页面的标题");
+//                shareModelBean.setShareDescription("光速宝3.0更新");
+//                shareModelBean.setShareUrl("https://www.baidu.com");
+//                navigationBarDataBean.setShareModel(shareModelBean);
+//                BridgeWebViewActivity.start(MainActivity.this,
+//                        "file:///android_asset/www/index.html#/personal/personalInfo", navigationBarDataBean);
                 BridgeWebViewActivity.start(MainActivity.this,
-                        "file:///android_asset/www/index.html#/personal/personalInfo", navigationBarDataBean);
+                        "https://wd.e-sleb.com/app.html#/myWechartShop?agentCode=KgG%2FSdkIzMS6eIP6i0mA2w%3D%3D&branchtype=01", null);
 //                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean);
             }
         });

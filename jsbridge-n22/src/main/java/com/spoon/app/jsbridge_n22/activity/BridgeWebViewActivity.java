@@ -188,9 +188,15 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
                                 getNavigationBar().getTitleSize()));
                     }
                 }
-                changeRightImageBeanList = navigationBarData.getNavigationBar().getChangeRightImage();
-                Collections.sort(changeRightImageBeanList);
-                navigationBarAdapter.setNewData(changeRightImageBeanList);
+
+                if (navigationBarData.getNavigationBar().getChangeRightImage() != null) {
+                    changeRightImageBeanList = navigationBarData.getNavigationBar().getChangeRightImage();
+                    if (changeRightImageBeanList != null && changeRightImageBeanList.size() > 0) {
+                        Collections.sort(changeRightImageBeanList);
+                    }
+                    navigationBarAdapter.setNewData(changeRightImageBeanList);
+                }
+
             }
         }
     }
