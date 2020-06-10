@@ -75,11 +75,13 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     private BridgeWebView bridgeWebview;
     private String url;
     private final static String DATA = "data";
+    private final static String ACTIVITY_ID= "activity_id";
     private NavigationBarDataBean navigationBarDataBean;
 
     public static void start(Activity activity, String url) {
         Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
+        intent.putExtra(ACTIVITY_ID, activity.toString());
         activity.startActivity(intent);
     }
 
@@ -88,6 +90,7 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
         intent.putExtra(DATA, navigationBarDataBean);
+        intent.putExtra(ACTIVITY_ID, activity.toString());
         activity.startActivity(intent);
     }
 
@@ -120,6 +123,8 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      */
     private void initView() {
         bridgeWebview = findViewById(R.id.activity_bridge_webview);
+        super.setBridgeWebView(bridgeWebview);
+        setParentActivityId(getIntent().getStringExtra(ACTIVITY_ID));
         rlTitleBarWeb = findViewById(R.id.rl_title_bar_web);
         tvTitleContentWeb = findViewById(R.id.tv_title_middle_web);
         ivLeftWeb = findViewById(R.id.iv_back_web);
@@ -447,4 +452,6 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
             Log.i("BroadcastReceiver", "event::: " + navigationBarData);
         }
     }
+
+
 }

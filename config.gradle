@@ -59,5 +59,6 @@ ext {
             "toprightmenu"          : "com.zaaach:toprightmenu:1.1.2",
             "gifDrawable"           : "pl.droidsonroids.gif:android-gif-drawable:1.2.7",
             "baseAdapter"           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42",
+            "eventbus"              : "org.greenrobot:eventbus:3.2.0",
     ]
 }

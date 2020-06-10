@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
+import com.spoon.app.jsbridge_n22.utils.Utils;
 
 /**
  * author : zhangxin
@@ -24,9 +25,10 @@ public class ClosePageBridgeHandler extends BaseBridgeHandler {
 
     @Override
     public void process(String data) {
-        try{
+        try {
+            Utils.postParentWebViewMessage(getActivity().getParentActivityId(), "closeCallBack", "200");
             getActivity().finish();
-        }catch (Exception e){
+        } catch (Exception e) {
         }
     }
 

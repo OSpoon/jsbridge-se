@@ -113,6 +113,10 @@ export default {
       alert(JSON.stringify(data))
       responseCallback('JS OK')
     })
+    native.bridge.registerhandler('closeCallBack', (data, responseCallback) => {
+      alert(JSON.stringify(data))
+      responseCallback('CLOSE OK')
+    })
   },
   methods: {
     /**

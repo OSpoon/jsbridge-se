@@ -67,6 +67,7 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
 
     private final static String ROOT_URL = "ROOT_URL";
     private final static String OPTIONS = "OPTIONS";
+    private final static String ACTIVITY_ID= "activity_id";
     private Options options;
 
     private BridgeWebView inAppWebView;
@@ -74,6 +75,7 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
     public static void start(Context context, String url) {
         Intent intent = new Intent(context, BridgeWebViewCustomActivity.class);
         intent.putExtra(ROOT_URL, url);
+        intent.putExtra(ACTIVITY_ID, context.toString());
         context.startActivity(intent);
     }
 
@@ -81,6 +83,7 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
         Intent intent = new Intent(context, BridgeWebViewCustomActivity.class);
         intent.putExtra(ROOT_URL, url);
         intent.putExtra(OPTIONS, options);
+        intent.putExtra(ACTIVITY_ID, context.toString());
         context.startActivity(intent);
     }
 
@@ -374,7 +377,8 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
             ((LinearLayout.LayoutParams) inAppWebViewParams).weight = 1;
         }
         inAppWebView.setLayoutParams(inAppWebViewParams);
-
+        super.setBridgeWebView(inAppWebView);
+        setParentActivityId(getIntent().getStringExtra(ACTIVITY_ID));
         if (features.clearcache) {
             CookieManager.getInstance().removeAllCookie();
         } else if (features.clearsessioncache) {

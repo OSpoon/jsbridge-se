@@ -57,12 +57,14 @@ public class X5WebViewCustomActivity extends BaseActivity {
 
     private final static String ROOT_URL = "ROOT_URL";
     private final static String OPTIONS = "OPTIONS";
+    private final static String ACTIVITY_ID= "activity_id";
 
     private X5WebView inAppWebView;
 
     public static void start(Context context, String url) {
         Intent intent = new Intent(context, X5WebViewCustomActivity.class);
         intent.putExtra(ROOT_URL, url);
+        intent.putExtra(ACTIVITY_ID, context.toString());
         context.startActivity(intent);
     }
 
@@ -70,6 +72,7 @@ public class X5WebViewCustomActivity extends BaseActivity {
         Intent intent = new Intent(context, X5WebViewCustomActivity.class);
         intent.putExtra(ROOT_URL, url);
         intent.putExtra(OPTIONS, options);
+        intent.putExtra(ACTIVITY_ID, context.toString());
         context.startActivity(intent);
     }
 
@@ -366,7 +369,8 @@ public class X5WebViewCustomActivity extends BaseActivity {
             ((LinearLayout.LayoutParams) inAppWebViewParams).weight = 1;
         }
         inAppWebView.setLayoutParams(inAppWebViewParams);
-
+        super.setX5WebView(inAppWebView);
+        setParentActivityId(getIntent().getStringExtra(ACTIVITY_ID));
         if (features.clearcache) {
             CookieManager.getInstance().removeAllCookie();
         } else if (features.clearsessioncache) {

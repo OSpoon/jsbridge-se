@@ -15,12 +15,14 @@ import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_
 public class X5WebViewActivity extends BaseActivity {
 
     private final static String ROOT_URL = "ROOT_URL";
+    private final static String ACTIVITY_ID= "activity_id";
 
     private X5WebView x5WebView;
 
     public static void start(Context context, String url) {
         Intent intent = new Intent(context, X5WebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
+        intent.putExtra(ACTIVITY_ID, context.toString());
         context.startActivity(intent);
     }
 
@@ -29,6 +31,8 @@ public class X5WebViewActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_x5);
         x5WebView = findViewById(R.id.activity_x5_webview);
+        super.setX5WebView(x5WebView);
+        setParentActivityId(getIntent().getStringExtra(ACTIVITY_ID));
         String url = getIntent().getStringExtra(ROOT_URL);
         if (!TextUtils.isEmpty(url)) {
             x5WebView.loadUrl(url);

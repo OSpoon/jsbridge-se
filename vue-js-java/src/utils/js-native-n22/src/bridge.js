@@ -12,10 +12,10 @@ function setupWebViewJavascriptBridge(callback) {
         () => {
           console.info('listener WebViewJavascriptBridgeReady is finish')
           // 默认注册一个供Java验证连接成功函数
-          window.WebViewJavascriptBridge.init(function(message, responseCallback) {
-            console.info(message)
-            responseCallback('JS PONG')
-          })
+          // window.WebViewJavascriptBridge.init(function(message, responseCallback) {
+          //   console.info(message)
+          //   responseCallback('JS PONG')
+          // })
           callback(window.WebViewJavascriptBridge)
         },
         false

@@ -14,6 +14,11 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
+import com.spoon.app.jsbridge_n22.base.BaseActivity;
+import com.spoon.app.jsbridge_n22.bean.MessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -121,5 +126,15 @@ public class Utils {
         } catch (PackageManager.NameNotFoundException e) {
         }
         return appKey;
+    }
+
+    /**
+     * EventBus发送消息到父Webview页面数据
+     * @param parentActivityId 设置父activityId
+     * @param handlerName 设置回调函数名称
+     * @param data 设置回调数据
+     */
+    public static void postParentWebViewMessage(String parentActivityId, String handlerName, String data) {
+        EventBus.getDefault().post(new MessageEvent(parentActivityId, handlerName, data));
     }
 }
