@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:replace="android:theme">
+        tools:replace="android:theme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">
@@ -33,6 +34,7 @@
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoDisplay"
             android:screenOrientation="portrait" />
 
         <provider
@@ -48,7 +50,7 @@
         <!--高德定位开发者申请的key-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="cbf49c999a8d9bdc06ed5fec534e2f0f"></meta-data>
+            android:value="cbf49c999a8d9bdc06ed5fec534e2f0f"/>
 
         <!-- 科大讯飞移动统计分析 -->
         <meta-data
@@ -64,8 +66,8 @@
             android:value="wxba50597b5a9c762d" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

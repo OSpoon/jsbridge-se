@@ -19,7 +19,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -35,11 +34,15 @@ import com.google.gson.Gson;
 import com.spoon.app.jsbridge_n22.R;
 import com.spoon.app.jsbridge_n22.adapter.NavigationBarAdapter;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
+import com.spoon.app.jsbridge_n22.bean.MessageEvent;
 import com.spoon.app.jsbridge_n22.bean.NavigationBarDataBean;
 import com.spoon.app.jsbridge_n22.bean.UserInfoBean;
 import com.spoon.app.jsbridge_n22.core.BridgeWebView;
 import com.spoon.app.jsbridge_n22.utils.CookieUtils;
 import com.spoon.app.jsbridge_n22.utils.ShareUtils;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Collections;
 import java.util.List;
@@ -75,7 +78,7 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     private BridgeWebView bridgeWebview;
     private String url;
     private final static String DATA = "data";
-    private final static String ACTIVITY_ID= "activity_id";
+    private final static String ACTIVITY_ID = "activity_id";
     private NavigationBarDataBean navigationBarDataBean;
 
     public static void start(Activity activity, String url) {
@@ -286,13 +289,16 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     private void shareInfo(final NavigationBarDataBean navigationBarDataBean) {
         if (navigationBarDataBean != null) {
             View contentView = LayoutInflater.from(this).inflate(R.layout.dialog_popup_share, null);
-            PopupWindow popupWindow = createPop(contentView);
+            final PopupWindow popupWindow = createPop(contentView);
             //分享给朋友
             LinearLayout llShareFriends = contentView.findViewById(R.id.ll_share_friends);
             llShareFriends.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     shareToWechat(navigationBarDataBean, 0);
+                    if (popupWindow != null) {
+                        popupWindow.dismiss();
+                    }
                 }
             });
             //分享朋友圈
@@ -301,6 +307,9 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
                 @Override
                 public void onClick(View view) {
                     shareToWechat(navigationBarDataBean, 1);
+                    if (popupWindow != null) {
+                        popupWindow.dismiss();
+                    }
                 }
             });
             popupWindow.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED); //这句代码必须要才能获得正确的popupwindow的宽度
@@ -439,6 +448,15 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     }
 
     @Override
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if (event != null) {
+                if (bridgeWebview != null) {
+                    bridgeWebview.callHandler("GDINativePushData", event.getData(), getResponseCallback("bridgeWebView"));
+                }
+            }
+        }
+    @Override
     protected void onDestroy() {
         unregisterReceiver(mMyBroadcastReceiver);
         super.onDestroy();
@@ -447,11 +465,10 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     public class MyBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            //接收页面传过来的原生栏的配置
             NavigationBarDataBean navigationBarData = (NavigationBarDataBean) intent.getSerializableExtra("navigationBarData");
             setNavigationBarData(navigationBarData);
             Log.i("BroadcastReceiver", "event::: " + navigationBarData);
         }
     }
-
-
 }

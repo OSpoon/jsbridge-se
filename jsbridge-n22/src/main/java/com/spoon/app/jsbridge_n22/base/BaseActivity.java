@@ -56,7 +56,7 @@ public class BaseActivity extends Activity {
         }
     }
 
-    private OnBridgeCallback getResponseCallback(final String type) {
+    protected OnBridgeCallback getResponseCallback(final String type) {
         return new OnBridgeCallback() {
             @Override
             public void onCallBack(String data) {

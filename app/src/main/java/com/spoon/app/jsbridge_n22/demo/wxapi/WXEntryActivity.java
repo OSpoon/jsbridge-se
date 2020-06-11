@@ -10,12 +10,15 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.spoon.app.jsbridge_n22.bean.MessageEvent;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
+import org.greenrobot.eventbus.EventBus;
 
 
 /**
@@ -27,7 +30,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     private IWXAPI wxapi;
-//    public static final String wx_appid = "wxba50597b5a9c762d";
+    //    public static final String wx_appid = "wxba50597b5a9c762d";
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -60,6 +63,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
      */
     @Override
     public void onResp(BaseResp baseResp) {
+
         switch (baseResp.errCode) {
             // 正确返回
             case BaseResp.ErrCode.ERR_OK:
@@ -68,6 +72,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                     case ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX:
                         // 只是做了简单的finish操作
                         Toast.makeText(this, "分享成功", Toast.LENGTH_SHORT).show();
+                        EventBus.getDefault().post(new MessageEvent("分享成功"));
                         Log.e("tag", "onResp: " + "分享成功");
                         finish();
                         break;
@@ -83,6 +88,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 //                        Log.i("WXEntryActivity" , ">>>errCode = " + baseResp.errCode);
                         Toast.makeText(this, "分享失败", Toast.LENGTH_SHORT).show();
                         Log.e("tag", "onResp: " + "分享失败");
+                        EventBus.getDefault().post(new MessageEvent("分享失败"));
                         finish();
                         break;
                     default:
@@ -98,8 +104,9 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         try {
             ApplicationInfo ai = context.getPackageManager().getApplicationInfo(
                     context.getPackageName(), PackageManager.GET_META_DATA);
-            if (null != ai)
+            if (null != ai) {
                 metaData = ai.metaData;
+            }
             if (null != metaData) {
                 // MY_META_KEY是meta-data中对应的key值
                 appKey = metaData.getString("JSBRIDGE_N22_WECHAT_SHARE_KEY");

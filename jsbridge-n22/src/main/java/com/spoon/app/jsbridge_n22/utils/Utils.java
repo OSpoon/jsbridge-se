@@ -130,9 +130,10 @@ public class Utils {
 
     /**
      * EventBus发送消息到父Webview页面数据
+     *
      * @param parentActivityId 设置父activityId
-     * @param handlerName 设置回调函数名称
-     * @param data 设置回调数据
+     * @param handlerName      设置回调函数名称
+     * @param data             设置回调数据
      */
     public static void postParentWebViewMessage(String parentActivityId, String handlerName, String data) {
         EventBus.getDefault().post(new MessageEvent(parentActivityId, handlerName, data));
