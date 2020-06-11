@@ -790,4 +790,21 @@ API`showNavigationBar`示例:
           alert(error)
         })
 ```
+##### 28. GDINativePushData:原生推送前端页面数据方法
+> 可以通过此API调用原生推送前端页面数据方法
 
+请求参数:无
+
+响应参数: 
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+data | String | 操作成功或者操作失败 | 返回的内容
+
+API`GDINativePushData`示例:
+
+```js
+  native.bridge.registerhandler('GDINativePushData', (data, responseCallback) => {
+        alert(JSON.stringify(data))//在此方法内做前端页面的操作
+        responseCallback('GDINativePushData OK')
+      })
+```

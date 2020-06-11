@@ -117,6 +117,10 @@ export default {
       alert(JSON.stringify(data))
       responseCallback('CLOSE OK')
     })
+    native.bridge.registerhandler('GDINativePushData', (data, responseCallback) => {
+      alert(JSON.stringify(data))
+      responseCallback('GDINativePushData OK')
+    })
   },
   methods: {
     /**
