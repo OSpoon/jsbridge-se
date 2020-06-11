@@ -466,9 +466,9 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         @Override
         public void onReceive(Context context, Intent intent) {
             //接收页面传过来的原生栏的配置
-            NavigationBarDataBean navigationBarData = (NavigationBarDataBean) intent.getSerializableExtra("navigationBarData");
-            setNavigationBarData(navigationBarData);
-            Log.i("BroadcastReceiver", "event::: " + navigationBarData);
+            navigationBarDataBean = (NavigationBarDataBean) intent.getSerializableExtra("navigationBarData");
+            setNavigationBarData(navigationBarDataBean);
+            Log.i("BroadcastReceiver", "event::: " + navigationBarDataBean);
         }
     }
 }

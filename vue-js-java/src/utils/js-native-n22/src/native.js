@@ -264,6 +264,15 @@ const native = {
         fail(result.content)
       }
     })
+  },
+  showLoading(data, success, fail) {
+    bridge.callhandler('showLoading', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
   }
 }
 

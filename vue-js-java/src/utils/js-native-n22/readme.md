@@ -808,3 +808,24 @@ API`GDINativePushData`示例:
         responseCallback('GDINativePushData OK')
       })
 ```
+##### 29. showLoading: 加载或者隐藏原生的loading框
+> 可以通过此API加载或者隐藏原生的loading框
+
+请求参数:
+参数 | 类型 | 枚举 | 含义
+---|---|---|---
+isShow | String | 无 | 是否显示loading 0隐藏,1显示
+
+响应参数:无
+
+API`showLoading`示例:
+
+```js
+  native.showLoading({
+          isShow: '1',
+        }, (content) => {
+          alert(JSON.stringify(content))
+        }, (error) => {
+          alert(error)
+        })
+```

@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
 //                BridgeWebViewActivity.start(MainActivity.this,
 //                        "file:///android_asset/www/index.html#/personal/personalInfo", navigationBarDataBean);
 //                BridgeWebViewActivity.start(MainActivity.this,
-//                        "https://wd.e-sleb.com/app.html#/myWechartShop?agentCode=KgG%2FSdkIzMS6eIP6i0mA2w%3D%3D&branchtype=01", null);
+//                        "https://wdst.e-sleb.com/app.html#/myWechartShop?agentCode=mu5%2Bbi3QTyKogy8dba07bw%3D%3D&branchtype=01", null);
                 BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean);
             }
         });

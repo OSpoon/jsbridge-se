@@ -86,6 +86,10 @@
     <p />
     <van-button type="primary" block @click="showNavigationBar()">显示原生导航栏</van-button>
     <p />
+    <van-button type="primary" block @click="showLoading()">显示loading框</van-button>
+    <p />
+    <van-button type="primary" block @click="showLoading1()">关闭loading框</van-button>
+    <p />
     <van-uploader :after-read="afterRead" />
   </div>
 </template>
@@ -602,6 +606,24 @@ export default {
           shareTitle: '分享标题',
           shareUrl: '分享的跳转链接'
         }
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    showLoading() {
+      native.showLoading({
+        isShow: '1'
+      }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    showLoading1() {
+      native.showLoading({
+        isShow: '0'
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
