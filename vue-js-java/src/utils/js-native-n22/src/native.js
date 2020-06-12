@@ -273,7 +273,17 @@ const native = {
         fail(result.content)
       }
     })
+  },
+  modifyPwd(data, success, fail) {
+    bridge.callhandler('modifyPwd', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
   }
+
 }
 
 export default native

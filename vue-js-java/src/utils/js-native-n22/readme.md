@@ -829,3 +829,19 @@ API`showLoading`示例:
           alert(error)
         })
 ```
+##### 30. modifyPwd: 调用原生页面来修改密码
+> 可以通过此API调用原生页面来修改密码
+
+请求参数:无
+
+响应参数:无
+
+API`modifyPwd`示例:
+
+```js
+  native.modifyPwd((content) => {
+          alert(JSON.stringify(content))
+        }, (error) => {
+          alert(error)
+        })
+```

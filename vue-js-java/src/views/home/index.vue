@@ -90,6 +90,8 @@
     <p />
     <van-button type="primary" block @click="showLoading1()">关闭loading框</van-button>
     <p />
+    <van-button type="primary" block @click="modifyPwd()">修改密码</van-button>
+    <p />
     <van-uploader :after-read="afterRead" />
   </div>
 </template>
@@ -625,6 +627,13 @@ export default {
       native.showLoading({
         isShow: '0'
       }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    modifyPwd() {
+      native.modifyPwd((content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
