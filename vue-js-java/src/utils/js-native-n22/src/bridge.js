@@ -63,7 +63,7 @@ export default {
       })
     } else {
       console.log('bridge registerhandler ios >>> ', name)
-      window.GDIJSBridge.call({ method: name, data: '', callback: (result) => {
+      window.GDIJSBridge.call({ method: 'GDINativePushData', data: { name: name }, callback: (result) => {
         callback(result)
       } })
     }
