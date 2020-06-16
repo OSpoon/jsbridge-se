@@ -115,17 +115,15 @@ export default {
   created() {
   },
   mounted() {
-    native.bridge.registerhandler('functionInJs', (data, responseCallback) => {
+    native.bridge.registerhandler('functionInJs', (data) => {
       alert(JSON.stringify(data))
-      responseCallback('JS OK')
     })
-    native.bridge.registerhandler('closeCallBack', (data, responseCallback) => {
+    native.bridge.registerhandler('closeCallBack', (data) => {
       alert(JSON.stringify(data))
-      responseCallback('CLOSE OK')
     })
-    native.bridge.registerhandler('GDINativePushData', (data, responseCallback) => {
+    native.bridge.registerhandler('GDINativePushData', (data) => {
+      alert('native call js')
       alert(JSON.stringify(data))
-      responseCallback('GDINativePushData OK')
     })
   },
   methods: {

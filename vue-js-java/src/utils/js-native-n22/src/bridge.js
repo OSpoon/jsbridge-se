@@ -54,11 +54,18 @@ export default {
    * @param {接接收Java回调的数据并再次回调回Java端} callback
    */
   registerhandler(name, callback) {
-    console.log('bridge registerhandler >>> ', name)
-    setupWebViewJavascriptBridge((bridge) => {
-      bridge.registerHandler(name, (data, responseCallback) => {
-        callback(data, responseCallback)
+    if (!/(iPhone|iPad|iPod|iOS)/i.test(u)) {
+      console.log('bridge registerhandler android >>> ', name)
+      setupWebViewJavascriptBridge((bridge) => {
+        bridge.registerHandler(name, (data, responseCallback) => {
+          callback(data, responseCallback)
+        })
       })
-    })
+    } else {
+      console.log('bridge registerhandler ios >>> ', name)
+      window.GDIJSBridge.call({ method: name, data: '', callback: (result) => {
+        callback(result)
+      } })
+    }
   }
 }
