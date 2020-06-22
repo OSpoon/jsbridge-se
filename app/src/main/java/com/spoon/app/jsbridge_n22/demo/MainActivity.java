@@ -47,8 +47,8 @@ public class MainActivity extends Activity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
-                BridgeWebViewActivity.start(MainActivity.this, "file:///android_asset/www/index.html#/personal/personalInfo");
+//                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
+//                BridgeWebViewActivity.start(MainActivity.this, "file:///android_asset/www/index.html#/personal/personalInfo");
                 NavigationBarDataBean navigationBarDataBean = new NavigationBarDataBean();
                 NavigationBarDataBean.NavigationBarBean navigationBarBean = new NavigationBarDataBean.NavigationBarBean();
                 navigationBarDataBean.setIsShowShare("1");
@@ -70,7 +70,8 @@ public class MainActivity extends Activity {
 //                        "file:///android_asset/www/index.html#/personal/personalInfo", navigationBarDataBean);
 //                BridgeWebViewActivity.start(MainActivity.this,
 //                        "https://wdst.e-sleb.com/app.html#/myWechartShop?agentCode=mu5%2Bbi3QTyKogy8dba07bw%3D%3D&branchtype=01", null);
-                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean);
+//                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean);
+                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,"123","光速宝");
             }
         });
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {

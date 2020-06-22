@@ -2,9 +2,13 @@ package com.spoon.app.jsbridge_n22.utils;
 
 import android.content.Context;
 import android.os.Build;
+import android.text.TextUtils;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
+
+import com.blankj.utilcode.util.SPUtils;
+import com.spoon.app.jsbridge_n22.core.BridgeWebView;
 
 /**
  * Created by gdk on 2020/5/20 10:56
@@ -66,12 +70,48 @@ public class CookieUtils {
      * @param webView
      * @param userInfo
      */
-    public static void LocalStorageData(WebView webView, String userInfo) {
-        String key = "userInfo";
+    public static void localStorageData(WebView webView, String userInfo) {
+        String key = "product";
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
             webView.evaluateJavascript("window.localStorage.setItem('" + key + "','" + userInfo + "');", null);
         } else {
             webView.loadUrl("javascript:localStorage.setItem('" + key + "','" + userInfo + "');");
         }
+    }
+
+    /**
+     * 向页面传输用户信息
+     *
+     * @param productName
+     * @param productCodeDetail
+     */
+    public static void localStorageSaveData(String productName, String productCodeDetail) {
+        SPUtils.getInstance().put("productName", productName);
+        SPUtils.getInstance().put("productCodeDetail", productCodeDetail);
+        SPUtils.getInstance().put("pageResource", "1");
+    }
+
+    /**
+     * 向页面传输用户信息
+     *
+     * @param webView:webView
+     * @param productName:产品名称
+     * @param productCodeDetail：产品CODE
+     */
+    public static void localStorageData(WebView webView, String productName, String productCodeDetail,
+                                        String pageResource) {
+        if (!TextUtils.isEmpty(productName) && !TextUtils.isEmpty(productCodeDetail) &&
+                !TextUtils.isEmpty(pageResource)) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                webView.evaluateJavascript("window.localStorage.setItem('" + productName + "','" + productName + "');", null);
+                webView.evaluateJavascript("window.localStorage.setItem('" + productCodeDetail + "','" + productCodeDetail + "');", null);
+                webView.evaluateJavascript("window.localStorage.setItem('" + pageResource + "','" + pageResource + "');", null);
+            } else {
+                webView.loadUrl("javascript:localStorage.setItem('" + productName + "','" + productName + "');");
+                webView.loadUrl("javascript:localStorage.setItem('" + productCodeDetail + "','" + productCodeDetail + "');");
+                webView.loadUrl("javascript:localStorage.setItem('" + pageResource + "','" + pageResource + "');");
+            }
+        }
+
     }
 }

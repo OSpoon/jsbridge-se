@@ -114,17 +114,21 @@ export default {
   },
   created() {
   },
-  mounted() {
-    native.bridge.registerhandler('functionInJs', (data) => {
+  mounted: function() {
+    native.bridge.registerhandler('functionInJs', (data, responseCallback) => {
       alert(JSON.stringify(data))
+      responseCallback('JS OK')
     })
-    native.bridge.registerhandler('closeCallBack', (data) => {
+    native.bridge.registerhandler('closeCallBack', (data, responseCallback) => {
       alert(JSON.stringify(data))
+      responseCallback('CLOSE OK')
     })
-    native.bridge.registerhandler('GDINativePushData', (data) => {
-      alert('native call js')
+    native.bridge.registerhandler('GDINativePushData', (data, responseCallback) => {
       alert(JSON.stringify(data))
+      responseCallback('GDINativePushData OK')
     })
+    alert(window.localStorage.getItem('productName'))
+    alert(window.localStorage.getItem('productCodeDetail'))
   },
   methods: {
     /**

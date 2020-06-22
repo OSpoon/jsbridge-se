@@ -77,10 +77,20 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
 
     private BridgeWebView bridgeWebview;
     private String url;
+    private String productName;
+    private String productCodeDetail;
     private final static String DATA = "data";
     private final static String ACTIVITY_ID = "activity_id";
+    private final static String PRODUCT_NAME = "productName";
+    private final static String PRODUCT_CODE_DETAIL = "productCodeDetail";
     private NavigationBarDataBean navigationBarDataBean;
 
+    /**
+     * 正常跳转
+     *
+     * @param activity：上下文
+     * @param url：跳转链接
+     */
     public static void start(Activity activity, String url) {
         Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
@@ -88,11 +98,36 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         activity.startActivity(intent);
     }
 
+    /**
+     * 显示原生的标题栏信息
+     *
+     * @param activity：当前的activity
+     * @param url：跳转地址
+     * @param navigationBarDataBean：标题栏信息
+     */
     public static void start(Activity activity, String url,
                              NavigationBarDataBean navigationBarDataBean) {
         Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
         intent.putExtra(DATA, navigationBarDataBean);
+        intent.putExtra(ACTIVITY_ID, activity.toString());
+        activity.startActivity(intent);
+    }
+
+    /**
+     * 显示原生的标题栏信息
+     *
+     * @param activity：当前的activity
+     * @param url：跳转地址
+     * @param productName：产品名称
+     * @param productCodeDetail：产品CODE
+     */
+    public static void start(Activity activity, String url,
+                             String productName, String productCodeDetail) {
+        Intent intent = new Intent(activity, BridgeWebViewActivity.class);
+        intent.putExtra(ROOT_URL, url);
+        intent.putExtra(PRODUCT_NAME, productName);
+        intent.putExtra(PRODUCT_CODE_DETAIL, productCodeDetail);
         intent.putExtra(ACTIVITY_ID, activity.toString());
         activity.startActivity(intent);
     }
@@ -103,13 +138,17 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         setContentView(R.layout.activity_bridge);
         url = getIntent().getStringExtra(ROOT_URL);
         navigationBarDataBean = (NavigationBarDataBean) getIntent().getSerializableExtra(DATA);
+        productName = getIntent().getStringExtra(PRODUCT_NAME);
+        productCodeDetail = getIntent().getStringExtra(PRODUCT_CODE_DETAIL);
         //获取用户信息并且设置cookie
         getUserInfo();
+        getProductInfo(productName, productCodeDetail);
         initView();
         initBrocast();
         setNavigationBarData(navigationBarDataBean);
         initData();
     }
+
 
     /**
      * 注册广播
@@ -249,6 +288,21 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         UserInfoBean userInfoBean = new Gson().fromJson(userInfo, UserInfoBean.class);
         Log.e("tag", "onCreate: " + userInfoBean.getToken());
         CookieUtils.synCookies(url, userInfoBean.getToken(), this);
+    }
+
+    /**
+     * 获取产品信息
+     *
+     * @param productName:产品名称
+     * @param productCodeDetail：产品CODE
+     */
+    private void getProductInfo(String productName, String productCodeDetail) {
+        SPUtils.getInstance().remove("productName");
+        SPUtils.getInstance().remove("productCodeDetail");
+        SPUtils.getInstance().remove("pageResource");
+        if (!TextUtils.isEmpty(productName) && !TextUtils.isEmpty(productCodeDetail)) {
+            CookieUtils.localStorageSaveData(productName, productCodeDetail);
+        }
     }
 
 
@@ -451,11 +505,12 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
         if (event != null) {
-                if (bridgeWebview != null) {
-                    bridgeWebview.callHandler("GDINativePushData", event.getData(), getResponseCallback("bridgeWebView"));
-                }
+            if (bridgeWebview != null) {
+                bridgeWebview.callHandler("GDINativePushData", event.getData(), getResponseCallback("bridgeWebView"));
             }
         }
+    }
+
     @Override
     protected void onDestroy() {
         unregisterReceiver(mMyBroadcastReceiver);
