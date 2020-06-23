@@ -3,6 +3,7 @@ package com.spoon.app.jsbridge_n22.utils;
 import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
@@ -98,18 +99,22 @@ public class CookieUtils {
      * @param productName:产品名称
      * @param productCodeDetail：产品CODE
      */
-    public static void localStorageData(WebView webView, String productName, String productCodeDetail,
+    public static void localStorageData(BridgeWebView webView, String productName, String productCodeDetail,
                                         String pageResource) {
+        String productNameKey = "productName";
+        String productCodeDetailKey = "productCodeDetail";
+        String pageResourceKey = "pageResource";
+
         if (!TextUtils.isEmpty(productName) && !TextUtils.isEmpty(productCodeDetail) &&
                 !TextUtils.isEmpty(pageResource)) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-                webView.evaluateJavascript("window.localStorage.setItem('" + productName + "','" + productName + "');", null);
-                webView.evaluateJavascript("window.localStorage.setItem('" + productCodeDetail + "','" + productCodeDetail + "');", null);
-                webView.evaluateJavascript("window.localStorage.setItem('" + pageResource + "','" + pageResource + "');", null);
+                webView.evaluateJavascript("window.localStorage.setItem('" + productNameKey + "','" + productName + "');", null);
+                webView.evaluateJavascript("window.localStorage.setItem('" + productCodeDetailKey + "','" + productCodeDetail + "');", null);
+                webView.evaluateJavascript("window.localStorage.setItem('" + pageResourceKey + "','" + pageResource + "');", null);
             } else {
-                webView.loadUrl("javascript:localStorage.setItem('" + productName + "','" + productName + "');");
-                webView.loadUrl("javascript:localStorage.setItem('" + productCodeDetail + "','" + productCodeDetail + "');");
-                webView.loadUrl("javascript:localStorage.setItem('" + pageResource + "','" + pageResource + "');");
+                webView.loadUrl("javascript:localStorage.setItem('" + productNameKey + "','" + productName + "');");
+                webView.loadUrl("javascript:localStorage.setItem('" + productCodeDetailKey + "','" + productCodeDetail + "');");
+                webView.loadUrl("javascript:localStorage.setItem('" + pageResourceKey + "','" + pageResource + "');");
             }
         }
 

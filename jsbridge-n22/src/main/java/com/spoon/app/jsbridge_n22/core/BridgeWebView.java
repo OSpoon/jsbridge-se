@@ -73,6 +73,8 @@ public class BridgeWebView extends WebView implements IWebView {
         getSettings().setAppCacheMaxSize(1024 * 1024 * 8);
         String appCachePath = context.getApplicationContext().getCacheDir().getAbsolutePath();
         getSettings().setAppCachePath(appCachePath);
+        getSettings().setAllowFileAccess(true);    // 可以读取文件缓存
+        getSettings().setAppCacheEnabled(true);    //开启H5(APPCache)缓存功能
 
         getSettings().setUseWideViewPort(true);
         getSettings().setLoadWithOverviewMode(true);

@@ -115,6 +115,9 @@ export default {
   created() {
   },
   mounted: function() {
+    alert(window.localStorage.getItem('productName'))
+    alert(window.localStorage.getItem('productCodeDetail'))
+    alert(window.localStorage.getItem('pageResource'))
     native.bridge.registerhandler('functionInJs', (data, responseCallback) => {
       alert(JSON.stringify(data))
       responseCallback('JS OK')
@@ -127,8 +130,6 @@ export default {
       alert(JSON.stringify(data))
       responseCallback('GDINativePushData OK')
     })
-    alert(window.localStorage.getItem('productName'))
-    alert(window.localStorage.getItem('productCodeDetail'))
   },
   methods: {
     /**

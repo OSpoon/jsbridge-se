@@ -11,8 +11,8 @@
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/iv_loading"
-            android:layout_width="68dp"
-            android:layout_height="68dp"
+            android:layout_width="110dp"
+            android:layout_height="80dp"
             android:src="@drawable/img_common_loading" />
     </LinearLayout>
 

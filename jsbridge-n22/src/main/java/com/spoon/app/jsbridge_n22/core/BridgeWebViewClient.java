@@ -17,6 +17,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.spoon.app.jsbridge_n22.utils.CookieUtils;
 
 
@@ -81,6 +82,7 @@ class BridgeWebViewClient extends WebViewClient {
 
     @Override
     public void onPageFinished(WebView view, String url) {
+
         if (listener != null) {
             listener.onPageFinished(url, view.canGoBack(),
                     view.canGoForward());
@@ -91,9 +93,10 @@ class BridgeWebViewClient extends WebViewClient {
             super.onPageFinished(view, url);
         }
         //向页面传输localStorage
-        CookieUtils.localStorageData(view, SPUtils.getInstance().getString("productName"),
+        CookieUtils.localStorageData(bridgeWebView, SPUtils.getInstance().getString("productName"),
                 SPUtils.getInstance().getString("productCodeDetail"), SPUtils.getInstance().
                         getString("pageResource"));
+
         bridgeTiny.webViewLoadJs(bridgeWebView);
 
     }

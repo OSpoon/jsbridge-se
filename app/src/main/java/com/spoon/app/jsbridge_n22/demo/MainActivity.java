@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 //                BridgeWebViewActivity.start(MainActivity.this,
 //                        "https://wdst.e-sleb.com/app.html#/myWechartShop?agentCode=mu5%2Bbi3QTyKogy8dba07bw%3D%3D&branchtype=01", null);
 //                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean);
-                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,"123","光速宝");
+                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,null,"123","光速宝");
             }
         });
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {

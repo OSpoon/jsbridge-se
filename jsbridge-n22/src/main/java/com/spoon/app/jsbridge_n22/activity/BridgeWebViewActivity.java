@@ -123,9 +123,11 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      * @param productCodeDetail：产品CODE
      */
     public static void start(Activity activity, String url,
+                             NavigationBarDataBean navigationBarDataBean,
                              String productName, String productCodeDetail) {
         Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
+        intent.putExtra(DATA, navigationBarDataBean);
         intent.putExtra(PRODUCT_NAME, productName);
         intent.putExtra(PRODUCT_CODE_DETAIL, productCodeDetail);
         intent.putExtra(ACTIVITY_ID, activity.toString());
@@ -300,6 +302,7 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         SPUtils.getInstance().remove("productName");
         SPUtils.getInstance().remove("productCodeDetail");
         SPUtils.getInstance().remove("pageResource");
+
         if (!TextUtils.isEmpty(productName) && !TextUtils.isEmpty(productCodeDetail)) {
             CookieUtils.localStorageSaveData(productName, productCodeDetail);
         }
