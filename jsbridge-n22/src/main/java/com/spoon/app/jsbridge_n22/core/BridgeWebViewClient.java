@@ -3,6 +3,7 @@ package com.spoon.app.jsbridge_n22.core;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.ClientCertRequest;
@@ -17,8 +18,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.blankj.utilcode.util.ToastUtils;
 import com.spoon.app.jsbridge_n22.utils.CookieUtils;
+import com.spoon.app.jsbridge_n22.utils.GsonUtils;
+
+import java.util.Map;
 
 
 /**
@@ -31,6 +34,7 @@ class BridgeWebViewClient extends WebViewClient {
     private BridgeTiny bridgeTiny;
     private BridgeWebView bridgeWebView;
     private WebViewLoadListener listener;
+    private Map<String, Object> saveDatas;
 
     public BridgeWebViewClient(BridgeWebView bridgeWebView, BridgeTiny bridgeTiny, WebViewLoadListener listener) {
         this.bridgeTiny = bridgeTiny;
@@ -77,7 +81,15 @@ class BridgeWebViewClient extends WebViewClient {
         } else {
             super.onPageStarted(view, url, favicon);
         }
-
+        if (saveDatas != null) {
+            for (Map.Entry<String, Object> saveData : saveDatas.entrySet()) {
+                System.out.println("key = " + saveData.getKey() + ", value = " + saveData.getValue());
+                String json = GsonUtils.toJson(saveData.getValue());
+                if (!TextUtils.isEmpty(json)) {
+                    CookieUtils.localStorageData(view, saveData.getKey(), json);
+                }
+            }
+        }
     }
 
     @Override
@@ -92,13 +104,12 @@ class BridgeWebViewClient extends WebViewClient {
         } else {
             super.onPageFinished(view, url);
         }
-        //向页面传输localStorage
-        CookieUtils.localStorageData(bridgeWebView, SPUtils.getInstance().getString("productName"),
-                SPUtils.getInstance().getString("productCodeDetail"), SPUtils.getInstance().
-                        getString("pageResource"));
+//        //向页面传输localStorage
+//        CookieUtils.localStorageData(bridgeWebView, SPUtils.getInstance().getString("productName"),
+//                SPUtils.getInstance().getString("productCodeDetail"), SPUtils.getInstance().
+//                        getString("pageResource"));
 
         bridgeTiny.webViewLoadJs(bridgeWebView);
-
     }
 
     @Override
@@ -268,5 +279,9 @@ class BridgeWebViewClient extends WebViewClient {
         } else {
             super.onSafeBrowsingHit(view, request, threatType, callback);
         }
+    }
+
+    public void setLocalStorage(Map<String, Object> saveDatas) {
+        this.saveDatas = saveDatas;
     }
 }

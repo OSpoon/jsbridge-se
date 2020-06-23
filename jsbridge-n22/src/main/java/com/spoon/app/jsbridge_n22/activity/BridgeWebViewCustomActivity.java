@@ -52,6 +52,7 @@ import com.zaaach.toprightmenu.MenuItem;
 import com.zaaach.toprightmenu.TopRightMenu;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import static com.spoon.app.jsbridge_n22.core.extension.Constants.ALIGN_RIGHT;
 import static com.spoon.app.jsbridge_n22.core.extension.Constants.DISABLED_ALPHA;
@@ -67,7 +68,8 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
 
     private final static String ROOT_URL = "ROOT_URL";
     private final static String OPTIONS = "OPTIONS";
-    private final static String ACTIVITY_ID= "activity_id";
+    private final static String ACTIVITY_ID = "activity_id";
+    private final static String LOCAL_STORAGE = "local_storage";
     private Options options;
 
     private BridgeWebView inAppWebView;
@@ -84,6 +86,15 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
         intent.putExtra(ROOT_URL, url);
         intent.putExtra(OPTIONS, options);
         intent.putExtra(ACTIVITY_ID, context.toString());
+        context.startActivity(intent);
+    }
+
+    public static void start(Context context, String url, Options options, HashMap<String, Object> saveDatas) {
+        Intent intent = new Intent(context, BridgeWebViewCustomActivity.class);
+        intent.putExtra(ROOT_URL, url);
+        intent.putExtra(OPTIONS, options);
+        intent.putExtra(ACTIVITY_ID, context.toString());
+        intent.putExtra(LOCAL_STORAGE, saveDatas);
         context.startActivity(intent);
     }
 
@@ -384,7 +395,10 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
         } else if (features.clearsessioncache) {
             CookieManager.getInstance().removeSessionCookie();
         }
-
+        HashMap<String, Object> saveDatas = (HashMap<String, Object>) getIntent().getSerializableExtra(LOCAL_STORAGE);
+        if (saveDatas != null) {
+            inAppWebView.setLocalStorage(saveDatas);
+        }
         //加载页面
         inAppWebView.loadUrl(getIntent().getStringExtra(ROOT_URL));
 

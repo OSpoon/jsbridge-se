@@ -45,6 +45,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
@@ -83,6 +84,7 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     private final static String ACTIVITY_ID = "activity_id";
     private final static String PRODUCT_NAME = "productName";
     private final static String PRODUCT_CODE_DETAIL = "productCodeDetail";
+    private final static String LOCAL_STORAGE = "local_storage";
     private NavigationBarDataBean navigationBarDataBean;
 
     /**
@@ -131,6 +133,18 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         intent.putExtra(PRODUCT_NAME, productName);
         intent.putExtra(PRODUCT_CODE_DETAIL, productCodeDetail);
         intent.putExtra(ACTIVITY_ID, activity.toString());
+        activity.startActivity(intent);
+    }
+
+    /**
+     * @param activity：上下文
+     * @param url：跳转链接
+     */
+    public static void start(Activity activity, String url, HashMap<String, Object> saveDatas) {
+        Intent intent = new Intent(activity, BridgeWebViewActivity.class);
+        intent.putExtra(ROOT_URL, url);
+        intent.putExtra(ACTIVITY_ID, activity.toString());
+        intent.putExtra(LOCAL_STORAGE, saveDatas);
         activity.startActivity(intent);
     }
 
@@ -314,6 +328,10 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      */
     private void initData() {
         if (!TextUtils.isEmpty(url)) {
+            HashMap<String, Object> saveDatas = (HashMap<String, Object>) getIntent().getSerializableExtra(LOCAL_STORAGE);
+            if (saveDatas != null) {
+                bridgeWebview.setLocalStorage(saveDatas);
+            }
             bridgeWebview.loadUrl(url);
         }
     }

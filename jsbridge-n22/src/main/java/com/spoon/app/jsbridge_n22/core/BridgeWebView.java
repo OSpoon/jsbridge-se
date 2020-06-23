@@ -1,7 +1,6 @@
 package com.spoon.app.jsbridge_n22.core;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -15,9 +14,10 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.spoon.app.jsbridge_n22.R;
-import com.spoon.app.jsbridge_n22.activity.BridgeWebViewActivity;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
 import com.spoon.app.jsbridge_n22.utils.LoadingDialog;
+
+import java.util.Map;
 
 import static com.spoon.app.jsbridge_n22.core.extension.bean.UploadMessage.FILE_CHOOSER_RESULT_CODE;
 
@@ -118,6 +118,10 @@ public class BridgeWebView extends WebView implements IWebView {
 
     @Override
     public void destroy() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+            loadingDialog = null;
+        }
         super.destroy();
         bridgeTiny.freeMemory();
     }
@@ -145,5 +149,11 @@ public class BridgeWebView extends WebView implements IWebView {
         return mChromeClient;
     }
 
+
+    public void setLocalStorage(Map<String, Object> saveDatas) {
+        if (mClient != null && saveDatas != null) {
+            mClient.setLocalStorage(saveDatas);
+        }
+    }
 
 }

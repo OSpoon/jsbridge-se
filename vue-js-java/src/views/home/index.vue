@@ -109,15 +109,20 @@ export default {
   data() {
     return {
       showDialog: false,
-      imageBase64: ''
+      imageBase64: '',
+      userInfo: window.localStorage.getItem('userInfo'),
+      productName: window.localStorage.getItem('productName'),
+      productCodeDetail: window.localStorage.getItem('productCodeDetail'),
+      pageResource: window.localStorage.getItem('pageResource')
     }
   },
   created() {
   },
   mounted: function() {
-    alert(window.localStorage.getItem('productName'))
-    alert(window.localStorage.getItem('productCodeDetail'))
-    alert(window.localStorage.getItem('pageResource'))
+    alert(this.userInfo)
+    alert(this.productName)
+    alert(this.productCodeDetail)
+    alert(this.pageResource)
     native.bridge.registerhandler('functionInJs', (data, responseCallback) => {
       alert(JSON.stringify(data))
       responseCallback('JS OK')

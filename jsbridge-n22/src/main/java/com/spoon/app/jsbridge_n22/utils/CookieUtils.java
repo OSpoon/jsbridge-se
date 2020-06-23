@@ -3,7 +3,6 @@ package com.spoon.app.jsbridge_n22.utils;
 import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
-import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
@@ -118,5 +117,13 @@ public class CookieUtils {
             }
         }
 
+    }
+
+    public static void localStorageData(WebView webView, String key, String value) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            webView.evaluateJavascript("window.localStorage.setItem('" + key + "','" + value + "');", null);
+        } else {
+            webView.loadUrl("javascript:localStorage.setItem('" + key + "','" + value + "');");
+        }
     }
 }

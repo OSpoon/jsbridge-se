@@ -1,5 +1,6 @@
 package com.spoon.app.jsbridge_n22.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * @author gdk
  * 用户信息的实体类
  */
-public class UserInfoBean {
+public class UserInfoBean implements Serializable {
     private AppLoginUserBean appLoginUser;
 
     private List<String> bizLaAgentList;
@@ -34,7 +35,7 @@ public class UserInfoBean {
         this.bizLaAgentList = bizLaAgentList;
     }
 
-    public static class AppLoginUserBean {
+    public static class AppLoginUserBean implements Serializable{
 
         /**
          * agentCode : 1100000006
