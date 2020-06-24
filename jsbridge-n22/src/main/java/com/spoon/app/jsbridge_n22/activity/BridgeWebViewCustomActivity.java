@@ -395,10 +395,10 @@ public class BridgeWebViewCustomActivity extends BaseActivity {
         } else if (features.clearsessioncache) {
             CookieManager.getInstance().removeSessionCookie();
         }
-        HashMap<String, Object> saveDatas = (HashMap<String, Object>) getIntent().getSerializableExtra(LOCAL_STORAGE);
-        if (saveDatas != null) {
-            inAppWebView.setLocalStorage(saveDatas);
-        }
+//        HashMap<String, Object> saveDatas = (HashMap<String, Object>) getIntent().getSerializableExtra(LOCAL_STORAGE);
+//        if (saveDatas != null) {
+//            inAppWebView.setLocalStorage(saveDatas);
+//        }
         //加载页面
         inAppWebView.loadUrl(getIntent().getStringExtra(ROOT_URL));
 

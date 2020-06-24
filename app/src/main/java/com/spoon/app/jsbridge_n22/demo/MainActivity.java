@@ -8,23 +8,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.blankj.utilcode.util.SPUtils;
-import com.google.gson.Gson;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.Constants;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.core.security.httpcore.TextUtils;
 import com.spoon.app.jsbridge_n22.activity.BridgeWebViewActivity;
-import com.spoon.app.jsbridge_n22.activity.BridgeWebViewCustomActivity;
-import com.spoon.app.jsbridge_n22.activity.X5WebViewActivity;
 import com.spoon.app.jsbridge_n22.activity.X5WebViewCustomActivity;
 import com.spoon.app.jsbridge_n22.bean.NavigationBarDataBean;
-import com.spoon.app.jsbridge_n22.bean.UserInfoBean;
 import com.spoon.app.jsbridge_n22.core.extension.bean.Options;
 import com.spoon.app.jsbridge_n22.core.extension.bean.Title;
 import com.spoon.app.jsbridge_n22.core.extension.bean.Toolbar;
 
-import java.io.Serializable;
 import java.util.HashMap;
 
 public class MainActivity extends Activity {
@@ -81,13 +75,13 @@ public class MainActivity extends Activity {
                 SPUtils instance = SPUtils.getInstance();
                 String userInfo = instance.getString("userInfo");
                 HashMap<String, Object> saveDatas = new HashMap<>();
-                Gson gson = new Gson();
-                UserInfoBean userInfoBean = gson.fromJson(userInfo, UserInfoBean.class);
-                saveDatas.put("userInfo", userInfoBean);
-                saveDatas.put("productName", "光大永明富运年年");
-                saveDatas.put("productCodeDetail", "HMT123");
-                saveDatas.put("pageResource", "这个真不知道");
-                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, saveDatas);
+//                Gson gson = new Gson();
+//                UserInfoBean userInfoBean = gson.fromJson(userInfo, UserInfoBean.class);
+//                saveDatas.put("userInfo", userInfoBean);
+                saveDatas.put("productName", "光大永明富运年年00000");
+                saveDatas.put("productCodeDetail", "HMT000");
+                saveDatas.put("pageResource", "000");
+                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, null,saveDatas);
 //                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, null, "123", "光速宝");
             }
         });
@@ -112,22 +106,40 @@ public class MainActivity extends Activity {
 
                 SPUtils instance = SPUtils.getInstance();
                 String userInfo = instance.getString("userInfo");
-                HashMap<String, Object> saveDatas = new HashMap<>();
-                Gson gson = new Gson();
-                UserInfoBean userInfoBean = gson.fromJson(userInfo, UserInfoBean.class);
-                saveDatas.put("userInfo", userInfoBean);
-                saveDatas.put("productName", "光大永明富运年年123");
-                saveDatas.put("productCodeDetail", "HMT123456");
-                saveDatas.put("pageResource", "这个真不知道789");
+//                HashMap<String, Object> saveDatas = new HashMap<>();
+//                Gson gson = new Gson();
+//                UserInfoBean userInfoBean = gson.fromJson(userInfo, UserInfoBean.class);
+//                saveDatas.put("userInfo", userInfoBean);
+//                saveDatas.put("productName", "光大永明富运年年123");
+//                saveDatas.put("productCodeDetail", "HMT123456");
+//                saveDatas.put("pageResource", "这个真不知道789");
+//
+//                BridgeWebViewCustomActivity.start(MainActivity.this, AppContext.ROOT_URL, options, saveDatas);
 
-                BridgeWebViewCustomActivity.start(MainActivity.this, AppContext.ROOT_URL, options, saveDatas);
+
+                HashMap<String, Object> saveDatas = new HashMap<>();
+//                Gson gson = new Gson();
+//                UserInfoBean userInfoBean = gson.fromJson(userInfo, UserInfoBean.class);
+//                saveDatas.put("userInfo", userInfoBean);
+                saveDatas.put("productName", "光大永明富运年年11111");
+                saveDatas.put("productCodeDetail", "HMT1111");
+                saveDatas.put("pageResource", "1111");
+                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, null,saveDatas);
             }
         });
         findViewById(R.id.buttonx5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                X5WebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
-                X5WebViewActivity.start(MainActivity.this, "https://wd.e-sleb.com/app.html#/myWechartShop?agentCode=mu5%2Bbi3QTyKogy8dba07bw%3D%3D&branchtype=01");
+//                X5WebViewActivity.start(MainActivity.this, "https://wd.e-sleb.com/app.html#/myWechartShop?agentCode=mu5%2Bbi3QTyKogy8dba07bw%3D%3D&branchtype=01");
+                HashMap<String, Object> saveDatas = new HashMap<>();
+//                Gson gson = new Gson();
+//                UserInfoBean userInfoBean = gson.fromJson(userInfo, UserInfoBean.class);
+//                saveDatas.put("userInfo", userInfoBean);
+                saveDatas.put("productName", "光大永明富运年年22222");
+                saveDatas.put("productCodeDetail", "HMT2222");
+                saveDatas.put("pageResource", "222");
+                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, null,saveDatas);
             }
         });
 

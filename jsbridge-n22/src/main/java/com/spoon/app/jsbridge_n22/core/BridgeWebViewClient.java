@@ -76,20 +76,24 @@ class BridgeWebViewClient extends WebViewClient {
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        //向页面传输localStorage
+        CookieUtils.localStorageData(view, SPUtils.getInstance().getString("productName"),
+                SPUtils.getInstance().getString("productCodeDetail"), SPUtils.getInstance().
+                        getString("pageResource"));
         if (mClient != null) {
             mClient.onPageStarted(view, url, favicon);
         } else {
             super.onPageStarted(view, url, favicon);
         }
-        if (saveDatas != null) {
-            for (Map.Entry<String, Object> saveData : saveDatas.entrySet()) {
-                System.out.println("key = " + saveData.getKey() + ", value = " + saveData.getValue());
-                String json = GsonUtils.toJson(saveData.getValue());
-                if (!TextUtils.isEmpty(json)) {
-                    CookieUtils.localStorageData(view, saveData.getKey(), json);
-                }
-            }
-        }
+//        if (saveDatas != null) {
+//            for (Map.Entry<String, Object> saveData : saveDatas.entrySet()) {
+//                System.out.println("key = " + saveData.getKey() + ", value = " + saveData.getValue());
+//                String json = GsonUtils.toJson(saveData.getValue());
+//                if (!TextUtils.isEmpty(json)) {
+//                    CookieUtils.localStorageData(view, saveData.getKey(), json);
+//                }
+//            }
+//        }
     }
 
     @Override

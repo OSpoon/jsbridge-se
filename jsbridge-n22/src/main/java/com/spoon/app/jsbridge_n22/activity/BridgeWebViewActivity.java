@@ -140,9 +140,11 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      * @param activity：上下文
      * @param url：跳转链接
      */
-    public static void start(Activity activity, String url, HashMap<String, Object> saveDatas) {
+    public static void start(Activity activity, String url, NavigationBarDataBean navigationBarDataBean,
+                             HashMap<String, Object> saveDatas) {
         Intent intent = new Intent(activity, BridgeWebViewActivity.class);
         intent.putExtra(ROOT_URL, url);
+        intent.putExtra(DATA, navigationBarDataBean);
         intent.putExtra(ACTIVITY_ID, activity.toString());
         intent.putExtra(LOCAL_STORAGE, saveDatas);
         activity.startActivity(intent);
@@ -328,10 +330,10 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      */
     private void initData() {
         if (!TextUtils.isEmpty(url)) {
-            HashMap<String, Object> saveDatas = (HashMap<String, Object>) getIntent().getSerializableExtra(LOCAL_STORAGE);
-            if (saveDatas != null) {
-                bridgeWebview.setLocalStorage(saveDatas);
-            }
+//            HashMap<String, Object> saveDatas = (HashMap<String, Object>) getIntent().getSerializableExtra(LOCAL_STORAGE);
+//            if (saveDatas != null) {
+//                bridgeWebview.setLocalStorage(saveDatas);
+//            }
             bridgeWebview.loadUrl(url);
         }
     }

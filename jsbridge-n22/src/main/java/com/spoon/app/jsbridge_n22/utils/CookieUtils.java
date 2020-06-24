@@ -98,7 +98,7 @@ public class CookieUtils {
      * @param productName:产品名称
      * @param productCodeDetail：产品CODE
      */
-    public static void localStorageData(BridgeWebView webView, String productName, String productCodeDetail,
+    public static void localStorageData(WebView webView, String productName, String productCodeDetail,
                                         String pageResource) {
         String productNameKey = "productName";
         String productCodeDetailKey = "productCodeDetail";
@@ -119,11 +119,11 @@ public class CookieUtils {
 
     }
 
-    public static void localStorageData(WebView webView, String key, String value) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            webView.evaluateJavascript("window.localStorage.setItem('" + key + "','" + value + "');", null);
-        } else {
-            webView.loadUrl("javascript:localStorage.setItem('" + key + "','" + value + "');");
-        }
-    }
+//    public static void localStorageData(WebView webView, String key, String value) {
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+//            webView.evaluateJavascript("window.localStorage.setItem('" + key + "','" + value + "');", null);
+//        } else {
+//            webView.loadUrl("javascript:localStorage.setItem('" + key + "','" + value + "');");
+//        }
+//    }
 }
