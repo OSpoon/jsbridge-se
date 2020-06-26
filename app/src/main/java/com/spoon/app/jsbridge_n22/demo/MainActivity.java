@@ -70,18 +70,18 @@ public class MainActivity extends Activity {
 //                        "file:///android_asset/www/index.html#/personal/personalInfo", navigationBarDataBean);
 //                BridgeWebViewActivity.start(MainActivity.this,
 //                        "https://wdst.e-sleb.com/app.html#/myWechartShop?agentCode=mu5%2Bbi3QTyKogy8dba07bw%3D%3D&branchtype=01", null);
-//                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean);
+                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL,navigationBarDataBean);
 
-                SPUtils instance = SPUtils.getInstance();
-                String userInfo = instance.getString("userInfo");
-                HashMap<String, Object> saveDatas = new HashMap<>();
+//                SPUtils instance = SPUtils.getInstance();
+//                String userInfo = instance.getString("userInfo");
+//                HashMap<String, Object> saveDatas = new HashMap<>();
 //                Gson gson = new Gson();
 //                UserInfoBean userInfoBean = gson.fromJson(userInfo, UserInfoBean.class);
 //                saveDatas.put("userInfo", userInfoBean);
-                saveDatas.put("productName", "光大永明富运年年00000");
-                saveDatas.put("productCodeDetail", "HMT000");
-                saveDatas.put("pageResource", "000");
-                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, null,saveDatas);
+//                saveDatas.put("productName", "光大永明富运年年00000");
+//                saveDatas.put("productCodeDetail", "HMT000");
+//                saveDatas.put("pageResource", "000");
+//                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, null,saveDatas);
 //                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, null, "123", "光速宝");
             }
         });

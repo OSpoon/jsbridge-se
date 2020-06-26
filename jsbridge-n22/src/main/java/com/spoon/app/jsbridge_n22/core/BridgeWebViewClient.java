@@ -3,7 +3,6 @@ package com.spoon.app.jsbridge_n22.core;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.ClientCertRequest;
@@ -19,7 +18,6 @@ import android.webkit.WebViewClient;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.spoon.app.jsbridge_n22.utils.CookieUtils;
-import com.spoon.app.jsbridge_n22.utils.GsonUtils;
 
 import java.util.Map;
 

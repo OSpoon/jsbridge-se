@@ -115,6 +115,8 @@ public class IDCardScanBridgeHandler extends BaseBridgeHandler {
                     map.put("idcardimg_base64",data.getStringExtra("idcardimg_bitmap"));
                     callBack.onCallBack(ResultUtil.success(map));
                 }
+            }else{
+                callBack.onCallBack(ResultUtil.error("1", "未操作！"));
             }
         }
     }

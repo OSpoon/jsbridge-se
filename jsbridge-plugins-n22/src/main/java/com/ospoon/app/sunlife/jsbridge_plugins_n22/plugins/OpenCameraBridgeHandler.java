@@ -120,7 +120,8 @@ public class OpenCameraBridgeHandler extends BaseBridgeHandler {
                 default:
                     break;
             }
+        } else {
+            callBack.onCallBack(ResultUtil.error("1", "未选择照片"));
         }
-
     }
 }

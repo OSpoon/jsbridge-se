@@ -19,6 +19,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebStorage;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -320,6 +321,7 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         SPUtils.getInstance().remove("pageResource");
 
         if (!TextUtils.isEmpty(productName) && !TextUtils.isEmpty(productCodeDetail)) {
+
             CookieUtils.localStorageSaveData(productName, productCodeDetail);
         }
     }
@@ -330,10 +332,11 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      */
     private void initData() {
         if (!TextUtils.isEmpty(url)) {
-//            HashMap<String, Object> saveDatas = (HashMap<String, Object>) getIntent().getSerializableExtra(LOCAL_STORAGE);
-//            if (saveDatas != null) {
-//                bridgeWebview.setLocalStorage(saveDatas);
-//            }
+            HashMap<String, Object> saveDatas = (HashMap<String, Object>) getIntent().getSerializableExtra(LOCAL_STORAGE);
+            WebStorage.getInstance().deleteAllData();
+            if (saveDatas != null) {
+                bridgeWebview.setLocalStorage(saveDatas);
+            }
             bridgeWebview.loadUrl(url);
         }
     }

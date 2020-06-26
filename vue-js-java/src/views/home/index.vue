@@ -119,10 +119,17 @@ export default {
   created() {
   },
   mounted: function() {
-    alert(this.userInfo)
-    alert(this.productName)
-    alert(this.productCodeDetail)
-    alert(this.pageResource)
+    // alert(this.userInfo)
+    // alert(this.productName)
+    // alert(this.productCodeDetail)
+    // alert(this.pageResource)
+    // eslint-disable-next-line eqeqeq
+    // if (this.productName == '' || this.productName == undefined) {
+    //   window.location.reload()
+    // }
+    // alert('产品名称' + this.productName)
+    // alert('产品code' + this.productCodeDetail)
+    // alert('产品标志' + this.pageResource)
     native.bridge.registerhandler('functionInJs', (data, responseCallback) => {
       alert(JSON.stringify(data))
       responseCallback('JS OK')

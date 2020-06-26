@@ -150,10 +150,10 @@ public class BridgeWebView extends WebView implements IWebView {
     }
 
 
-//    public void setLocalStorage(Map<String, Object> saveDatas) {
-//        if (mClient != null && saveDatas != null) {
-//            mClient.setLocalStorage(saveDatas);
-//        }
-//    }
+    public void setLocalStorage(Map<String, Object> saveDatas) {
+        if (mClient != null && saveDatas != null) {
+            mClient.setLocalStorage(saveDatas);
+        }
+    }
 
 }
