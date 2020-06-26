@@ -90,7 +90,6 @@ public class OpenContactsBridgeHandler extends BaseBridgeHandler {
                 cursor.close();
             }
         }
-        ToastUtils.showShort(list.toString());
         Log.e("tag", "getContacts: " + list.toString());
         //将结果返回给页面
         if (list.size() > 0) {

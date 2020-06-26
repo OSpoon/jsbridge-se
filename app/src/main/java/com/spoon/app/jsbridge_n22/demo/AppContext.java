@@ -1,6 +1,6 @@
 package com.spoon.app.jsbridge_n22.demo;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
@@ -33,7 +33,7 @@ import com.tencent.bugly.Bugly;
 
 import java.util.Date;
 
-public class AppContext extends Application {
+public class AppContext extends MultiDexApplication {
     public final static String ROOT_URL = BuildConfig.ROOT_URL + "?time=" + new Date().getTime();
 
     @Override

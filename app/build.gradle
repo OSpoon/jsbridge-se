@@ -9,6 +9,7 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
+        multiDexEnabled true //就是这句，添加进来
         ndk {
             // 设置支持的SO库架构
             abiFilters 'armeabi' //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
@@ -49,6 +50,7 @@ dependencies {
     implementation rootProject.ext.dependencies['gson']
     //本地模块依赖
     implementation project(path: ':jsbridge-plugins-n22')
+    implementation 'com.android.support:multidex:1.0.1' //就是这句，添加进来
     //在线依赖
 //    implementation rootProject.ext.dependencies["jsbridge-plugins-n22"]
 }
