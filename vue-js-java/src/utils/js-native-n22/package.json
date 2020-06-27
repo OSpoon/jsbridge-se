@@ -1,9 +1,11 @@
 {
   "name": "js-native-n22",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "配合jsbridge-n22使用的js模块",
-  "main": "./src/native.js",
+  "main": "index.js",
   "scripts": {
+    "build": "babel src --out-dir dist",
+    "fix": "npm audit fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -12,5 +14,10 @@
     "js"
   ],
   "author": "OSpoon",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-eslint": "^10.0.1"
+  }
 }
