@@ -47,6 +47,24 @@ const native = {
       }
     })
   },
+  scanQRCodeGsb(success, fail) {
+    bridge.callhandler('scanQRCodeGsb', '', (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
+  locationGsb(data, success, fail) {
+    bridge.callhandler('locationGsb', data, (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
   storage(data, success, fail) {
     bridge.callhandler('storage', data, (result) => {
       if (!result.error) {
