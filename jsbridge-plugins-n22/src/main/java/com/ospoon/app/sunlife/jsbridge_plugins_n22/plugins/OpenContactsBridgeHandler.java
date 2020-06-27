@@ -97,7 +97,7 @@ public class OpenContactsBridgeHandler extends BaseBridgeHandler {
             map.put("data", list);
             callBack.onCallBack(ResultUtil.success(map));
         } else {
-            callBack.onCallBack(ResultUtil.error("1", "The format of the request parameter is wrong, please check~"));
+            callBack.onCallBack(ResultUtil.error("1", "通讯录无联系人存在，请先新建联系人！"));
         }
 
     }
