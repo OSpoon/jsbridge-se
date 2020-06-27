@@ -98,7 +98,7 @@
 
 <script>
 import lrz from 'lrz'
-import native from '@/utils/js-native-n22/src/native'
+import native from '@/utils/js-native-n22/dist/native'
 // import native from 'js-native-n22'
 
 console.log(native)
