@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
@@ -22,6 +23,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 
 /**
  * author : zhangxin
@@ -29,6 +31,23 @@ import java.io.InputStream;
  * description :
  */
 public class Utils {
+    /**
+     * 获取跳转页面路径
+     *
+     * @param toPageUrl：跳转的URl
+     * @return ：返回值
+     */
+    public static String getRootUrl(String toPageUrl) {
+        String rootUrl = SPUtils.getString("rootBaseUrl");
+        String uri = "";
+        try {
+            uri = new File(rootUrl + toPageUrl).toURL().toString();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        Log.e("tag", "跳转的地址是 " + uri);
+        return uri;
+    }
 
     /**
      * Convert our DIP units to Pixels
@@ -116,8 +135,9 @@ public class Utils {
         try {
             ApplicationInfo ai = context.getPackageManager().getApplicationInfo(
                     context.getPackageName(), PackageManager.GET_META_DATA);
-            if (null != ai)
+            if (null != ai) {
                 metaData = ai.metaData;
+            }
             if (null != metaData) {
                 // MY_META_KEY是meta-data中对应的key值
                 appKey = metaData.getString(metaKey);

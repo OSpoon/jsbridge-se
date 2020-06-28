@@ -19,7 +19,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebStorage;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -41,6 +40,7 @@ import com.spoon.app.jsbridge_n22.bean.UserInfoBean;
 import com.spoon.app.jsbridge_n22.core.BridgeWebView;
 import com.spoon.app.jsbridge_n22.utils.CookieUtils;
 import com.spoon.app.jsbridge_n22.utils.ShareUtils;
+import com.spoon.app.jsbridge_n22.utils.Utils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -321,7 +321,6 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         SPUtils.getInstance().remove("pageResource");
 
         if (!TextUtils.isEmpty(productName) && !TextUtils.isEmpty(productCodeDetail)) {
-
             CookieUtils.localStorageSaveData(productName, productCodeDetail);
         }
     }
@@ -332,11 +331,6 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      */
     private void initData() {
         if (!TextUtils.isEmpty(url)) {
-            HashMap<String, Object> saveDatas = (HashMap<String, Object>) getIntent().getSerializableExtra(LOCAL_STORAGE);
-            WebStorage.getInstance().deleteAllData();
-            if (saveDatas != null) {
-                bridgeWebview.setLocalStorage(saveDatas);
-            }
             bridgeWebview.loadUrl(url);
         }
     }
@@ -409,8 +403,15 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      */
     private void shareToWechat(final NavigationBarDataBean navigationBarDataBean, final int position) {
         if (navigationBarDataBean.getShareModel() != null) {
+            String rootUrl = "";
+            if (navigationBarDataBean.getShareModel().getImageUrl().startsWith("http")) {
+                rootUrl = navigationBarDataBean.getShareModel().getImageUrl();
+            } else {
+                rootUrl = Utils.getRootUrl(navigationBarDataBean.getShareModel().getImageUrl());
+            }
+
             Glide.with(BridgeWebViewActivity.this).asBitmap().
-                    load(navigationBarDataBean.getShareModel().getImageUrl()).into(new SimpleTarget<Bitmap>() {
+                    load(rootUrl).into(new SimpleTarget<Bitmap>() {
                 /**
                  * 成功的回调
                  */

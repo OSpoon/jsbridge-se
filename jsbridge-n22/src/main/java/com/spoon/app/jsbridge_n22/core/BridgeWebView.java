@@ -149,11 +149,4 @@ public class BridgeWebView extends WebView implements IWebView {
         return mChromeClient;
     }
 
-
-    public void setLocalStorage(Map<String, Object> saveDatas) {
-        if (mClient != null && saveDatas != null) {
-            mClient.setLocalStorage(saveDatas);
-        }
-    }
-
 }

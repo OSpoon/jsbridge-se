@@ -116,14 +116,5 @@ public class CookieUtils {
                 webView.loadUrl("javascript:localStorage.setItem('" + pageResourceKey + "','" + pageResource + "');");
             }
         }
-
     }
-
-//    public static void localStorageData(WebView webView, String key, String value) {
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-//            webView.evaluateJavascript("window.localStorage.setItem('" + key + "','" + value + "');", null);
-//        } else {
-//            webView.loadUrl("javascript:localStorage.setItem('" + key + "','" + value + "');");
-//        }
-//    }
 }

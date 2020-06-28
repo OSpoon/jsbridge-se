@@ -13,6 +13,7 @@ import com.ospoon.app.sunlife.jsbridge_plugins_n22.request.ShareWeChatJsRequest;
 import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
 import com.spoon.app.jsbridge_n22.utils.ShareUtils;
+import com.spoon.app.jsbridge_n22.utils.Utils;
 
 /**
  * 发送信息的方法
@@ -49,7 +50,13 @@ public class ShareWechatBridgeHandler extends BaseBridgeHandler {
     @Override
     public void process(String data) {
         final ShareWeChatJsRequest reqest = new Gson().fromJson(data, ShareWeChatJsRequest.class);
-        Glide.with(getActivity()).asBitmap().load(reqest.getIconUrl()).into(new SimpleTarget<Bitmap>() {
+        String rootUrl = "";
+        if (reqest.getIconUrl().startsWith("http")) {
+            rootUrl = reqest.getIconUrl();
+        } else {
+            rootUrl = Utils.getRootUrl(reqest.getIconUrl());
+        }
+        Glide.with(getActivity()).asBitmap().load(rootUrl).into(new SimpleTarget<Bitmap>() {
             /**
              * 成功的回调
              */

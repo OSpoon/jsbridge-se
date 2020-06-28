@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
 
                 navigationBarDataBean.setNavigationBar(navigationBarBean);
                 NavigationBarDataBean.ShareModelBean shareModelBean = new NavigationBarDataBean.ShareModelBean();
-                shareModelBean.setImageUrl("https://xinyidongzhanyeguangsubao-st-1254235118.cos.ap-beijing.myqcloud.com/PC/showConfig/hotSaleProduct/Show/2020-05-15/1589523629974_41586340874_.pic_hd.jpg");
+                shareModelBean.setImageUrl("http://xinyidongzhanyeguangsubao-st-1254235118.cos.ap-beijing.myqcloud.com/PC/showConfig/shareSaleProduct/Share/2020-06-27/1593252755215_1589356124880_%E5%9B%BE%E5%B1%82%208%403x.png");
                 shareModelBean.setShareTitle("我是分享页面的标题");
                 shareModelBean.setShareDescription("光速宝3.0更新");
                 shareModelBean.setShareUrl("https://www.baidu.com");
