@@ -112,14 +112,6 @@ class BridgeWebViewClient extends WebViewClient {
 //                        getString("pageResource"));
 
         bridgeTiny.webViewLoadJs(bridgeWebView);
-        if (view.getProgress() == 100) {
-            bridgeTiny.callHandler("onPageFinished", url, new OnBridgeCallback() {
-                @Override
-                public void onCallBack(String data) {
-
-                }
-            });
-        }
     }
 
     @Override
