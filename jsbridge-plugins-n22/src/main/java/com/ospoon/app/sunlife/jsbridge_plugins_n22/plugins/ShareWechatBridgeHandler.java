@@ -50,13 +50,7 @@ public class ShareWechatBridgeHandler extends BaseBridgeHandler {
     @Override
     public void process(String data) {
         final ShareWeChatJsRequest reqest = new Gson().fromJson(data, ShareWeChatJsRequest.class);
-        String rootUrl = "";
-        if (reqest.getIconUrl().startsWith("http")) {
-            rootUrl = reqest.getIconUrl();
-        } else {
-            rootUrl = Utils.getRootUrl(reqest.getIconUrl());
-        }
-        Glide.with(getActivity()).asBitmap().load(rootUrl).into(new SimpleTarget<Bitmap>() {
+        Glide.with(getActivity()).asBitmap().load(reqest.getIconUrl()).into(new SimpleTarget<Bitmap>() {
             /**
              * 成功的回调
              */

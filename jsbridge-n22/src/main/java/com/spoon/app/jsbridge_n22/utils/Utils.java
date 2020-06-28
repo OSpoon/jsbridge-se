@@ -31,23 +31,6 @@ import java.net.MalformedURLException;
  * description :
  */
 public class Utils {
-    /**
-     * 获取跳转页面路径
-     *
-     * @param toPageUrl：跳转的URl
-     * @return ：返回值
-     */
-    public static String getRootUrl(String toPageUrl) {
-        String rootUrl = SPUtils.getString("rootBaseUrl");
-        String uri = "";
-        try {
-            uri = new File(rootUrl + toPageUrl).toURL().toString();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        Log.e("tag", "跳转的地址是 " + uri);
-        return uri;
-    }
 
     /**
      * Convert our DIP units to Pixels

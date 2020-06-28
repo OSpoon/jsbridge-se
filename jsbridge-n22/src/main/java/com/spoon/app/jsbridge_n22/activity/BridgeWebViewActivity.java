@@ -403,15 +403,8 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
      */
     private void shareToWechat(final NavigationBarDataBean navigationBarDataBean, final int position) {
         if (navigationBarDataBean.getShareModel() != null) {
-            String rootUrl = "";
-            if (navigationBarDataBean.getShareModel().getImageUrl().startsWith("http")) {
-                rootUrl = navigationBarDataBean.getShareModel().getImageUrl();
-            } else {
-                rootUrl = Utils.getRootUrl(navigationBarDataBean.getShareModel().getImageUrl());
-            }
-
             Glide.with(BridgeWebViewActivity.this).asBitmap().
-                    load(rootUrl).into(new SimpleTarget<Bitmap>() {
+                    load(navigationBarDataBean.getShareModel().getImageUrl()).into(new SimpleTarget<Bitmap>() {
                 /**
                  * 成功的回调
                  */
