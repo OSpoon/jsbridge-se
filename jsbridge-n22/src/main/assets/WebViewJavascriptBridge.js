@@ -102,7 +102,7 @@
                     handler(message.data, responseCallback)
                 } catch (exception) {
                     if (typeof console != 'undefined') {
-                        console.log("WebViewJavascriptBridge: WARNING: javascript handler threw.", message, exception)
+                        console.log("WebViewJavascriptBridge: WARNING: javascript handler threw.", JSON.stringify(message), exception)
                     }
                 }
             }
