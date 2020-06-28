@@ -16,6 +16,8 @@
     <p />
     <van-button type="primary" block @click="closePage()">关闭当前页面</van-button>
     <p />
+    <van-button type="primary" block @click="closeAndResultPage()">关闭当前页面新版</van-button>
+    <p />
     <van-button type="primary" block @click="getLocationInfo()">获取当前位置</van-button>
     <p />
     <van-button type="primary" block @click="putData()">添加数据</van-button>
@@ -134,12 +136,9 @@ export default {
       alert(JSON.stringify(data))
       responseCallback('JS OK')
     })
-    native.bridge.registerhandler('closeCallBack', (data, responseCallback) => {
-      alert(JSON.stringify(data))
-      responseCallback('CLOSE OK')
-    })
     native.bridge.registerhandler('GDINativePushData', (data, responseCallback) => {
-      alert(JSON.stringify(data))
+      // alert(JSON.stringify(data))
+      console.log(data)
       responseCallback('GDINativePushData OK')
     })
   },
@@ -190,6 +189,13 @@ export default {
     },
     closePage() {
       native.close((content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+    },
+    closeAndResultPage() {
+      native.closeAndResult({ data: 'PAGE_OK' }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
@@ -269,7 +275,7 @@ export default {
     openBrowser() {
       native.openBrowser({
         mode: 1,
-        url: 'http://xrkj.gitee.io/jsbridge-n22/#/'
+        url: 'http://192.168.8.101:9999/#/'
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
