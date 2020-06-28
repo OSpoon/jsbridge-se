@@ -138,4 +138,8 @@ public class Utils {
     public static void postParentWebViewMessage(String parentActivityId, String handlerName, String data) {
         EventBus.getDefault().post(new MessageEvent(parentActivityId, handlerName, data));
     }
+
+    public static void postParentWebViewMessage(String parentActivityId, String data) {
+        EventBus.getDefault().post(new MessageEvent(data));
+    }
 }

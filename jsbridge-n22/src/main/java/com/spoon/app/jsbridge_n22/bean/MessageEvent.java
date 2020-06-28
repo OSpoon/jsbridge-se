@@ -13,6 +13,11 @@ public class MessageEvent implements Serializable {
         this.data = data;
     }
 
+    public MessageEvent(String parentActivityId, Object data) {
+        this.parentActivityId = parentActivityId;
+        this.data = data;
+    }
+
     public MessageEvent(Object data) {
         this.data = data;
     }

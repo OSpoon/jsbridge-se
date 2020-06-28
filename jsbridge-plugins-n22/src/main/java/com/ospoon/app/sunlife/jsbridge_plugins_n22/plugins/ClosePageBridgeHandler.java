@@ -6,6 +6,9 @@ import com.spoon.app.jsbridge_n22.base.BaseBridgeHandler;
 import com.spoon.app.jsbridge_n22.core.BridgePlugin;
 import com.spoon.app.jsbridge_n22.utils.Utils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * author : zhangxin
  * date : 2020-03-19 14:55
@@ -25,8 +28,17 @@ public class ClosePageBridgeHandler extends BaseBridgeHandler {
 
     @Override
     public void process(String data) {
+        JSONObject json = null;
         try {
-            Utils.postParentWebViewMessage(getActivity().getParentActivityId(), "closeCallBack", "200");
+            json = new JSONObject(data);
+        } catch (JSONException e) {
+        }
+        try {
+            if (json != null) {
+                Utils.postParentWebViewMessage(getActivity().getParentActivityId(), "GDINativePushData",(String) json.get("data"));
+            } else {
+                Utils.postParentWebViewMessage(getActivity().getParentActivityId(), "200");
+            }
             getActivity().finish();
         } catch (Exception e) {
         }
