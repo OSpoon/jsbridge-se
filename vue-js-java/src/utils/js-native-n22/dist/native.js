@@ -39,15 +39,6 @@ var native = {
       }
     })
   },
-  closeAndResult: function closeAndResult(data, success, fail) {
-    _bridge2.default.callhandler('close', data, function(result) {
-      if (!result.error) {
-        success(result.content)
-      } else {
-        fail(result.content)
-      }
-    })
-  },
   scanQRCode: function scanQRCode(success, fail) {
     _bridge2.default.callhandler('scanQRCode', '', function(result) {
       if (!result.error) {

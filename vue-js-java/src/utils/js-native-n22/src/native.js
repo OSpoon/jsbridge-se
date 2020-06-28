@@ -29,15 +29,6 @@ const native = {
       }
     })
   },
-  closeAndResult(data, success, fail) {
-    bridge.callhandler('close', data, (result) => {
-      if (!result.error) {
-        success(result.content)
-      } else {
-        fail(result.content)
-      }
-    })
-  },
   scanQRCode(success, fail) {
     bridge.callhandler('scanQRCode', '', (result) => {
       if (!result.error) {

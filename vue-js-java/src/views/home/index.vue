@@ -16,8 +16,6 @@
     <p />
     <van-button type="primary" block @click="closePage()">关闭当前页面</van-button>
     <p />
-    <van-button type="primary" block @click="closeAndResultPage()">关闭当前页面并推送父类数据</van-button>
-    <p />
     <van-button type="primary" block @click="getLocationInfo()">获取当前位置</van-button>
     <p />
     <van-button type="primary" block @click="putData()">添加数据</van-button>
@@ -132,22 +130,16 @@ export default {
     // alert('产品名称' + this.productName)
     // alert('产品code' + this.productCodeDetail)
     // alert('产品标志' + this.pageResource)
-    native.bridge.registerhandler('onPageFinished', (data, responseCallback) => {
-      alert(JSON.stringify(data))
-    })
     native.bridge.registerhandler('functionInJs', (data, responseCallback) => {
       alert(JSON.stringify(data))
-      alert('functionInJs')
       responseCallback('JS OK')
     })
     native.bridge.registerhandler('closeCallBack', (data, responseCallback) => {
       alert(JSON.stringify(data))
-      alert('closeCallBack')
       responseCallback('CLOSE OK')
     })
     native.bridge.registerhandler('GDINativePushData', (data, responseCallback) => {
       alert(JSON.stringify(data))
-      alert('GDINativePushData')
       responseCallback('GDINativePushData OK')
     })
   },
@@ -198,13 +190,6 @@ export default {
     },
     closePage() {
       native.close((content) => {
-        alert(JSON.stringify(content))
-      }, (error) => {
-        alert(error)
-      })
-    },
-    closeAndResultPage() {
-      native.closeAndResult({ data: 'OK_PAGE' }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
         alert(error)
@@ -284,7 +269,7 @@ export default {
     openBrowser() {
       native.openBrowser({
         mode: 1,
-        url: 'http://192.168.199.162:9999/#/'
+        url: 'http://xrkj.gitee.io/jsbridge-n22/#/'
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
