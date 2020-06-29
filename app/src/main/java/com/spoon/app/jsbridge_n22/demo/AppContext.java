@@ -20,6 +20,7 @@ import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenContactsBridgeHan
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenWeChatBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.PicPreviewBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.QRCodeBridgeHandler;
+import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ReloadWebViewBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SecurityBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.SendMsgBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ShareWechatBridgeHandler;
@@ -69,6 +70,7 @@ public class AppContext extends MultiDexApplication {
                 PicPreviewBridgeHandler.class,
                 ShowNavigationBarBridgeHandler.class,
                 ShowLoadingBridgeHandler.class,
-                OpenContactBridgeHandler.class);
+                OpenContactBridgeHandler.class,
+                ReloadWebViewBridgeHandler.class);
     }
 }

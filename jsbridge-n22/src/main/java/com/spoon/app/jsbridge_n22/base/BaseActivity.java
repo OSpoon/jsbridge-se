@@ -86,4 +86,13 @@ public class BaseActivity extends Activity {
     public void setParentActivityId(String parentActivityId) {
         this.parentActivityId = parentActivityId;
     }
+
+    public void reload() {
+        if (bridgeWebView != null) {
+            bridgeWebView.reload();
+        }
+        if (x5WebView != null) {
+            bridgeWebView.reload();
+        }
+    }
 }
