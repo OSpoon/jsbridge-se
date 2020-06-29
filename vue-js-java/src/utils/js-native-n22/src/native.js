@@ -29,6 +29,15 @@ const native = {
       }
     })
   },
+  reload(success, fail) {
+    bridge.callhandler('reload', '', (result) => {
+      if (!result.error) {
+        success(result.content)
+      } else {
+        fail(result.content)
+      }
+    })
+  },
   closeAndResult(data, success, fail) {
     bridge.callhandler('close', data, (result) => {
       if (!result.error) {
