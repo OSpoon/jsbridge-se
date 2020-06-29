@@ -533,6 +533,7 @@ native.pushData({
 ---|---|---|---
 openFlag | String | 传1.打开相机,2.是打开相册 | 打开相机或者打开相册的标志
 isCompress | int | 传1.压缩,2.不压缩 | 压缩照片的标志
+compressMutiple | float | 压缩大小的比例,以M为单位,比如限制500K就传0.5 | 压缩照片的大小
 photoNum | int | 传0-9之间的数值,当打开相机操作时,该参数可不传 | 选择相册中照片的数量
 
 响应参数:
@@ -546,6 +547,7 @@ API`openCamera`示例:
 native.openCamera({
         openFlag: '2', // 打开相机,1.打开相机,2.是打开相册
         isCompress: 1, // 1.压缩,2.不压缩
+        compressMutiple: 0.5, // 1.压缩,2.不压缩
         photoNum: 3 // 打开相册选择照片的数量,当打开相机时该参数可不传
       }, (content) => {
         alert(JSON.stringify(content))

@@ -455,7 +455,8 @@ export default {
     openCamera() {
       native.openCamera({
         openFlag: '1', // 打开相机,1.打开相机,2.是打开相册
-        isCompress: 1 // 1.压缩,2.不压缩
+        isCompress: 1, // 1.压缩,2.不压缩
+        compressMutiple: 0.5 //
       }, (content) => {
         alert(JSON.stringify(content))
         this.loadImageFile(content.paths[0], (rst) => {
@@ -472,7 +473,8 @@ export default {
       native.openCamera({
         openFlag: '2', // 打开相机,1.打开相机,2.是打开相册
         isCompress: 2, // 1.压缩,2.不压缩
-        photoNum: 3 // 打开相册选择照片的数量
+        photoNum: 3, // 打开相册选择照片的数量
+        compressMutiple: 0.5 //
       }, (content) => {
         alert(JSON.stringify(content))
         this.loadImageFile(content.paths[0], (rst) => {
