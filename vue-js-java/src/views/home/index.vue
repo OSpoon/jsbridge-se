@@ -94,6 +94,8 @@
     <p />
     <van-button type="primary" block @click="modifyPwd()">修改密码</van-button>
     <p />
+    <van-button type="primary" block @click="reload()">刷新页面</van-button>
+    <p />
     <van-uploader :after-read="afterRead" />
   </div>
 </template>
@@ -121,6 +123,7 @@ export default {
   created() {
   },
   mounted: function() {
+    alert(1)
     // alert(this.userInfo)
     // alert(this.productName)
     // alert(this.productCodeDetail)
@@ -171,6 +174,13 @@ export default {
         this.imageBase64 = rst.base64
       }, err => {
         alert(err)
+      })
+    },
+    reload() {
+      native.reload((content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
       })
     },
     toast() {
@@ -275,7 +285,7 @@ export default {
     openBrowser() {
       native.openBrowser({
         mode: 1,
-        url: 'http://192.168.8.101:9999/#/'
+        url: 'https://mitphone.sunlife-everbright.com:8010/com.ifp.ipartner/proposalShare/index.html#/policy/informSuccess'
       }, (content) => {
         alert(JSON.stringify(content))
       }, (error) => {
