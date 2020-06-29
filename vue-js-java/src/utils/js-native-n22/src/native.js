@@ -310,8 +310,8 @@ const native = {
       }
     })
   },
-  modifyPwd(data, success, fail) {
-    bridge.callhandler('modifyPwd', data, (result) => {
+  modifyPwd(success, fail) {
+    bridge.callhandler('modifyPwd', '', (result) => {
       if (!result.error) {
         success(result.content)
       } else {

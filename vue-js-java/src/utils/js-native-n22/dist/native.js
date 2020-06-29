@@ -320,8 +320,8 @@ var native = {
       }
     })
   },
-  modifyPwd: function modifyPwd(data, success, fail) {
-    _bridge2.default.callhandler('modifyPwd', data, function(result) {
+  modifyPwd: function modifyPwd(success, fail) {
+    _bridge2.default.callhandler('modifyPwd', '', function(result) {
       if (!result.error) {
         success(result.content)
       } else {
