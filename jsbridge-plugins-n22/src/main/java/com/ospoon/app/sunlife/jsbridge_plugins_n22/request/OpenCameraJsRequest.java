@@ -9,6 +9,7 @@ package com.ospoon.app.sunlife.jsbridge_plugins_n22.request;
 public class OpenCameraJsRequest {
     private String openFlag;
     private int isCompress;
+    private float compressMutiple;
     private int photoNum;
 
     public String getOpenFlag() {
@@ -25,6 +26,14 @@ public class OpenCameraJsRequest {
 
     public void setIsCompress(int isCompress) {
         this.isCompress = isCompress;
+    }
+
+    public float getCompressMutiple() {
+        return compressMutiple;
+    }
+
+    public void setCompressMutiple(float compressMutiple) {
+        this.compressMutiple = compressMutiple;
     }
 
     public int getPhotoNum() {

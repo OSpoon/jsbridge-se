@@ -29,6 +29,7 @@ public class OpenCameraBridgeHandler extends BaseBridgeHandler {
     private static final int REQUEST_CODE_OPEN_CAMERA = 100;
     private static final int REQUEST_CODE_SELECT_PICTURE = 101;
     private int compress;
+    private float compressMutiple;
 
     /**
      * 权限数组,不申请权限设置为null
@@ -60,6 +61,7 @@ public class OpenCameraBridgeHandler extends BaseBridgeHandler {
     public void process(String data) {
         OpenCameraJsRequest request = new Gson().fromJson(data, OpenCameraJsRequest.class);
         compress = request.getIsCompress();
+        compressMutiple = request.getCompressMutiple();
         if ("1".equals(request.getOpenFlag())) {
             PictureSelector.create(getActivity())
                     .openCamera(PictureMimeType.ofImage())
@@ -95,7 +97,7 @@ public class OpenCameraBridgeHandler extends BaseBridgeHandler {
                     List<LocalMedia> localMediaTake = PictureSelector.obtainMultipleResult(intent);
                     for (LocalMedia media : localMediaTake) {
                         if (compress == 1) {
-                            photoNamesList.addAll(ImgUtils.getCompressImg("", media.getPath()));
+                            photoNamesList.addAll(ImgUtils.getCompressImg("", media.getPath(), compressMutiple));
                         } else {
                             photoNamesList.add(media.getPath());
                         }
@@ -109,7 +111,7 @@ public class OpenCameraBridgeHandler extends BaseBridgeHandler {
                     List<LocalMedia> localMediaTake2 = PictureSelector.obtainMultipleResult(intent);
                     for (LocalMedia media : localMediaTake2) {
                         if (compress == 1) {
-                            photoNamesList.addAll(ImgUtils.getCompressImg("", media.getPath()));
+                            photoNamesList.addAll(ImgUtils.getCompressImg("", media.getPath(), compressMutiple));
                         } else {
                             photoNamesList.add(media.getPath());
                         }

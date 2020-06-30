@@ -3,9 +3,8 @@ package com.ospoon.app.sunlife.jsbridge_plugins_n22.ImgUtils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
-import android.provider.Settings;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
+import android.util.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -14,8 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
 
 /**
  * 图片压缩工具
@@ -31,7 +28,7 @@ public class ImgUtils {
      * @param imgPath
      * @return
      */
-    public static ArrayList<String> getCompressImg(String name, String imgPath) {
+    public static ArrayList<String> getCompressImg(String name, String imgPath, float compressMutiple) {
         ArrayList<String> resList = new ArrayList<>();
         if (!TextUtils.isEmpty(imgPath)) {
             if (imgPath.contains(",")) {
@@ -40,7 +37,7 @@ public class ImgUtils {
                     Bitmap bitmap = BitmapFactory.decodeFile(item);
 //                    Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(item, 720, 1080);
                     if (bitmap != null) {
-                        String imagePath = compressImage(bitmap, name, getImagePath().getPath());
+                        String imagePath = compressImage(bitmap, name, getImagePath().getPath(), compressMutiple);
                         bitmap.recycle();
                         bitmap = null;
 
@@ -53,7 +50,7 @@ public class ImgUtils {
                 Bitmap bitmap = BitmapFactory.decodeFile(imgPath);
 //                Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(imgPath, 720, 1080);
                 if (bitmap != null) {
-                    String imagePath = compressImage(bitmap, name, getImagePath().getPath());
+                    String imagePath = compressImage(bitmap, name, getImagePath().getPath(), compressMutiple);
                     bitmap.recycle();
                     bitmap = null;
 
@@ -72,7 +69,7 @@ public class ImgUtils {
      * @param
      * @return
      */
-    public static String compressImage(Bitmap image, String addName, String path) {
+    public static String compressImage(Bitmap image, String addName, String path, float compressMutiple) {
 
         BitmapFactory.Options bitmapoptions = new BitmapFactory.Options();
         bitmapoptions.inJustDecodeBounds = false;
@@ -80,7 +77,7 @@ public class ImgUtils {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 100;
-        while (baos.toByteArray().length / 1024 > 1024) { // 循环判断如果压缩后图片是否大于1024kb,大于继续压缩
+        while (baos.toByteArray().length / 1024 > (int) (compressMutiple == 0.0 ? 3072 : compressMutiple * 1024)) { // 循环判断如果压缩后图片是否大于1024kb,大于继续压缩
             baos.reset(); // 重置baos即清空baos
             image.compress(Bitmap.CompressFormat.JPEG, options, baos);// 这里压缩options%，把压缩后的数据存放到baos中
             options -= 10;// 每次都减少10
@@ -99,6 +96,7 @@ public class ImgUtils {
             fileName += addName + "_";
         }
         fileName += name;
+        Log.e("tag", "compressImage:压缩图片的名字 " + fileName);
         File myCaptureFile = new File(fileName);
 
         try {
