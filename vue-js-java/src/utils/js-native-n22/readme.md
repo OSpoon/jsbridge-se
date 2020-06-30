@@ -847,3 +847,30 @@ API`modifyPwd`示例:
           alert(error)
         })
 ```
+
+##### 31. closeAndResult: 关闭当前WebView并将data进行派发
+> 可以通过此API关闭当前WebView并将data进行派发
+
+请求参数:
+ 参数 | 类型 | 枚举 | 含义
+ ---|---|---|---
+ data | String | 无 | 派发信息
+ 
+ 响应参数: 无
+     
+ API`toast`示例:
+
+```js
+native.closeAndResult({ data: 'PAGE_OK' }, (content) => {
+        alert(JSON.stringify(content))
+      }, (error) => {
+        alert(error)
+      })
+
+//可选 接受关闭派发的data数据
+native.bridge.registerhandler('GDINativePushData', (data, responseCallback) => {
+      // alert(JSON.stringify(data))
+      console.log(data)
+      responseCallback('GDINativePushData OK')
+    })
+```
