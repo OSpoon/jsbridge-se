@@ -35,7 +35,11 @@ public class ClosePageBridgeHandler extends BaseBridgeHandler {
         }
         try {
             if (json != null) {
-                Utils.postParentWebViewMessage(getActivity().getParentActivityId(), "GDINativePushData",(String) json.get("data"));
+                if ("reloadPage".equals(json.get("data"))) {
+
+                } else {
+                    Utils.postParentWebViewMessage(getActivity().getParentActivityId(), "GDINativePushData", (String) json.get("data"));
+                }
             } else {
                 Utils.postParentWebViewMessage(getActivity().getParentActivityId(), "200");
             }

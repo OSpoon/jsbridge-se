@@ -858,7 +858,7 @@ API`modifyPwd`示例:
  
  响应参数: 无
      
- API`toast`示例:
+ API`closeAndResult`示例:
 
 ```js
 native.closeAndResult({ data: 'PAGE_OK' }, (content) => {

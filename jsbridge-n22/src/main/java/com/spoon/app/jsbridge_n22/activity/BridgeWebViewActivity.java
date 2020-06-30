@@ -40,7 +40,6 @@ import com.spoon.app.jsbridge_n22.bean.UserInfoBean;
 import com.spoon.app.jsbridge_n22.core.BridgeWebView;
 import com.spoon.app.jsbridge_n22.utils.CookieUtils;
 import com.spoon.app.jsbridge_n22.utils.ShareUtils;
-import com.spoon.app.jsbridge_n22.utils.Utils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -524,9 +523,11 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
     @Override
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
+        super.onMessageEvent(event);
         if (event != null) {
             if (bridgeWebview != null) {
-                bridgeWebview.callHandler("GDINativePushData", event.getData(), getResponseCallback("bridgeWebView"));
+                bridgeWebview.callHandler("GDINativePushData", event.getData(),
+                        getResponseCallback("bridgeWebView"));
             }
         }
     }
