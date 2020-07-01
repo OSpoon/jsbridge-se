@@ -14,6 +14,7 @@ import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.hardware.Camera.PreviewCallback;
 import android.hardware.Camera.Size;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -313,7 +314,7 @@ public class LivenessActivity extends Activity
             handleNotPass(timeout);
             mFaceMask.setFaceInfo(detectionFrame);
         } else {
-            if (sensorUtil.Y == 0)
+            if (sensorUtil.Y == 0 && Build.MANUFACTURER.equals("HUAWEI"))
                 promptText.setText(R.string.meglive_getpermission_motion);
             else
                 promptText.setText(R.string.meglive_phone_vertical);

@@ -5,14 +5,17 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Handler;
 
 /**
- *传感器工具类 
+ *传感器工具类
  */
 public class SensorUtil implements SensorEventListener {
+	public float Y;
 	private SensorManager mSensorManager;
 	private Sensor mSensor;
-	public float Y;
+	private boolean isFail;
+	private Handler mHandler;
 
 	public SensorUtil(Context context) {
 		init(context);
@@ -25,7 +28,16 @@ public class SensorUtil implements SensorEventListener {
 		if (mSensor != null) {
 			mSensorManager.registerListener(this, mSensor,
 					SensorManager.SENSOR_DELAY_NORMAL);
+		} else {
+			isFail = true;
 		}
+		mHandler = new Handler();
+		mHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				isFail = true;
+			}
+		}, 3000);
 	}
 
 	@Override
@@ -42,12 +54,20 @@ public class SensorUtil implements SensorEventListener {
 		if (mSensor != null && mSensorManager != null) {
 			mSensorManager.unregisterListener(this);
 		}
+		if (mHandler != null) {
+			mHandler.removeCallbacksAndMessages(null);
+		}
 	}
 
 	public boolean isVertical() {
-		if (Y >= 9)
+		if (Y >= 8)
 			return true;
 
 		return false;
 	}
+
+	public boolean isSensorFault() {
+		return isFail;
+	}
+
 }
