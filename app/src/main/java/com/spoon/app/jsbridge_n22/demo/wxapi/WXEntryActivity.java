@@ -7,7 +7,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.spoon.app.jsbridge_n22.bean.MessageEvent;
@@ -73,7 +72,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                         // 只是做了简单的finish操作
                         Toast.makeText(this, "分享成功", Toast.LENGTH_SHORT).show();
                         EventBus.getDefault().post(new MessageEvent("分享成功"));
-                        Log.e("tag", "onResp: " + "分享成功");
                         finish();
                         break;
                     default:
@@ -85,9 +83,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                 switch (baseResp.getType()) {
                     // 微信分享
                     case ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX:
-//                        Log.i("WXEntryActivity" , ">>>errCode = " + baseResp.errCode);
                         Toast.makeText(this, "分享失败", Toast.LENGTH_SHORT).show();
-                        Log.e("tag", "onResp: " + "分享失败");
                         EventBus.getDefault().post(new MessageEvent("分享失败"));
                         finish();
                         break;

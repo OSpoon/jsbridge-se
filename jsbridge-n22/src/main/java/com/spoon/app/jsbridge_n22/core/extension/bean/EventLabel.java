@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class EventLabel extends Event implements Serializable {
     public String label;
 
+    @Override
     public String toString() {
         return label;
     }

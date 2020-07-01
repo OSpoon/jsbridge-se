@@ -210,16 +210,8 @@ native.storage({
 
 参数 | 类型 | 枚举 | 含义
 ---|---|---|---
-mode | int | 1:自身内核,2:X5内核 | 内核选择
-url | String | 无 | 待打开的页面
-isCustom | bool | 默认:`false` | 是否自定义导航栏
-isShowClose | bool | 默认:`false` | 是否显示关闭按钮
-isShowBack | bool | 默认:`true` | 是否显示返回按钮
-isShowShare | bool | 默认:`true` | 是否显示分享按钮
-toolbar-height | number | 默认:`44` | 导航栏高度
-toolbar-color | String | 默认:`#f0f0f0ff` | 导航背景色
-title-color | String | 默认:`#003264ff` | 标题颜色
-title-staticText | String | 默认:`` | 标题内容
+mode | int | 1:自身内核| 浏览器模式
+url | String | 无 | 打开的页面的url
 
 响应参数: 无
     
@@ -240,18 +232,6 @@ native.openBrowser({
 native.openBrowser({
     mode: 1,
     url: 'http://xrkj.gitee.io/jsbridge-n22/#/',
-    isCustom: true,
-    isShowClose: true,
-    isShowBack: true,
-    isShowShare: true,
-    toolbar: {
-      height: 44,
-      color: '#0000CC'
-    },
-    title: {
-      color: '#666633',
-      staticText: '自定义Title'
-    }
   }, (content) => {
     alert(JSON.stringify(content))
   }, (error) => {
@@ -393,32 +373,7 @@ API`switchScreen`示例:
          alert(error)
        })
 ```
-
-##### ~~14. imageSelect:获取手机中的图片~~
-> 可以通过此API获取手机中的图片
-
-请求参数: 
-参数 | 类型 | 枚举 | 含义
----|---|---|---
-limit | int | 必传建议1~9 | 一次最短选择图片限制
-
-响应参数:
-参数 | 类型 | 枚举 | 含义
----|---|---|---
-paths | String[] | 无 | 返回选中图片在手机中存储的路径
-
-API`imageSelect`示例:
-
-```js
-native.imageSelect({
-    'limit': 2
-  }, (content) => {
-    alert(JSON.stringify(content))
-  }, (error) => {
-    alert(error)
-  })
-```
-##### 15. shareWeChat:微信分享
+##### 14. shareWeChat:微信分享
 > 可以通过此API进行微信分享(集成时必须把名称为wxapi的包以及目录下的文件放到项目中与项目包名同级别)
 
 请求参数:
@@ -448,7 +403,7 @@ native.shareWeChat({
   })
 ```
 
-##### 16. idCardScan:通过旷世提供的SDK获取身份证正面反图像
+##### 15. idCardScan:通过旷世提供的SDK获取身份证正面反图像
 > 可以通过此API通过旷世提供的SDK获取身份证正面反图像
 
 请求参数:
@@ -476,7 +431,7 @@ native.idCardScan({
   })
 ```
 
-##### 17. faceScan:通过旷世提供的SDK获取人脸图像
+##### 16. faceScan:通过旷世提供的SDK获取人脸图像
 > 可以通过此API通过旷世提供的SDK获取人脸图像
 
 请求参数: 无
@@ -496,7 +451,7 @@ native.faceScan((content) => {
   })
 ```
 
-##### 18. pushData:可以将H5中的数据推送到原生层
+##### 17. pushData:可以将H5中的数据推送到原生层
 > 可以通过此API可以将H5中的数据推送到原生层
 
 > 使用场景:如第三方监控平台SDK需要获取H5登陆成功后的用户信息,H5端可以使用此插件进行数据推送,原生端注册广播并将接收到的数据发送给监控平台,注意广播仅支持动态注册(涉及原生部分)
@@ -525,7 +480,7 @@ native.pushData({
     alert(error)
   })
 ```
-##### 19. openCamera:打开相机拍照和打开相册选择照片
+##### 18. openCamera:打开相机拍照和打开相册选择照片
 > 可以通过此API打开相机拍照和打开相册选择照片
 
 请求参数:
@@ -556,7 +511,7 @@ native.openCamera({
       })
 ```
 
-##### 20. picPreview:支持多张图片预览(可支持单张长图显示)
+##### 19. picPreview:支持多张图片预览(可支持单张长图显示)
 > 可以通过此API支持多张图片预览(可支持单张长图显示)
 
 请求参数:
@@ -591,7 +546,7 @@ native.picPreview({
     alert(error)
   })
 ```
-##### 21. openContact:调用原生获取单个联系人信息
+##### 20. openContact:调用原生获取单个联系人信息
 > 可以通过此API调用原生获取单个联系人信息
 
 请求参数: 无
@@ -612,7 +567,7 @@ API`openContact`示例:
          alert(error)
        })
 ```
-##### 22. dictation:语音识别听写
+##### 21. dictation:语音识别听写
 > 可以通过此API调用语音识别插件
 
 请求参数: 无
@@ -631,7 +586,7 @@ API`dictation`示例:
          alert(error)
        })
 ```
-##### 23. loginOperation:登录和退出登录操作
+##### 22. loginOperation:登录和退出登录操作
 > 可以通过此API调用原生登录页面和退出登录
 
 请求参数:
@@ -654,7 +609,7 @@ API`loginOperation`示例:
         })
 ```
 
-##### 24. openUrl:调用原生打开资源链接
+##### 23. openUrl:调用原生打开资源链接
 > 注意: 目前仅支持IOS
 > 可以通过此API调用原生打开网页查看资源信息\
 > 可以通过此API调用原生打开第三方应用\
@@ -680,7 +635,7 @@ API`openUrl`示例:
        })
 ```
 
-##### 25. openPDF:打开PDF文件
+##### 24. openPDF:打开PDF文件
 > 可以通过此API调用原生页面打开PDF文件
 
 请求参数:
@@ -704,7 +659,7 @@ API`openPDF`示例:
           alert(error)
         })
 ```
-##### 26. goHome:回到首页
+##### 25. goHome:回到首页
 > 可以通过此API调用原生页面回到首页
 
 请求参数: 无
@@ -719,7 +674,7 @@ API`goHome`示例:
           alert(error)
         })
 ```
-##### 27. showNavigationBar:显示原生导航栏
+##### 26. showNavigationBar:显示原生导航栏
 > 可以通过此API调用原生页面的导航栏
 
 请求参数: 
@@ -792,7 +747,7 @@ API`showNavigationBar`示例:
           alert(error)
         })
 ```
-##### 28. GDINativePushData:原生推送前端页面数据方法
+##### 27. GDINativePushData:原生推送前端页面数据方法
 > 可以通过此API调用原生推送前端页面数据方法
 
 请求参数:无
@@ -810,7 +765,7 @@ API`GDINativePushData`示例:
         responseCallback('GDINativePushData OK')
       })
 ```
-##### 29. showLoading: 加载或者隐藏原生的loading框
+##### 28. showLoading: 加载或者隐藏原生的loading框
 > 可以通过此API加载或者隐藏原生的loading框
 
 请求参数:
@@ -831,7 +786,7 @@ API`showLoading`示例:
           alert(error)
         })
 ```
-##### 30. modifyPwd: 调用原生页面来修改密码
+##### 29. modifyPwd: 调用原生页面来修改密码
 > 可以通过此API调用原生页面来修改密码
 
 请求参数:无
@@ -848,7 +803,7 @@ API`modifyPwd`示例:
         })
 ```
 
-##### 31. closeAndResult: 关闭当前WebView并将data进行派发
+##### 30. closeAndResult: 关闭当前WebView并将data进行派发
 > 可以通过此API关闭当前WebView并将data进行派发
 
 请求参数:

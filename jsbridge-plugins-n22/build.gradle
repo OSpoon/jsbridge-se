@@ -48,6 +48,5 @@ dependencies {
     api rootProject.ext.dependencies["speech"]
     api rootProject.ext.dependencies["idcard_quality"]
     api rootProject.ext.dependencies["livenesslib"]
-    api rootProject.ext.dependencies["imagepicker"]
     api rootProject.ext.dependencies["picpreview"]
 }

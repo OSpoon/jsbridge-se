@@ -7,7 +7,6 @@ import com.spoon.app.jsbridge_n22.bean.MessageEvent;
 import com.spoon.app.jsbridge_n22.core.BridgeLog;
 import com.spoon.app.jsbridge_n22.core.BridgeWebView;
 import com.spoon.app.jsbridge_n22.core.OnBridgeCallback;
-import com.spoon.app.jsbridge_n22.core.X5WebView;
 import com.spoon.app.jsbridge_n22.uiInterface.MAInterface;
 
 import org.greenrobot.eventbus.EventBus;
@@ -18,7 +17,6 @@ public class BaseActivity extends Activity {
 
     private MAInterface maInterface;
     private BridgeWebView bridgeWebView;
-    private X5WebView x5WebView;
     private String parentActivityId;
 
     @Override
@@ -37,10 +35,6 @@ public class BaseActivity extends Activity {
         this.bridgeWebView = bridgeWebView;
     }
 
-    public void setX5WebView(X5WebView x5WebView) {
-        this.x5WebView = x5WebView;
-    }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageEvent event) {
@@ -48,9 +42,6 @@ public class BaseActivity extends Activity {
             if (event.getParentActivityId().equals(this.toString())) {
                 if (bridgeWebView != null) {
                     bridgeWebView.callHandler(event.getHandlerName(), event.getData(), getResponseCallback("bridgeWebView"));
-                }
-                if (x5WebView != null) {
-                    x5WebView.callHandler(event.getHandlerName(), event.getData(), getResponseCallback("x5WebView"));
                 }
             }
         }
@@ -89,9 +80,6 @@ public class BaseActivity extends Activity {
 
     public void reload() {
         if (bridgeWebView != null) {
-            bridgeWebView.reload();
-        }
-        if (x5WebView != null) {
             bridgeWebView.reload();
         }
     }

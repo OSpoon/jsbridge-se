@@ -1,12 +1,5 @@
 package com.megvii.livenesslib;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.SurfaceTexture;
@@ -18,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.os.Parcelable;
 import android.util.Base64;
 import android.view.TextureView;
 import android.view.View;
@@ -39,7 +31,6 @@ import com.megvii.livenessdetection.FaceQualityManager;
 import com.megvii.livenessdetection.FaceQualityManager.FaceQualityErrorType;
 import com.megvii.livenessdetection.bean.FaceIDDataStruct;
 import com.megvii.livenessdetection.bean.FaceInfo;
-import com.megvii.livenesslib.R;
 import com.megvii.livenesslib.util.ConUtil;
 import com.megvii.livenesslib.util.DialogUtil;
 import com.megvii.livenesslib.util.ICamera;
@@ -49,6 +40,17 @@ import com.megvii.livenesslib.util.Screen;
 import com.megvii.livenesslib.util.SensorUtil;
 import com.megvii.livenesslib.view.CircleProgressBar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 人脸识别页面
+ *
+ * @author gdk
+ */
 public class LivenessActivity extends Activity
         implements PreviewCallback, DetectionListener, TextureView.SurfaceTextureListener {
 
@@ -100,20 +102,20 @@ public class LivenessActivity extends Activity
         mHandler = new Handler(mHandlerThread.getLooper());
         mIMediaPlayer = new IMediaPlayer(this);
         mDialogUtil = new DialogUtil(this);
-        rootView = (RelativeLayout) findViewById(R.id.liveness_layout_rootRel);
+        rootView = findViewById(R.id.liveness_layout_rootRel);
         mIDetection = new IDetection(this, rootView);
-        mFaceMask = (FaceMask) findViewById(R.id.liveness_layout_facemask);
+        mFaceMask = findViewById(R.id.liveness_layout_facemask);
         mICamera = new ICamera();
-        promptText = (TextView) findViewById(R.id.liveness_layout_promptText);
-        camerapreview = (TextureView) findViewById(R.id.liveness_layout_textureview);
+        promptText = findViewById(R.id.liveness_layout_promptText);
+        camerapreview = findViewById(R.id.liveness_layout_textureview);
         camerapreview.setSurfaceTextureListener(this);
-        mProgressBar = (ProgressBar) findViewById(R.id.liveness_layout_progressbar);
+        mProgressBar = findViewById(R.id.liveness_layout_progressbar);
         mProgressBar.setVisibility(View.INVISIBLE);
-        headViewLinear = (LinearLayout) findViewById(R.id.liveness_layout_bottom_tips_head);
+        headViewLinear = findViewById(R.id.liveness_layout_bottom_tips_head);
         headViewLinear.setVisibility(View.VISIBLE);
-        timeOutRel = (RelativeLayout) findViewById(R.id.detection_step_timeoutRel);
-        timeOutText = (TextView) findViewById(R.id.detection_step_timeout_garden);
-        mCircleProgressBar = (CircleProgressBar) findViewById(R.id.detection_step_timeout_progressBar);
+        timeOutRel = findViewById(R.id.detection_step_timeoutRel);
+        timeOutText = findViewById(R.id.detection_step_timeout_garden);
+        mCircleProgressBar = findViewById(R.id.detection_step_timeout_progressBar);
 
         mIDetection.viewsInit();
     }
@@ -144,8 +146,9 @@ public class LivenessActivity extends Activity
         super.onResume();
         isHandleStart = false;
         int cameraID = 1;
-        if (!ICamera.hasFrontFacingCamera())
+        if (!ICamera.hasFrontFacingCamera()) {
             cameraID = 0;
+        }
         // 打开照相机
         Camera mCamera = mICamera.openCamera(this, cameraID);
         if (mCamera != null) {
@@ -169,8 +172,9 @@ public class LivenessActivity extends Activity
      * 开始检测
      */
     private void handleStart() {
-        if (isHandleStart)
+        if (isHandleStart) {
             return;
+        }
         isHandleStart = true;
         // 开始动画
         Animation animationIN = AnimationUtils.loadAnimation(LivenessActivity.this, R.anim.liveness_rightin);
@@ -203,14 +207,16 @@ public class LivenessActivity extends Activity
         public void run() {
             // 倒计时开始
             initDetecteSession();
-            if (mIDetection.mDetectionSteps != null)
+            if (mIDetection.mDetectionSteps != null) {
                 changeType(mIDetection.mDetectionSteps.get(0), 10);
+            }
         }
     };
 
     private void initDetecteSession() {
-        if (mICamera.mCamera == null)
+        if (mICamera.mCamera == null) {
             return;
+        }
 
         mProgressBar.setVisibility(View.INVISIBLE);
         mIDetection.detectionTypeInit();
@@ -227,8 +233,9 @@ public class LivenessActivity extends Activity
     public void onPreviewFrame(final byte[] data, Camera camera) {
         Size previewsize = camera.getParameters().getPreviewSize();
         int angle = 360 - mICamera.getCameraAngle(this);
-        if (mICamera.cameraId == 0)
+        if (mICamera.cameraId == 0) {
             angle = angle - 180;
+        }
         // 活体检测器检测
         mDetector.doDetection(data, previewsize.width, previewsize.height, angle);
     }
@@ -245,8 +252,9 @@ public class LivenessActivity extends Activity
         if (mCurStep == mIDetection.mDetectionSteps.size()) {
             mProgressBar.setVisibility(View.VISIBLE);
             getLivenessData();
-        } else
+        } else {
             changeType(mIDetection.mDetectionSteps.get(mCurStep), 10);
+        }
 
         // 检测器返回值：如果不希望检测器检测则返回DetectionType.DONE，如果希望检测器检测动作则返回要检测的动作
         return mCurStep >= mIDetection.mDetectionSteps.size() ? DetectionType.DONE
@@ -300,6 +308,8 @@ public class LivenessActivity extends Activity
             case TIMEOUT:
                 resourceID = R.string.liveness_detection_failed_timeout;
                 break;
+            default:
+                break;
         }
         handleResult(resourceID, null, null);
     }
@@ -314,10 +324,11 @@ public class LivenessActivity extends Activity
             handleNotPass(timeout);
             mFaceMask.setFaceInfo(detectionFrame);
         } else {
-            if (sensorUtil.Y == 0 && Build.MANUFACTURER.equals("HUAWEI"))
+            if (sensorUtil.Y == 0 && Build.MANUFACTURER.equals("HUAWEI")) {
                 promptText.setText(R.string.meglive_getpermission_motion);
-            else
+            } else {
                 promptText.setText(R.string.meglive_phone_vertical);
+            }
         }
     }
 
@@ -359,9 +370,9 @@ public class LivenessActivity extends Activity
     private int mFailFrame = 0;
 
     public void faceInfoChecker(List<FaceQualityErrorType> errorTypeList) {
-        if (errorTypeList == null || errorTypeList.size() == 0)
+        if (errorTypeList == null || errorTypeList.size() == 0) {
             handleStart();
-        else {
+        } else {
             String infoStr = "";
             FaceQualityErrorType errorType = errorTypeList.get(0);
             if (errorType == FaceQualityErrorType.FACE_NOT_FOUND) {
@@ -405,7 +416,7 @@ public class LivenessActivity extends Activity
         byte[] imageBestData = new byte[1024 * 1024 * 6];
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
-        if(images!=null&&images.size()>0){
+        if (images != null && images.size() > 0) {
             for (String key : images.keySet()) {
                 byte[] data = images.get(key);
                 if (key.equals("image_best")) {
@@ -415,7 +426,7 @@ public class LivenessActivity extends Activity
             intent.putExtra("result", Base64.encodeToString(imageBestData, Base64.DEFAULT));//图片Base64格式
             intent.putExtras(bundle);
             setResult(RESULT_OK, intent);
-        }else{
+        } else {
             intent.putExtra("result", resultString);//图片Base64格式
             intent.putExtras(bundle);
             setResult(RESULT_ERROR, intent);
@@ -486,8 +497,9 @@ public class LivenessActivity extends Activity
     }
 
     private void doPreview() {
-        if (!mHasSurface)
+        if (!mHasSurface) {
             return;
+        }
 
         mICamera.startPreview(camerapreview.getSurfaceTexture());
     }
@@ -505,8 +517,9 @@ public class LivenessActivity extends Activity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mDetector != null)
+        if (mDetector != null) {
             mDetector.release();
+        }
         mDialogUtil.onDestory();
         mIDetection.onDestroy();
         sensorUtil.release();

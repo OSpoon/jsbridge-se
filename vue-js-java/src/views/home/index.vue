@@ -52,8 +52,6 @@
     <p />
     <van-button type="primary" block @click="switchScreen()">切换横竖屏</van-button>
     <p />
-    <van-button type="primary" block @click="imageSelect()">选择图片</van-button>
-    <p />
     <van-button type="primary" block @click="idCardScan()">身份证识别</van-button>
     <p />
     <van-button type="primary" block @click="shareWeChat()">分享到微信好友</van-button>
@@ -391,20 +389,6 @@ export default {
     switchScreen() {
       native.switchScreen((content) => {
         alert(JSON.stringify(content))
-      }, (error) => {
-        alert(error)
-      })
-    },
-    imageSelect() {
-      native.imageSelect({
-        'limit': 2
-      }, (content) => {
-        this.loadImageFile(content.paths[0], (rst) => {
-          this.showDialog = !this.showDialog
-          this.imageBase64 = rst.base64
-        }, err => {
-          alert(err)
-        })
       }, (error) => {
         alert(error)
       })

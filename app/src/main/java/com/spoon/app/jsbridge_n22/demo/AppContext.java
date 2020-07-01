@@ -10,7 +10,6 @@ import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DeviceBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.DictationBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.FaceScanBridgerHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.IDCardScanBridgeHandler;
-import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.ImageSelectBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.JsPushDataBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.LocationBridgeHandler;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.plugins.OpenBrowserBridgeHandler;
@@ -59,7 +58,6 @@ public class AppContext extends MultiDexApplication {
                 OpenContactsBridgeHandler.class,
                 OpenWeChatBridgeHandler.class,
                 SwitchScreenBridgeHandler.class,
-                ImageSelectBridgeHandler.class,
                 IDCardScanBridgeHandler.class,
                 ShareWechatBridgeHandler.class,
                 IDCardScanBridgeHandler.class,

@@ -8,7 +8,6 @@ import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.spoon.app.jsbridge_n22.core.BridgeWebView;
 
 /**
  * Created by gdk on 2020/5/20 10:56
@@ -62,21 +61,6 @@ public class CookieUtils {
             CookieSyncManager.createInstance(context).sync();
         }
 
-    }
-
-    /**
-     * 向页面传输用户信息
-     *
-     * @param webView
-     * @param userInfo
-     */
-    public static void localStorageData(WebView webView, String userInfo) {
-        String key = "product";
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            webView.evaluateJavascript("window.localStorage.setItem('" + key + "','" + userInfo + "');", null);
-        } else {
-            webView.loadUrl("javascript:localStorage.setItem('" + key + "','" + userInfo + "');");
-        }
     }
 
     /**

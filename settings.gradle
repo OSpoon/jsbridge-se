@@ -1,2 +1,2 @@
-include ':app', ':jsbridge-n22', ':jsbridge-plugins-n22', ':imagepicker', ':idcard_quality', ':livenesslib', ':speech', ':picpreview'
+include ':app', ':jsbridge-n22', ':jsbridge-plugins-n22', ':idcard_quality', ':livenesslib', ':speech', ':picpreview'
 rootProject.name='jsbridge-n22'

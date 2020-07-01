@@ -1,7 +1,5 @@
 package com.ospoon.app.sunlife.jsbridge_plugins_n22.request;
 
-import com.ospoon.app.sunlife.jsbridge_plugins_n22.emuns.OpenBrowserEmun;
-
 import java.io.Serializable;
 
 /**
@@ -10,7 +8,7 @@ import java.io.Serializable;
  * description :
  */
 public class OpenBrowserJsRequest implements Serializable {
-    private int mode = OpenBrowserEmun.SELF_WEB.getCode();
+    private int mode;
     private String url;
     private boolean isCustom = false;
     private boolean isShowClose = false;

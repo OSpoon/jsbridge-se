@@ -28,8 +28,8 @@ public class NavigationBarAdapter
 
     @SuppressLint("ResourceType")
     @Override
-    protected void convert(BaseViewHolder
-                                   holder, NavigationBarDataBean.NavigationBarBean.ChangeRightImageBean bean) {
+    protected void convert(BaseViewHolder holder,
+                           NavigationBarDataBean.NavigationBarBean.ChangeRightImageBean bean) {
         ImageView ivPolicyImg = holder.getView(R.id.iv_function_claims);
 
         switch (bean.getImage()) {

@@ -13,13 +13,7 @@ import com.blankj.utilcode.util.SPUtils;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.Constants;
 import com.ospoon.app.sunlife.jsbridge_plugins_n22.core.security.httpcore.TextUtils;
 import com.spoon.app.jsbridge_n22.activity.BridgeWebViewActivity;
-import com.spoon.app.jsbridge_n22.activity.X5WebViewCustomActivity;
 import com.spoon.app.jsbridge_n22.bean.NavigationBarDataBean;
-import com.spoon.app.jsbridge_n22.core.extension.bean.Options;
-import com.spoon.app.jsbridge_n22.core.extension.bean.Title;
-import com.spoon.app.jsbridge_n22.core.extension.bean.Toolbar;
-
-import java.util.HashMap;
 
 public class MainActivity extends Activity {
 
@@ -83,86 +77,6 @@ public class MainActivity extends Activity {
 //                saveDatas.put("pageResource", "000");
 //                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, null,saveDatas);
 //                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, null, "123", "光速宝");
-            }
-        });
-        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Options options = new Options();
-
-                Toolbar toolbar = new Toolbar();
-                toolbar.height = 44;
-                toolbar.color = "#f0f0f0ff";
-                options.toolbar = toolbar;
-
-                Title title = new Title();
-                title.color = "#003264ff";
-                title.staticText = "美好的一天";
-                options.title = title;
-
-                options.isShowClose = false;
-                options.isShowBack = true;
-                options.isShowShare = true;
-
-                SPUtils instance = SPUtils.getInstance();
-                String userInfo = instance.getString("userInfo");
-//                HashMap<String, Object> saveDatas = new HashMap<>();
-//                Gson gson = new Gson();
-//                UserInfoBean userInfoBean = gson.fromJson(userInfo, UserInfoBean.class);
-//                saveDatas.put("userInfo", userInfoBean);
-//                saveDatas.put("productName", "光大永明富运年年123");
-//                saveDatas.put("productCodeDetail", "HMT123456");
-//                saveDatas.put("pageResource", "这个真不知道789");
-//
-//                BridgeWebViewCustomActivity.start(MainActivity.this, AppContext.ROOT_URL, options, saveDatas);
-
-
-                HashMap<String, Object> saveDatas = new HashMap<>();
-//                Gson gson = new Gson();
-//                UserInfoBean userInfoBean = gson.fromJson(userInfo, UserInfoBean.class);
-//                saveDatas.put("userInfo", userInfoBean);
-                saveDatas.put("productName", "光大永明富运年年11111");
-                saveDatas.put("productCodeDetail", "HMT1111");
-                saveDatas.put("pageResource", "1111");
-                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, null,saveDatas);
-            }
-        });
-        findViewById(R.id.buttonx5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                X5WebViewActivity.start(MainActivity.this, AppContext.ROOT_URL);
-//                X5WebViewActivity.start(MainActivity.this, "https://wd.e-sleb.com/app.html#/myWechartShop?agentCode=mu5%2Bbi3QTyKogy8dba07bw%3D%3D&branchtype=01");
-                HashMap<String, Object> saveDatas = new HashMap<>();
-//                Gson gson = new Gson();
-//                UserInfoBean userInfoBean = gson.fromJson(userInfo, UserInfoBean.class);
-//                saveDatas.put("userInfo", userInfoBean);
-                saveDatas.put("productName", "光大永明富运年年22222");
-                saveDatas.put("productCodeDetail", "HMT2222");
-                saveDatas.put("pageResource", "222");
-                BridgeWebViewActivity.start(MainActivity.this, AppContext.ROOT_URL, null,saveDatas);
-            }
-        });
-
-        findViewById(R.id.button2x5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Options options = new Options();
-
-                Toolbar toolbar = new Toolbar();
-                toolbar.height = 44;
-                toolbar.color = "#f0f0f0ff";
-                options.toolbar = toolbar;
-
-                Title title = new Title();
-                title.color = "#003264ff";
-                title.staticText = "美好的一天";
-                options.title = title;
-
-                options.isShowClose = false;
-                options.isShowBack = true;
-                options.isShowShare = true;
-
-                X5WebViewCustomActivity.start(MainActivity.this, AppContext.ROOT_URL, options);
             }
         });
         //注册广播用于接收Js通过插件Push到原生的数据
