@@ -50,6 +50,9 @@ public class ClosePageBridgeHandler extends BaseBridgeHandler {
             }
             getActivity().finish();
         } catch (Exception e) {
+            e.getStackTrace();
+        } finally {
+            getActivity().finish();
         }
     }
 
