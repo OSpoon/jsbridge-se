@@ -489,7 +489,6 @@ public class BridgeWebViewActivity extends BaseActivity implements View.OnClickL
         if (this != null) {
             this.finish();
         }
-
     }
 
     /**

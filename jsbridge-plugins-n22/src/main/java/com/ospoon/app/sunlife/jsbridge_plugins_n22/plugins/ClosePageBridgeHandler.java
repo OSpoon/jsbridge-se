@@ -9,6 +9,8 @@ import com.spoon.app.jsbridge_n22.utils.Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * author : zhangxin
  * date : 2020-03-19 14:55
@@ -36,7 +38,10 @@ public class ClosePageBridgeHandler extends BaseBridgeHandler {
         try {
             if (json != null) {
                 if ("reloadPage".equals(json.get("data"))) {
-
+                    Intent intent = new Intent();
+                    intent.setAction("com.n22.jsbridge.JS_RELOAD_PAGE_DATA");
+                    intent.putExtra("reloadPage", "reloadPage");
+                    getActivity().sendBroadcast(intent);
                 } else {
                     Utils.postParentWebViewMessage(getActivity().getParentActivityId(), "GDINativePushData", (String) json.get("data"));
                 }
