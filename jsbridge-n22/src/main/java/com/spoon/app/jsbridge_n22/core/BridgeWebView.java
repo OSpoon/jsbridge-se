@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.spoon.app.jsbridge_n22.BuildConfig;
 import com.spoon.app.jsbridge_n22.R;
 import com.spoon.app.jsbridge_n22.base.BaseActivity;
 import com.spoon.app.jsbridge_n22.utils.LoadingDialog;
@@ -93,6 +94,9 @@ public class BridgeWebView extends WebView implements IWebView {
         }
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             getSettings().setAllowUniversalAccessFromFileURLs(true);
+        }
+        if (BuildConfig.DEBUG && Build.VERSION.SDK_INT >=Build.VERSION_CODES.KITKAT) {
+            setWebContentsDebuggingEnabled(true);
         }
         bridgeTiny = new BridgeTiny(this);
         mClient = new BridgeWebViewClient(this, bridgeTiny, listener);
