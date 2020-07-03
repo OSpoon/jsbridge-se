@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0a473e"],{"0701":function(n,e,o){"use strict";o.r(e);var t=function(){return o.e("demo").then(o.bind(null,"46a4"))};e["default"]=[{name:"demo",path:"/demo",component:t,meta:{title:"Demo",login:!1}}]}}]);
