@@ -121,7 +121,6 @@ export default {
   created() {
   },
   mounted: function() {
-    alert(1)
     // alert(this.userInfo)
     // alert(this.productName)
     // alert(this.productCodeDetail)
@@ -443,7 +442,7 @@ export default {
         compressMutiple: 0.5 //
       }, (content) => {
         alert(JSON.stringify(content))
-        this.loadImageFile(content.paths[0], (rst) => {
+        this.loadImageFile(content.paths[0] + '?origin=native', (rst) => {
           this.showDialog = !this.showDialog
           this.imageBase64 = rst.base64
         }, err => {
@@ -461,7 +460,7 @@ export default {
         compressMutiple: 0.5 //
       }, (content) => {
         alert(JSON.stringify(content))
-        this.loadImageFile(content.paths[0], (rst) => {
+        this.loadImageFile(content.paths[0] + '?origin=native', (rst) => {
           this.showDialog = !this.showDialog
           this.imageBase64 = rst.base64
         }, err => {
