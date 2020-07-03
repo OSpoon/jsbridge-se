@@ -32,7 +32,9 @@ import {
   Search,
   ActionSheet,
   Dialog,
-  Uploader
+  Uploader,
+  Grid,
+  GridItem
 } from 'vant'
 Vue.use(Toast)
 Vue.use(Field)
@@ -59,6 +61,8 @@ Vue.use(Search)
 Vue.use(ActionSheet)
 Vue.use(Dialog)
 Vue.use(Uploader)
+Vue.use(Grid)
+Vue.use(GridItem)
 
 import VueWechatTitle from 'vue-wechat-title'
 Vue.use(VueWechatTitle)

@@ -3,98 +3,54 @@
     <van-nav-bar
       title="我是测试页面"
     />
+    <van-collapse v-model="activeName" accordion>
+      <van-collapse-item title="基础插件" name="1" :border="true">
+        <van-grid :clickable="true" :column-num="3" :gutter="10">
+          <van-grid-item text="Toast" @click="toast()" />
+          <van-grid-item text="设备信息" @click="getDevice()" />
+          <van-grid-item text="打开相机" @click="openCamera()" />
+          <van-grid-item text="打开相册" @click="openAlbum()" />
+          <van-grid-item text="图片预览" @click="picPreview()" />
+          <van-grid-item text="识别二维码" @click="qrCodeScan()" />
+          <van-grid-item text="打开原生页面" @click="openOther()" />
+          <van-grid-item text="获取存储的指定数据" @click="getClearData()" />
+          <van-grid-item text="TestNetImage" @click="testNetImage()" />
+          <van-grid-item text="刷新页面" @click="reload()" />
+          <van-grid-item text="原生打开链接" @click="openUrl()" />
+        </van-grid>
+      </van-collapse-item>
+      <van-collapse-item title="进阶插件" name="2" :border="true">
+        <van-grid :clickable="true" :column-num="3" :gutter="10">
+          <van-grid-item text="分享到微信好友" @click="shareWeChat()" />
+          <van-grid-item text="分享到微信朋友圈" @click="shareWeChatTimeline()" />
+          <van-grid-item text="人脸识别" @click="faceScan()" />
+          <van-grid-item text="语音听写" @click="dictation()" />
+          <van-grid-item text="推送数据" @click="pushData()" />
+        </van-grid>
+      </van-collapse-item>
+      <van-collapse-item title="专用插件" name="3" :border="true">
+        <van-grid :clickable="true" :column-num="3" :gutter="10">
+          <van-grid-item text="显示原生导航栏" @click="showNavigationBar()" />
+          <van-grid-item text="显示loading框" @click="showLoading()" />
+          <van-grid-item text="关闭loading框" @click="showLoading1()" />
+          <van-grid-item text="登录操作" @click="loginOperation()" />
+          <van-grid-item text="退出登录操作" @click="loginOperationOut()" />
+          <van-grid-item text="打开PDF文件" @click="openPDF()" />
+          <van-grid-item text="回到首页" @click="goHome()" />
+          <van-grid-item text="修改密码" @click="modifyPwd()" />
+        </van-grid>
+      </van-collapse-item>
+      <van-collapse-item title="其他" name="4" :border="false">
+        <van-uploader :after-read="afterRead" />
+        <div class="face">
+          <input type="file" accept="image/*" capture="camera" name="file" class="upload" @change="uploadImg">
+          <span class="span-txt">开始认证</span>
+        </div>
+      </van-collapse-item>
+    </van-collapse>
     <van-dialog v-model="showDialog" title="图片预览" show-cancel-button>
       <img width="300" height="300" :src="imageBase64">
     </van-dialog>
-    <van-button type="primary" block @click="toast()">Toast</van-button>
-    <p />
-    <van-button type="primary" block @click="openOther()">打开另一个原生页面</van-button>
-    <p />
-    <van-button type="primary" block @click="qrCodeScan()">识别二维码</van-button>
-    <p />
-    <van-button type="primary" block @click="getDevice()">获取设备信息</van-button>
-    <p />
-    <van-button type="primary" block @click="closePage()">关闭当前页面</van-button>
-    <p />
-    <van-button type="primary" block @click="closeAndResultPage()">关闭当前页面新版</van-button>
-    <p />
-    <van-button type="primary" block @click="getLocationInfo()">获取当前位置</van-button>
-    <p />
-    <van-button type="primary" block @click="putData()">添加数据</van-button>
-    <p />
-    <van-button type="primary" block @click="getData()">获取数据</van-button>
-    <p />
-    <van-button type="primary" block @click="containsKey()">查看key是否存在</van-button>
-    <p />
-    <van-button type="primary" block @click="remoKey()">删除指定key的数据</van-button>
-    <p />
-    <van-button type="primary" block @click="cleanAll()">清空所有数据</van-button>
-    <p />
-    <van-button type="primary" block @click="openBrowser()">打开新的浏览器</van-button>
-    <p />
-    <van-button type="primary" block @click="openNewBrowser()">打开自定义新的浏览器</van-button>
-    <p />
-    <van-button type="primary" block @click="encode()">加密</van-button>
-    <p />
-    <van-button type="primary" block @click="decode()">解密</van-button>
-    <p />
-    <van-button type="primary" block @click="sign()">获取验证签名</van-button>
-    <p />
-    <van-button type="primary" block @click="callPhone()">打电话</van-button>
-    <p />
-    <van-button type="primary" block @click="sendMsg()">发送短信</van-button>
-    <p />
-    <van-button type="primary" block @click="openContacts()">获取联系人列表信息</van-button>
-    <p />
-    <van-button type="primary" block @click="openContact()">获取单个联系人信息</van-button>
-    <p />
-    <van-button type="primary" block @click="openWeChat()">打开微信</van-button>
-    <p />
-    <van-button type="primary" block @click="switchScreen()">切换横竖屏</van-button>
-    <p />
-    <van-button type="primary" block @click="idCardScan()">身份证识别</van-button>
-    <p />
-    <van-button type="primary" block @click="shareWeChat()">分享到微信好友</van-button>
-    <p />
-    <van-button type="primary" block @click="shareWeChatTimeline()">分享到微信朋友圈</van-button>
-    <p />
-    <van-button type="primary" block @click="faceScan()">人脸识别</van-button>
-    <p />
-    <van-button type="primary" block @click="openCamera()">打开相机</van-button>
-    <p />
-    <van-button type="primary" block @click="openAlbum()">打开相册</van-button>
-    <p />
-    <van-button type="primary" block @click="pushData()">推送数据</van-button>
-    <p />
-    <van-button type="primary" block @click="dictation()">语音听写</van-button>
-    <p />
-    <van-button type="primary" block @click="picPreview()">图片预览</van-button>
-    <p />
-    <van-button type="primary" block @click="getClearData()">获取存储的指定数据</van-button>
-    <p />
-    <van-button type="primary" block @click="loginOperation()">登录操作</van-button>
-    <p />
-    <van-button type="primary" block @click="loginOperationOut()">退出登录操作</van-button>
-    <p />
-    <van-button type="primary" block @click="testNetImage()">TestNetImage</van-button>
-    <p />
-    <van-button type="primary" block @click="openUrl()">调用原生打开资源链接</van-button>
-    <p />
-    <van-button type="primary" block @click="openPDF()">打开PDF文件</van-button>
-    <p />
-    <van-button type="primary" block @click="goHome()">回到首页</van-button>
-    <p />
-    <van-button type="primary" block @click="showNavigationBar()">显示原生导航栏</van-button>
-    <p />
-    <van-button type="primary" block @click="showLoading()">显示loading框</van-button>
-    <p />
-    <van-button type="primary" block @click="showLoading1()">关闭loading框</van-button>
-    <p />
-    <van-button type="primary" block @click="modifyPwd()">修改密码</van-button>
-    <p />
-    <van-button type="primary" block @click="reload()">刷新页面</van-button>
-    <p />
-    <van-uploader :after-read="afterRead" />
   </div>
 </template>
 
@@ -110,6 +66,7 @@ export default {
   props: {},
   data() {
     return {
+      activeName: '1',
       showDialog: false,
       imageBase64: '',
       userInfo: window.localStorage.getItem('userInfo'),
@@ -143,6 +100,15 @@ export default {
     })
   },
   methods: {
+    uploadImg(e) {
+      const file = e.target.files[0]
+      this.loadImageFile(file, (rst) => {
+        this.showDialog = !this.showDialog
+        this.imageBase64 = rst.base64
+      }, err => {
+        alert(err)
+      })
+    },
     /**
        * 通过Lrz来加载本地图片
        */
@@ -660,5 +626,36 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+.face{
+  height: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+  .upload{
+    width: calc(100% - 40px);
+    height: 43px;
+    line-height: 43px;
+    opacity: 0;
+    position: absolute;
+    z-index: 22;
+    left: 0;
+    margin: auto;
+    right: 0;
+  }
+  .span-txt{
+    font-family: PingFangSC-Medium;
+    font-size: 16px;
+    color: #FFFFFF;
+    position: absolute;
+    left: 0;
+    margin: auto;
+    right: 0;
+    background: #CDAB6A;
+    width: calc(100% - 40px);
+    height: 43px;
+    line-height: 43px;
+    border-radius: 4px;
+    text-align: center;
+  }
+}
 </style>
