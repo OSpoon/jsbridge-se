@@ -1,16 +1,16 @@
-### jsbridge-n22使用指南 ###
+### jsbridge-se使用指南 ###
 
-[演示APK下载地址](http://android.n22.online/bdph)
+[演示APK下载地址](http://android.se.online/bdph)
 
-#### 1. 在模块级别的`build.gradle`添加jsbridge-n22依赖
+#### 1. 在模块级别的`build.gradle`添加jsbridge-se依赖
 > 如无法更新全依赖包,请配置maven地址:https://dl.bintray.com/spoon2014/maven
 
 ```
 //仅包含WebView中Js与Java交互,插件需按指定格式编写
-implementation 'com.ospoon:jsbridge-n22:1.0.17'
+implementation 'com.ospoon:jsbridge-se:1.0.17'
 
 //包含WebView中Js与Java交互和基础插件,节省开发
-implementation 'com.ospoon:jsbridge-plugins-n22:1.0.17'
+implementation 'com.ospoon:jsbridge-plugins-se:1.0.17'
 ```
 
 #### 2. 创建插件 #####
@@ -81,7 +81,7 @@ implementation 'com.ospoon:jsbridge-plugins-n22:1.0.17'
     X5WebViewActivity.start(this,"http://192.168.199.163:9999");
     ```
  
-#### 4. JS调用Java([js-native-n22](./vue-js-java/src/utils/js-native-n22/readme.md)对调用进行了封装) ####
+#### 4. JS调用Java([js-native-se](./vue-js-java/src/utils/js-native-se/readme.md)对调用进行了封装) ####
 ```java
 window.WebViewJavascriptBridge.callHandler(
     'toast'                     //桥注册的名称ID

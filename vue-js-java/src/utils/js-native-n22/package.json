@@ -1,7 +1,7 @@
 {
-  "name": "js-native-n22",
+  "name": "js-native-se",
   "version": "1.0.23",
-  "description": "配合jsbridge-n22使用的js模块",
+  "description": "配合jsbridge-se使用的js模块",
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir dist",

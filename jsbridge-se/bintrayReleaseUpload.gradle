@@ -1,0 +1,15 @@
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'spoon2014'
+    repoName = 'maven'
+    groupId = 'com.ospoon'
+    artifactId = 'jsbridge-se'
+    desc = 'jsbridge-se for android'
+    website = 'https://github.com/ospoon/jsbridge-se'
+
+    publishVersion = rootProject.ext.security["version"]
+    bintrayUser = rootProject.ext.security["bintrayUser"]
+    bintrayKey = rootProject.ext.security["bintrayKey"]
+    dryRun = rootProject.ext.security["dryRun"]
+}

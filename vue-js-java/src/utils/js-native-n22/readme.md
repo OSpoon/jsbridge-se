@@ -1,17 +1,17 @@
-### js-native-n22使用指南 ###
+### js-native-se使用指南 ###
 
 [TOC]
 
-[NPM](https://www.npmjs.com/package/js-native-n22)
+[NPM](https://www.npmjs.com/package/js-native-se)
 
 #### 1. 安装 #### 
 ```
-npm i js-native-n22
+npm i js-native-se
 ```
 
 #### 2. 导入 ####
 ```
-import native from 'js-native-n22'
+import native from 'js-native-se'
 ``` 
 
 #### 3. 使用 ####
@@ -220,7 +220,7 @@ API`openBrowser`示例:
 ```js
 native.openBrowser({
     mode: 1,
-    url: 'http://xrkj.gitee.io/jsbridge-n22/#/'
+    url: 'http://xrkj.gitee.io/jsbridge-se/#/'
 }, (content) => {
     alert(JSON.stringify(content))
 }, (error) => {
@@ -231,7 +231,7 @@ native.openBrowser({
 ```js
 native.openBrowser({
     mode: 1,
-    url: 'http://xrkj.gitee.io/jsbridge-n22/#/',
+    url: 'http://xrkj.gitee.io/jsbridge-se/#/',
   }, (content) => {
     alert(JSON.stringify(content))
   }, (error) => {
@@ -392,7 +392,7 @@ API`shareWeChat`示例:
 ```js
 native.shareWeChat({
     platform: '1',
-    webPageUrl: 'http://n22.online/',
+    webPageUrl: 'http://se.online/',
     iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
     title: '测试分享标题',
     desc: '测试分享内容'

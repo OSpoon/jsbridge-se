@@ -9,6 +9,7 @@
     <EditText
         android:id="@+id/edit_host"
         android:hint="请输入访问地址"
+        android:text="http://xrkj.gitee.io/jsbridge-n22/#/"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

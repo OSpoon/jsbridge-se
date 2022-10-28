@@ -31,8 +31,8 @@ ext {
             "recyclerview-v7"       : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
 
             //插件相关的自定义模块
-            "jsbridge-n22"          : "com.ospoon:jsbridge-n22:1.0.43",
-            "jsbridge-plugins-n22"  : "com.ospoon:jsbridge-plugins-n22:1.0.43",
+            "jsbridge-se"          : "com.ospoon:jsbridge-se:1.0.43",
+            "jsbridge-plugins-se"  : "com.ospoon:jsbridge-plugins-se:1.0.43",
             "speech"                : "com.ospoon:speech:1.0.43",
             "idcard_quality"        : "com.ospoon:idcard_quality:1.0.43",
             "livenesslib"           : "com.ospoon:livenesslib:1.0.56",

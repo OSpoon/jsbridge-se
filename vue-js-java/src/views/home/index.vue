@@ -56,8 +56,8 @@
 
 <script>
 import lrz from 'lrz'
-import native from '@/utils/js-native-n22/dist/native'
-// import native from 'js-native-n22'
+import native from '@/utils/js-native-se/dist/native'
+// import native from 'js-native-se'
 
 console.log(native)
 
@@ -258,7 +258,7 @@ export default {
     openNewBrowser() {
       native.openBrowser({
         mode: 2,
-        url: 'http://xrkj.gitee.io/jsbridge-n22/#/',
+        url: 'http://xrkj.gitee.io/jsbridge-se/#/',
         isCustom: true,
         isShowClose: true,
         isShowBack: true,
@@ -361,7 +361,7 @@ export default {
     shareWeChat() {
       native.shareWeChat({
         platform: '1',
-        webPageUrl: 'http://n22.online/',
+        webPageUrl: 'http://se.online/',
         iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
         title: '测试分享标题',
         desc: '测试分享内容'
@@ -374,7 +374,7 @@ export default {
     shareWeChatTimeline() {
       native.shareWeChat({
         platform: '2',
-        webPageUrl: 'http://n22.online/',
+        webPageUrl: 'http://se.online/',
         iconUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2841648446,236398816&fm=26&gp=0.jpg',
         title: '测试分享标题',
         desc: '测试分享内容'

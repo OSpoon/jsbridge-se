@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.spoon.app.jsbridge_n22.demo">
+    package="com.spoon.app.jsbridge_se.demo">
 
     <application
         android:name=".AppContext"
@@ -29,12 +29,8 @@
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
-            android:theme="@android:style/Theme.Translucent" />
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:exported="true"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:theme="@android:style/Theme.Translucent"
+            tools:ignore="Instantiatable" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -46,23 +42,9 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <!--高德定位开发者申请的key-->
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="cbf49c999a8d9bdc06ed5fec534e2f0f"/>
-
-        <!-- 科大讯飞移动统计分析 -->
-        <meta-data
-            android:name="IFLYTEK_APPKEY"
-            android:value="'5aa5fa15'" />
         <meta-data
             android:name="IFLYTEK_CHANNEL"
             android:value="Android_GSB" />
-
-        <!-- 配置微信分享 APPKEY-->
-        <meta-data
-            android:name="JSBRIDGE_N22_WECHAT_SHARE_KEY"
-            android:value="wxba50597b5a9c762d" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
